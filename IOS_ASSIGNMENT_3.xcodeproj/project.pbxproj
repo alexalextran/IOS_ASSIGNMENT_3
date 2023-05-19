@@ -56,6 +56,9 @@
 		F6E83BF62A1659FB009E9886 /* IOS_ASSIGNMENT_3 */ = {
 			isa = PBXGroup;
 			children = (
+				F6E83C0D2A17AC60009E9886 /* View */,
+				F6E83C0C2A17AC56009E9886 /* Controller */,
+				F6E83C0B2A17AC4D009E9886 /* Model */,
 				F6E83BF72A1659FB009E9886 /* AppDelegate.swift */,
 				F6E83BF92A1659FB009E9886 /* SceneDelegate.swift */,
 				F6E83BFB2A1659FB009E9886 /* ViewController.swift */,
@@ -65,6 +68,27 @@
 				F6E83C052A1659FF009E9886 /* Info.plist */,
 			);
 			path = IOS_ASSIGNMENT_3;
+			sourceTree = "<group>";
+		};
+		F6E83C0B2A17AC4D009E9886 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F6E83C0C2A17AC56009E9886 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F6E83C0D2A17AC60009E9886 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
