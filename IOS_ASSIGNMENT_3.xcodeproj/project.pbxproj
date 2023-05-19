@@ -9,21 +9,33 @@
 /* Begin PBXBuildFile section */
 		F6E83BF82A1659FB009E9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BF72A1659FB009E9886 /* AppDelegate.swift */; };
 		F6E83BFA2A1659FB009E9886 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BF92A1659FB009E9886 /* SceneDelegate.swift */; };
-		F6E83BFC2A1659FB009E9886 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BFB2A1659FB009E9886 /* ViewController.swift */; };
+		F6E83BFC2A1659FB009E9886 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BFB2A1659FB009E9886 /* StartScreenViewController.swift */; };
 		F6E83BFF2A1659FB009E9886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6E83BFD2A1659FB009E9886 /* Main.storyboard */; };
 		F6E83C012A1659FE009E9886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E83C002A1659FE009E9886 /* Assets.xcassets */; };
 		F6E83C042A1659FF009E9886 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6E83C022A1659FF009E9886 /* LaunchScreen.storyboard */; };
+		F6E83C0F2A17ACE6009E9886 /* JournalEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83C0E2A17ACE6009E9886 /* JournalEntryViewController.swift */; };
+		F6E83C112A17AD21009E9886 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83C102A17AD21009E9886 /* StatisticsViewController.swift */; };
+		F6E83C132A17AD49009E9886 /* GuidanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83C122A17AD49009E9886 /* GuidanceViewController.swift */; };
+		F6E83C152A17AD69009E9886 /* RecapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83C142A17AD69009E9886 /* RecapViewController.swift */; };
+		F6E83C172A17AD99009E9886 /* EntryRecapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83C162A17AD99009E9886 /* EntryRecapViewController.swift */; };
+		F6E83C192A17AE67009E9886 /* OpenAIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83C182A17AE67009E9886 /* OpenAIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F6E83BF42A1659FB009E9886 /* IOS_ASSIGNMENT_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_ASSIGNMENT_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E83BF72A1659FB009E9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6E83BF92A1659FB009E9886 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F6E83BFB2A1659FB009E9886 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F6E83BFB2A1659FB009E9886 /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		F6E83BFE2A1659FB009E9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6E83C002A1659FE009E9886 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6E83C032A1659FF009E9886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6E83C052A1659FF009E9886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6E83C0E2A17ACE6009E9886 /* JournalEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryViewController.swift; sourceTree = "<group>"; };
+		F6E83C102A17AD21009E9886 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		F6E83C122A17AD49009E9886 /* GuidanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidanceViewController.swift; sourceTree = "<group>"; };
+		F6E83C142A17AD69009E9886 /* RecapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapViewController.swift; sourceTree = "<group>"; };
+		F6E83C162A17AD99009E9886 /* EntryRecapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRecapViewController.swift; sourceTree = "<group>"; };
+		F6E83C182A17AE67009E9886 /* OpenAIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +71,6 @@
 				F6E83C0D2A17AC60009E9886 /* View */,
 				F6E83C0C2A17AC56009E9886 /* Controller */,
 				F6E83C0B2A17AC4D009E9886 /* Model */,
-				F6E83BF72A1659FB009E9886 /* AppDelegate.swift */,
-				F6E83BF92A1659FB009E9886 /* SceneDelegate.swift */,
-				F6E83BFB2A1659FB009E9886 /* ViewController.swift */,
-				F6E83BFD2A1659FB009E9886 /* Main.storyboard */,
 				F6E83C002A1659FE009E9886 /* Assets.xcassets */,
 				F6E83C022A1659FF009E9886 /* LaunchScreen.storyboard */,
 				F6E83C052A1659FF009E9886 /* Info.plist */,
@@ -80,6 +88,15 @@
 		F6E83C0C2A17AC56009E9886 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F6E83BF72A1659FB009E9886 /* AppDelegate.swift */,
+				F6E83BF92A1659FB009E9886 /* SceneDelegate.swift */,
+				F6E83BFB2A1659FB009E9886 /* StartScreenViewController.swift */,
+				F6E83C0E2A17ACE6009E9886 /* JournalEntryViewController.swift */,
+				F6E83C102A17AD21009E9886 /* StatisticsViewController.swift */,
+				F6E83C122A17AD49009E9886 /* GuidanceViewController.swift */,
+				F6E83C142A17AD69009E9886 /* RecapViewController.swift */,
+				F6E83C162A17AD99009E9886 /* EntryRecapViewController.swift */,
+				F6E83C182A17AE67009E9886 /* OpenAIViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -87,6 +104,7 @@
 		F6E83C0D2A17AC60009E9886 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F6E83BFD2A1659FB009E9886 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,9 +180,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6E83BFC2A1659FB009E9886 /* ViewController.swift in Sources */,
+				F6E83C132A17AD49009E9886 /* GuidanceViewController.swift in Sources */,
+				F6E83BFC2A1659FB009E9886 /* StartScreenViewController.swift in Sources */,
+				F6E83C112A17AD21009E9886 /* StatisticsViewController.swift in Sources */,
+				F6E83C152A17AD69009E9886 /* RecapViewController.swift in Sources */,
 				F6E83BF82A1659FB009E9886 /* AppDelegate.swift in Sources */,
+				F6E83C172A17AD99009E9886 /* EntryRecapViewController.swift in Sources */,
+				F6E83C0F2A17ACE6009E9886 /* JournalEntryViewController.swift in Sources */,
 				F6E83BFA2A1659FB009E9886 /* SceneDelegate.swift in Sources */,
+				F6E83C192A17AE67009E9886 /* OpenAIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
