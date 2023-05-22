@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6C537982A1898CF00DDD61C /* DateCellM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537972A1898CF00DDD61C /* DateCellM.swift */; };
 		F6E83BF82A1659FB009E9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BF72A1659FB009E9886 /* AppDelegate.swift */; };
 		F6E83BFA2A1659FB009E9886 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BF92A1659FB009E9886 /* SceneDelegate.swift */; };
 		F6E83BFC2A1659FB009E9886 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BFB2A1659FB009E9886 /* StartScreenViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F6C537972A1898CF00DDD61C /* DateCellM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCellM.swift; sourceTree = "<group>"; };
 		F6E83BF42A1659FB009E9886 /* IOS_ASSIGNMENT_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_ASSIGNMENT_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E83BF72A1659FB009E9886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6E83BF92A1659FB009E9886 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		F6E83C0B2A17AC4D009E9886 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F6C537972A1898CF00DDD61C /* DateCellM.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6E83C132A17AD49009E9886 /* GuidanceViewController.swift in Sources */,
+				F6C537982A1898CF00DDD61C /* DateCellM.swift in Sources */,
 				F6E83BFC2A1659FB009E9886 /* StartScreenViewController.swift in Sources */,
 				F6E83C112A17AD21009E9886 /* StatisticsViewController.swift in Sources */,
 				F6E83C152A17AD69009E9886 /* RecapViewController.swift in Sources */,

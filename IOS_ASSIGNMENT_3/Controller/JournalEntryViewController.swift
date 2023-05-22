@@ -1,21 +1,21 @@
-//
-//  ViewController.swift
-//  IOS_ASSIGNMENT_3
-//
-//  Created by Alex Tran on 18/5/2023.
-//
-
 import UIKit
+import Foundation
 
 class JournalEntryViewController: UIViewController {
-    
+    @IBOutlet weak var currentDateLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM yyyy"
+        let today = Date()
+        let formattedDate = dateFormatter.string(from: today)
+        
+        currentDateLabel.text = "Today is \(formattedDate)"
+               
+                
+
+      
     }
-    var nice:Int = 10;
- 
-
-
 }
-
