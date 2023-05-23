@@ -3,7 +3,7 @@ import UIKit
 class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var entryTextBox: UITextField!
-    
+    //lol
     @IBOutlet weak var unhappyButton: UIButton!
     @IBOutlet weak var sadButton: UIButton!
     @IBOutlet weak var neutralButton: UIButton!
