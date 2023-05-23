@@ -13,7 +13,6 @@ class StartScreenViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    var nice:Int = 10;
  
 
 
