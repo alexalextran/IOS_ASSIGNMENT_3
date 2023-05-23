@@ -78,7 +78,6 @@
 				F6E83C002A1659FE009E9886 /* Assets.xcassets */,
 				F6E83C022A1659FF009E9886 /* LaunchScreen.storyboard */,
 				F6E83C052A1659FF009E9886 /* Info.plist */,
-				F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */,
 			);
 			path = IOS_ASSIGNMENT_3;
 			sourceTree = "<group>";
@@ -86,6 +85,7 @@
 		F6E83C0B2A17AC4D009E9886 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */,
 				F6C537972A1898CF00DDD61C /* DateCellM.swift */,
 			);
 			path = Model;

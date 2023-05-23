@@ -1,9 +1,3 @@
-//
-//  ViewController.swift
-//  IOS_ASSIGNMENT_3
-//
-//  Created by Alex Tran on 18/5/2023.
-//
 import UIKit
 
 class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -16,6 +10,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         // Set up the collection view
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        // Register the cell class for the collection view
+        collectionView.register(DateCell.self, forCellWithReuseIdentifier: "DateCell")
     }
     
     // Implement UICollectionViewDataSource methods
@@ -27,62 +24,39 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as! DateCell
         let day = indexPath.item + 1
-        cell.dateLabel.text = "\(day)"
+        cell.setupCell(day: day)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedDay = indexPath.item + 1
-        let selectedMonth = 5 // Assuming May for this example
-        let selectedYear = 2023 // Assuming the current year for this example
-        
-        // Create a date using the selected day, month, and year
-        let calendar = Calendar.current
-        var dateComponents = DateComponents()
-        dateComponents.year = selectedYear
-        dateComponents.month = selectedMonth
-        dateComponents.day = selectedDay
-        selectedDate = calendar.date(from: dateComponents)
-        
-        performSegue(withIdentifier: "ShowDateDetail", sender: self)
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowDateDetail" {
-            if let destinationVC = segue.destination as? DateDetailViewController {
-                destinationVC.selectedDate = selectedDate
-            }
+    class DateCell: UICollectionViewCell {
+        let button = UIButton()
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            setupCell()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+            setupCell()
+        }
+        
+        private func setupCell() {
+            contentView.addSubview(button)
+            button.frame = contentView.bounds
+            button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            // Customize the appearance of the button
+            button.setTitleColor(.black, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+            button.layer.borderWidth = 1.0
+            button.layer.borderColor = UIColor.lightGray.cgColor
+        }
+        
+        func setupCell(day: Int) {
+            button.setTitle("\(day)", for: .normal)
         }
     }
-}
-
-class DateDetailViewController: UIViewController {
-    @IBOutlet weak var dateLabel: UILabel!
     
-    var selectedDate: Date?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if let selectedDate = selectedDate {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM d, yyyy"
-            let formattedDate = dateFormatter.string(from: selectedDate)
-            dateLabel.text = formattedDate
-        }
-    }
 }
-
-import UIKit
-
-class DateCell: UICollectionViewCell {
-    @IBOutlet weak var dateLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        // Customize the appearance of the cell
-        // For example, you can set the label's font, text color, etc.
-    }
-}
-
-

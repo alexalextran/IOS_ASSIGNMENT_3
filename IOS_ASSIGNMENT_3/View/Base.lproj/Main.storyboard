@@ -600,7 +600,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kD-OO-r9O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2435.8778625954196" y="-4.2253521126760569"/>
+            <point key="canvasLocation" x="3008" y="-4"/>
         </scene>
         <!--Guidance View Controller-->
         <scene sceneID="JBI-oS-MJG">
@@ -857,16 +857,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thoughts on " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfJ-8x-nve">
-                                <rect key="frame" x="125" y="122" width="142" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thoughts on " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfJ-8x-nve">
+                                <rect key="frame" x="0.0" y="121" width="390" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P2M-TV-72u">
-                                <rect key="frame" x="76" y="173" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P2M-TV-72u">
+                                <rect key="frame" x="10" y="171" width="370" height="553.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mh2-Qa-k9F">
                                     <size key="itemSize" width="128" height="128"/>
@@ -876,7 +874,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DateCell" id="xEf-kO-hR1" customClass="DateCell" customModule="IOS_ASSIGNMENT_3" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zxH-Xn-ZqF">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -970,19 +968,26 @@
                         <viewLayoutGuide key="safeArea" id="Neg-Va-qmj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Neg-Va-qmj" firstAttribute="trailing" secondItem="mfJ-8x-nve" secondAttribute="trailing" id="Dx7-RM-SLT"/>
+                            <constraint firstItem="1ol-h4-PSY" firstAttribute="top" secondItem="P2M-TV-72u" secondAttribute="bottom" constant="30" id="IGg-Cf-qhc"/>
+                            <constraint firstItem="P2M-TV-72u" firstAttribute="top" secondItem="mfJ-8x-nve" secondAttribute="bottom" constant="20" id="Kzn-p3-Cwh"/>
+                            <constraint firstItem="mfJ-8x-nve" firstAttribute="leading" secondItem="Neg-Va-qmj" secondAttribute="leading" id="PtH-V8-EtY"/>
+                            <constraint firstItem="P2M-TV-72u" firstAttribute="leading" secondItem="Neg-Va-qmj" secondAttribute="leading" constant="10" id="TeV-Bb-Myj"/>
                             <constraint firstItem="Neg-Va-qmj" firstAttribute="trailing" secondItem="1ol-h4-PSY" secondAttribute="trailing" id="cNI-mA-VHM"/>
                             <constraint firstItem="Neg-Va-qmj" firstAttribute="bottom" secondItem="1ol-h4-PSY" secondAttribute="bottom" constant="1" id="cju-Z1-OKf"/>
+                            <constraint firstItem="Neg-Va-qmj" firstAttribute="trailing" secondItem="P2M-TV-72u" secondAttribute="trailing" constant="10" id="fdu-8o-dfa"/>
                             <constraint firstItem="1ol-h4-PSY" firstAttribute="leading" secondItem="Neg-Va-qmj" secondAttribute="leading" id="tAS-FJ-Ptk"/>
+                            <constraint firstItem="mfJ-8x-nve" firstAttribute="top" secondItem="Neg-Va-qmj" secondAttribute="top" constant="30" id="u5F-wV-gGg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Recap" id="SeK-xA-HP9"/>
                     <connections>
-                        <outlet property="collectionView" destination="P2M-TV-72u" id="BJe-A3-ao1"/>
+                        <outlet property="collectionView" destination="P2M-TV-72u" id="UWL-FF-8hZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t4d-hf-Su1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4917" y="-4"/>
+            <point key="canvasLocation" x="4916.9230769230771" y="-4.2654028436018958"/>
         </scene>
         <!--OpenAI View Controller-->
         <scene sceneID="h0u-gl-c9b">
