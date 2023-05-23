@@ -12,6 +12,8 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     
     var selectedButton: UIButton?
     
+    var selectedMood: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,11 +46,9 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
-        guard let selectedButton = selectedButton else {
-            // No previously selected button, set the tapped button as selected
-            sender.backgroundColor = .darkGray
-            self.selectedButton = sender
-            return
+        if let selectedButton = selectedButton {
+            // Deselect the previously selected button
+            selectedButton.backgroundColor = .lightGray
         }
         
         if selectedButton == sender {
@@ -57,16 +57,35 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
             self.selectedButton = nil
         } else {
             // Tapped a different button, update the selected button and its background color
-            selectedButton.backgroundColor = .lightGray
             sender.backgroundColor = .darkGray
             self.selectedButton = sender
         }
-    }
     
+        switch sender.titleLabel!.text! {
+        case "😡":
+         selectedMood = "Unhappy"
+        case "😭":
+         selectedMood = "Sad"
+        case "😐":
+        selectedMood = "Neutral"
+        case "😄":
+        selectedMood = "Good"
+        case "🤩":
+        selectedMood = "Joy"
+        default:
+        selectedMood = "Error"
+        }
+        
+        
+        print(sender.titleLabel!.text!)
+        
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToDRecap" {
             let VC = segue.destination as! DRecapViewController
-            VC.entry = entryTextBox.text!
+            VC.textE = entryTextBox.text!
+            VC.moodE = selectedMood!
         }
     }
 }

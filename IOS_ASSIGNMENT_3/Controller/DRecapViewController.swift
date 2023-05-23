@@ -18,9 +18,16 @@ extension NSString {
 
 
 class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var entry:String?
-    var entries:[String] = []
+    
+    var moodE:String?
+    var textE:String?
+    
+    struct Entry: Codable{
+        var mood:String
+        var text:String
+    }
+    
+    var entries:[Entry] = []
     let KEY_DAILY_ENTRIES = "dailyEntries"
     
     let cellReuseIdentifier = "cell"
@@ -35,7 +42,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
        
         entries = readEntries()
         writeEntry();
-        print(entry!)
+  
         print(entries)
             
      
@@ -54,17 +61,19 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func writeEntry(){
         let userDefaults = UserDefaults.standard
         var valuesEmpty = false
-            entries.append(entry!)
+        let newEntry = Entry(mood: moodE!, text: textE!)
+        
+            entries.append(newEntry)
         userDefaults.set(try? PropertyListEncoder().encode(entries),
                          forKey: KEY_DAILY_ENTRIES)
     }
     
 
     //retrieve highscores from the database
-    func readEntries()-> [String]{
+    func readEntries()-> [Entry]{
         let defaults = UserDefaults.standard
         
-        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data{ if let array = try? PropertyListDecoder().decode(Array<String>.self,from: savedArrayData) {
+        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data{ if let array = try? PropertyListDecoder().decode(Array<Entry>.self,from: savedArrayData) {
             return array
         } else {
             return []
@@ -100,11 +109,13 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           let entry = self.entries[indexPath.section] as NSString
+        let currentEntry = self.entries[indexPath.section]
+        
+        let text = currentEntry.text as NSString
            let labelWidth = tableView.frame.width - 32 // Adjust the width as per your layout
            let titleLabelHeight: CGFloat = 20 // Adjust the height of the title label as per your preference
            let font = UIFont.systemFont(ofSize: 17) // Adjust the font size as per your preference
-           let entryHeight = entry.height(withConstrainedWidth: labelWidth, font: font)
+        let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
            let cellHeight = titleLabelHeight + entryHeight + 24 // Add extra padding as per your preference
 
            return cellHeight
@@ -114,8 +125,8 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell
         
         let entry = self.entries[indexPath.section]
-        cell.titleLabel.text = "Title"
-        cell.entryLabel.text = entry
+        cell.titleLabel.text = entry.mood
+        cell.entryLabel.text = entry.text
         
         cell.backgroundColor = UIColor.white
         cell.layer.borderColor = UIColor.black.cgColor
