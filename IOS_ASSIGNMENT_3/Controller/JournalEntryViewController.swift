@@ -85,7 +85,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "goToDRecap" {
             let VC = segue.destination as! DRecapViewController
             VC.textE = entryTextBox.text!
-            VC.moodE = selectedMood!
+            VC.moodE = selectedMood ?? "no mood selected (TODO)"
         }
     }
 }
