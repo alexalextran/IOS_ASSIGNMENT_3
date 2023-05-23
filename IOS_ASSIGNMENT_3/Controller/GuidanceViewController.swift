@@ -15,6 +15,8 @@ class GuidanceViewController: UIViewController {
     }
     var nice:Int = 10;
  
+    //hello this is a test
+    
 
 
 }
