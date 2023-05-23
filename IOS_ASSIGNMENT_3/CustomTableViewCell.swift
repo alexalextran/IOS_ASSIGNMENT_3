@@ -1,8 +1,7 @@
 import UIKit
 class CustomTableViewCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var entryLabel: UILabel!
-
+    let titleLabel = UILabel()
+    let entryLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
