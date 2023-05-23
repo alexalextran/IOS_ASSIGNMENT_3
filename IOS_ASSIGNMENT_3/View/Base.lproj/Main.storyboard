@@ -334,6 +334,11 @@
                     <connections>
                         <outlet property="currentDateLabel" destination="9JJ-Z2-prC" id="VO6-jR-frG"/>
                         <outlet property="entryTextBox" destination="8Ex-2i-LqA" id="tEm-Zd-G9G"/>
+                        <outlet property="goodButton" destination="UaC-bi-cTm" id="ZIC-jA-71i"/>
+                        <outlet property="joyButton" destination="4MU-Q7-8ad" id="VwE-N4-GcT"/>
+                        <outlet property="neutralButton" destination="zHQ-vU-Lys" id="8QJ-mP-4ds"/>
+                        <outlet property="sadButton" destination="Bjx-G3-Cfj" id="yRA-ra-Rm8"/>
+                        <outlet property="unhappyButton" destination="zOL-MF-pG5" id="D49-Pb-0al"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWD-8t-hmA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
