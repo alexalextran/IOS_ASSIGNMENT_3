@@ -270,7 +270,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="calendar" catalog="system"/>
                                                 <connections>
-                                                    <segue destination="veb-8l-Tho" kind="showDetail" id="T3N-Aj-VAl"/>
+                                                    <segue destination="veb-8l-Tho" kind="show" id="fh0-lD-kAE"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jz1-R5-RTq">
@@ -611,6 +611,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="78" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="calendar" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="veb-8l-Tho" kind="show" id="MtL-eM-sAn"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hh0-tf-aVb">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="78" height="20.333333333333329"/>
@@ -895,6 +898,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="78" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="calendar" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="veb-8l-Tho" kind="show" id="JbE-Df-QbM"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2m-jJ-Fs1">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="78" height="20.333333333333329"/>
@@ -1024,7 +1030,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="calendar" catalog="system"/>
                                                 <connections>
-                                                    <segue destination="veb-8l-Tho" kind="show" id="ONl-SP-M0B"/>
+                                                    <segue destination="veb-8l-Tho" kind="show" id="c0H-r2-mfB"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qT-hX-USw">
@@ -1452,7 +1458,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="calendar" catalog="system"/>
                                                 <connections>
-                                                    <segue destination="veb-8l-Tho" kind="show" id="K2y-1z-V3f"/>
+                                                    <segue destination="veb-8l-Tho" kind="show" id="ZEh-yh-gqj"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjd-ot-TRg">
@@ -1499,11 +1505,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T3N-Aj-VAl"/>
-        <segue reference="e4g-LF-DxU"/>
-        <segue reference="YcQ-KQ-0n3"/>
-        <segue reference="a6K-3C-lYs"/>
-        <segue reference="8yi-PN-boZ"/>
+        <segue reference="c0H-r2-mfB"/>
+        <segue reference="hdv-mi-OG8"/>
+        <segue reference="L3I-Qn-ybr"/>
+        <segue reference="IL0-pC-XEw"/>
+        <segue reference="lq4-tq-JsD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bubble.right.fill" catalog="system" width="128" height="112"/>
