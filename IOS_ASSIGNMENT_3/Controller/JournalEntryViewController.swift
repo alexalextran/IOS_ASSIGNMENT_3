@@ -1,6 +1,8 @@
 import UIKit
 
 class JournalEntryViewController: UIViewController, UITextFieldDelegate {
+    
+    
     @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var entryTextBox: UITextField!
     @IBOutlet weak var saveButton: UIButton!
@@ -53,8 +55,8 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     func updateSaveButtonState() {
             if entryTextBox.text?.isEmpty == true || selectedMood == nil {
                 saveButton.isEnabled = false
-            } else {
-                saveButton.isEnabled = true
+            } else if entryTextBox.text?.isEmpty == false && selectedMood != nil {
+                    saveButton.isEnabled = true
             }
         }
     
@@ -62,7 +64,6 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
         if let selectedButton = selectedButton {
             // Deselect the previously selected button
             selectedButton.backgroundColor = .lightGray
-            updateSaveButtonState()
         }
         
         if selectedButton == sender {
@@ -78,7 +79,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
         switch sender.titleLabel!.text! {
         case "😡":
          selectedMood = "Unhappy"
-        case "😭":
+        case "☹️":
          selectedMood = "Sad"
         case "😐":
         selectedMood = "Neutral"
@@ -90,7 +91,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
         selectedMood = "Error"
         }
         
-        
+        updateSaveButtonState()
         print(sender.titleLabel!.text!)
         
     }
