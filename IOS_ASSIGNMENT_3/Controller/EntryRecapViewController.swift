@@ -96,7 +96,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "goToGetEntries" {
             let VC = segue.destination as! GetEntriesViewController
             VC.date = selectedDate
-            VC.formattedDate = formattedDate
+            VC.formmattedDate = formattedDate
         }
     }
     
