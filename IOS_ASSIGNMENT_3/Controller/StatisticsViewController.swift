@@ -44,18 +44,19 @@ class StatisticsViewController: UIViewController {
         
         
         unhappyPercentage.text = String(calculateMoodPercentage(emotion: "Unhappy"))
-        unhappyPogressBar.progress = Float(unhappyPercentage.text!)!
+        unhappyPogressBar.progress = Float(unhappyPercentage.text!)! * 0.01
         
         sadPercentage.text = String(calculateMoodPercentage(emotion: "Sad"))
-        sadPogressBar.progress = Float(sadPercentage.text!)!
+        sadPogressBar.progress = Float(sadPercentage.text!)! * 0.01
         
         neutralPercentage.text = String(calculateMoodPercentage(emotion: "Neutral"))
-        neutralPogressBar.progress = Float(neutralPercentage.text!)!
+        neutralPogressBar.progress = Float(neutralPercentage.text!)! * 0.01
         
         goodPercentage.text = String(calculateMoodPercentage(emotion: "Good"))
-        
+        goodPogressBar.progress = Float(goodPercentage.text!)! * 0.01
         
         joyPercentage.text = String(calculateMoodPercentage(emotion: "Joy"))
+        joyPogressBar.progress = Float(joyPercentage.text!)! * 0.01
         
         
         
