@@ -46,12 +46,28 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         print("Current month (digit): \(currentMonth)")
         
         i = currentMonth
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
         
+        CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"
     }
+    
+    
     func updateCurrentMonthAndYearLabel() {
-        let monthName = DateFormatter().monthSymbols[i - 1]
-        let currentYear = Calendar.current.component(.year, from: Date())
-        CurrentMonthandYear.text = "\(monthName) \(currentYear)"
+        guard (1...12).contains(i) else {
+            print("Invalid month index: \(i)")
+            return
+        }
+        
+        let monthSymbols = DateFormatter().monthSymbols
+        let monthIndex = i - 1
+        
+        if let monthName = monthSymbols?[monthIndex] {
+            let currentYear = Calendar.current.component(.year, from: Date())
+            CurrentMonthandYear.text = "\(monthName) \(currentYear)"
+        } else {
+            print("Month name not found for index: \(monthIndex)")
+        }
     }
     
     //decreases the value of i by 1 and therefore moving to the previous month
@@ -93,10 +109,13 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     // Implement UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Return the number of days in the month
-      
-        return monthsDictionary[i]!
-        
-     
+        let month = (i - 1) % 12 + 1
+        if let daysInMonth = monthsDictionary[month] {
+            return daysInMonth
+        } else {
+            // Provide a default value (e.g., 30) or handle the error case
+            return 30
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
