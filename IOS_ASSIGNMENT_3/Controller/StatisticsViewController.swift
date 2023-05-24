@@ -13,8 +13,12 @@ class StatisticsViewController: UIViewController {
     var entries = [String: [Entry]]()
     var entriesThisMonth = [Entry]()
     
-
- 
+    @IBOutlet weak var unhappyPogressBar: UIProgressView!
+    @IBOutlet weak var sadPogressBar: UIProgressView!
+    @IBOutlet weak var neutralPogressBar: UIProgressView!
+    @IBOutlet weak var goodPogressBar: UIProgressView!
+    @IBOutlet weak var joyPogressBar: UIProgressView!
+    
     @IBOutlet weak var unhappyPercentage: UILabel!
     @IBOutlet weak var sadPercentage: UILabel!
     @IBOutlet weak var neutralPercentage: UILabel!
@@ -40,9 +44,17 @@ class StatisticsViewController: UIViewController {
         
         
         unhappyPercentage.text = String(calculateMoodPercentage(emotion: "Unhappy"))
+        unhappyPogressBar.progress = Float(unhappyPercentage.text!)!
+        
         sadPercentage.text = String(calculateMoodPercentage(emotion: "Sad"))
+        sadPogressBar.progress = Float(sadPercentage.text!)!
+        
         neutralPercentage.text = String(calculateMoodPercentage(emotion: "Neutral"))
+        neutralPogressBar.progress = Float(neutralPercentage.text!)!
+        
         goodPercentage.text = String(calculateMoodPercentage(emotion: "Good"))
+        
+        
         joyPercentage.text = String(calculateMoodPercentage(emotion: "Joy"))
         
         
@@ -67,7 +79,7 @@ class StatisticsViewController: UIViewController {
         return Int(currentMonth) ?? 0
     }
     
-    func calculateMoodPercentage(emotion:String) -> Double {
+    func calculateMoodPercentage(emotion:String) -> String {
         let moodToCalculate = emotion
         let totalCount = entriesThisMonth.count
         let emotionCount = entriesThisMonth.filter { $0.mood == moodToCalculate }.count
@@ -75,6 +87,13 @@ class StatisticsViewController: UIViewController {
         
         print("Sad Mood Count: \(emotionCount), Percentage: \(percentage)%")
         
-        return percentage
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 1
+
+        let roundedNumber = numberFormatter.string(from: NSNumber(value: percentage))
+        
+        return roundedNumber!
     }
 }
