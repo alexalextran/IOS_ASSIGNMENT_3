@@ -17,7 +17,7 @@ extension NSString {
 }
 
 
-class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var moodE:String?
     var textE:String?
@@ -28,6 +28,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var text:String
     }
     var entries = [String: [Entry]]()
+    var filteredEntries = [String: [Entry]]()
     let KEY_DAILY_ENTRIES = "dailyEntries"
     
     let cellReuseIdentifier = "cell"
@@ -35,6 +36,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
  
     
     @IBOutlet weak var entriesTable: UITableView!
+    @IBOutlet weak var filterTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,20 +44,30 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
        
         entries = readEntries()
         writeEntry();
-        print(formmattedDate)
-        print(entries)
+        
+        filteredEntries = entries
+
+        filterTextField.delegate = self
+        filterTextField.addTarget(self, action: #selector(filterTextFieldDidChange(_:)), for: .editingChanged)
             
      
         self.entriesTable.register(CustomTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-
-           
-
+        
               entriesTable.delegate = self
               entriesTable.dataSource = self
-             
-          
     }
     
+    
+    // Filter entries when the filter text field value changes
+    @objc func filterTextFieldDidChange(_ textField: UITextField) {
+        let searchText = textField.text ?? ""
+        if searchText.isEmpty {
+            filteredEntries = entries
+        } else {
+            filteredEntries = entries.mapValues { $0.filter { $0.text.contains(searchText) } }
+        }
+        entriesTable.reloadData()
+    }
     
     
     func writeEntry() {
@@ -91,8 +103,13 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Set the spacing between sections
    
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        filterTextField.resignFirstResponder()
+        return true
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.entries[formmattedDate!]!.count
+        return filteredEntries[formmattedDate!]?.count ?? 0
         }
         
         // There is just one row in every section
@@ -148,4 +165,3 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
 
 }
-
