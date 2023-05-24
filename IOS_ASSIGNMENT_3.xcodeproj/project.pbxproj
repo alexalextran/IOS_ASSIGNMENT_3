@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */; };
 		F6C537982A1898CF00DDD61C /* DateCellM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537972A1898CF00DDD61C /* DateCellM.swift */; };
 		F6C5379A2A1BA88100DDD61C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */; };
 		F6E83BF82A1659FB009E9886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E83BF72A1659FB009E9886 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEntriesViewController.swift; sourceTree = "<group>"; };
 		F6C537972A1898CF00DDD61C /* DateCellM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCellM.swift; sourceTree = "<group>"; };
 		F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		F6E83BF42A1659FB009E9886 /* IOS_ASSIGNMENT_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_ASSIGNMENT_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 				F6E83C142A17AD69009E9886 /* DRecapViewController.swift */,
 				F6E83C162A17AD99009E9886 /* EntryRecapViewController.swift */,
 				F6E83C182A17AE67009E9886 /* OpenAIViewController.swift */,
+				F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				F6E83C172A17AD99009E9886 /* EntryRecapViewController.swift in Sources */,
 				F6E83C0F2A17ACE6009E9886 /* JournalEntryViewController.swift in Sources */,
 				F6E83BFA2A1659FB009E9886 /* SceneDelegate.swift in Sources */,
+				F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */,
 				F6E83C192A17AE67009E9886 /* OpenAIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,6 +4,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var collectionView: UICollectionView!
     
     var selectedDate: Date?
+    var formattedDate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +19,47 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     // Implement UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Return the number of days in the month
-        return 31 // Implement your own logic to determine the number of days
+        return 31
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as! DateCell
         let day = indexPath.item + 1
         cell.setupCell(day: day)
+        cell.button.addTarget(self, action: #selector(dateButtonTapped(_:)), for: .touchUpInside)
+
         return cell
     }
+    
+    
+    //JOSH DO NOT TOUCH THIS FUNCTION
+    @objc func dateButtonTapped(_ sender: UIButton) {
+        if let cell = sender.superview?.superview as? DateCell {
+            let indexPath = collectionView.indexPath(for: cell)!
+            let selectedDay = indexPath.item+1
+            let selectedMonth = 5 // Assuming May for this example
+            let selectedYear = 2023 // Assuming the current year for this example
+
+            // Create a date using the selected day, month, and year
+            let calendar = Calendar.current
+            var dateComponents = DateComponents()
+            dateComponents.year = selectedYear
+            dateComponents.month = selectedMonth
+            dateComponents.day = selectedDay
+            selectedDate = calendar.date(from: dateComponents)
+
+            // Update the button appearance or perform any additional actions here if needed
+            collectionView.reloadData()
+            let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    if let selectedDate = selectedDate {
+                        let FormattedDate = dateFormatter.string(from: selectedDate)
+                        formattedDate = FormattedDate
+                        print(formattedDate)
+                    }
+        }
+    }
+
     
     
     class DateCell: UICollectionViewCell {
@@ -56,6 +89,14 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         
         func setupCell(day: Int) {
             button.setTitle("\(day)", for: .normal)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToGetEntries" {
+            let VC = segue.destination as! GetEntriesViewController
+            VC.date = selectedDate
+            VC.formattedDate = formattedDate
         }
     }
     

@@ -964,6 +964,14 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybh-nu-2NR">
+                                <rect key="frame" x="160" y="680" width="70" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Go"/>
+                                <connections>
+                                    <segue destination="I28-Yx-3gH" kind="show" identifier="goToGetEntries" id="XdM-Dz-DoH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Neg-Va-qmj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -971,11 +979,14 @@
                             <constraint firstItem="Neg-Va-qmj" firstAttribute="trailing" secondItem="mfJ-8x-nve" secondAttribute="trailing" id="Dx7-RM-SLT"/>
                             <constraint firstItem="1ol-h4-PSY" firstAttribute="top" secondItem="P2M-TV-72u" secondAttribute="bottom" constant="30" id="IGg-Cf-qhc"/>
                             <constraint firstItem="P2M-TV-72u" firstAttribute="top" secondItem="mfJ-8x-nve" secondAttribute="bottom" constant="20" id="Kzn-p3-Cwh"/>
+                            <constraint firstItem="Neg-Va-qmj" firstAttribute="trailing" secondItem="ybh-nu-2NR" secondAttribute="trailing" constant="160" id="LOR-RQ-MFB"/>
                             <constraint firstItem="mfJ-8x-nve" firstAttribute="leading" secondItem="Neg-Va-qmj" secondAttribute="leading" id="PtH-V8-EtY"/>
                             <constraint firstItem="P2M-TV-72u" firstAttribute="leading" secondItem="Neg-Va-qmj" secondAttribute="leading" constant="10" id="TeV-Bb-Myj"/>
                             <constraint firstItem="Neg-Va-qmj" firstAttribute="trailing" secondItem="1ol-h4-PSY" secondAttribute="trailing" id="cNI-mA-VHM"/>
                             <constraint firstItem="Neg-Va-qmj" firstAttribute="bottom" secondItem="1ol-h4-PSY" secondAttribute="bottom" constant="1" id="cju-Z1-OKf"/>
+                            <constraint firstItem="1ol-h4-PSY" firstAttribute="top" secondItem="ybh-nu-2NR" secondAttribute="bottom" constant="40" id="ek0-Ed-kFN"/>
                             <constraint firstItem="Neg-Va-qmj" firstAttribute="trailing" secondItem="P2M-TV-72u" secondAttribute="trailing" constant="10" id="fdu-8o-dfa"/>
+                            <constraint firstItem="ybh-nu-2NR" firstAttribute="leading" secondItem="Neg-Va-qmj" secondAttribute="leading" constant="160" id="qe7-A6-CFL"/>
                             <constraint firstItem="1ol-h4-PSY" firstAttribute="leading" secondItem="Neg-Va-qmj" secondAttribute="leading" id="tAS-FJ-Ptk"/>
                             <constraint firstItem="mfJ-8x-nve" firstAttribute="top" secondItem="Neg-Va-qmj" secondAttribute="top" constant="30" id="u5F-wV-gGg"/>
                         </constraints>
@@ -988,6 +999,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t4d-hf-Su1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4916.9230769230771" y="-4.2654028436018958"/>
+        </scene>
+        <!--Entries-->
+        <scene sceneID="P6M-Pv-hsb">
+            <objects>
+                <viewController id="I28-Yx-3gH" customClass="GetEntriesViewController" customModule="IOS_ASSIGNMENT_3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5c2-Ej-0SL">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeM-5F-x1I">
+                                <rect key="frame" x="0.0" y="120.99999999999999" width="390" height="25.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V5T-yd-ckk">
+                                <rect key="frame" x="0.0" y="166.33333333333331" width="390" height="543.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y3f-bk-SwX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TeM-5F-x1I" firstAttribute="leading" secondItem="Y3f-bk-SwX" secondAttribute="leading" id="2e8-qd-lHa"/>
+                            <constraint firstItem="V5T-yd-ckk" firstAttribute="top" secondItem="TeM-5F-x1I" secondAttribute="bottom" constant="20" id="3z1-PQ-G0c"/>
+                            <constraint firstItem="Y3f-bk-SwX" firstAttribute="trailing" secondItem="V5T-yd-ckk" secondAttribute="trailing" id="HxK-vE-hEf"/>
+                            <constraint firstItem="Y3f-bk-SwX" firstAttribute="trailing" secondItem="TeM-5F-x1I" secondAttribute="trailing" id="Pm4-n2-LEk"/>
+                            <constraint firstItem="V5T-yd-ckk" firstAttribute="leading" secondItem="Y3f-bk-SwX" secondAttribute="leading" id="sLL-c3-YCe"/>
+                            <constraint firstItem="Y3f-bk-SwX" firstAttribute="bottom" secondItem="V5T-yd-ckk" secondAttribute="bottom" constant="100" id="uSq-wr-NLa"/>
+                            <constraint firstItem="TeM-5F-x1I" firstAttribute="top" secondItem="Y3f-bk-SwX" secondAttribute="top" constant="30" id="v3g-ga-hNa"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Entries" id="HB1-yh-bru"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="TeM-5F-x1I" id="fCd-GB-uFy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rkw-hY-Sen" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4918" y="737"/>
         </scene>
         <!--OpenAI View Controller-->
         <scene sceneID="h0u-gl-c9b">
