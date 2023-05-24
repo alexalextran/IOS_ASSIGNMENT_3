@@ -22,6 +22,8 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     var i:Int = 0
     var selectedDate: Date?
     var formattedDate: String?
+    var selectedIndexPath: IndexPath?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,15 +126,18 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.setupCell(day: day)
         cell.button.addTarget(self, action: #selector(dateButtonTapped(_:)), for: .touchUpInside)
 
+        // Reset the button's appearance for each cell
+        cell.button.backgroundColor = .clear
+        cell.button.setTitleColor(.black, for: .normal)
+        
         return cell
     }
     
     
-    //JOSH DO NOT TOUCH THIS FUNCTION... ok
     @objc func dateButtonTapped(_ sender: UIButton) {
         if let cell = sender.superview?.superview as? DateCell {
             let indexPath = collectionView.indexPath(for: cell)!
-            let selectedDay = indexPath.item+1
+            let selectedDay = indexPath.item + 1
             let selectedMonth = 5 // Assuming May for this example
             let selectedYear = 2023 // Assuming the current year for this example
 
@@ -144,17 +149,30 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             dateComponents.day = selectedDay
             selectedDate = calendar.date(from: dateComponents)
 
-            // Update the button appearance or perform any additional actions here if needed
-            collectionView.reloadData()
+            // Update the previously selected button appearance
+            if let previousIndexPath = selectedIndexPath {
+                if let previousCell = collectionView.cellForItem(at: previousIndexPath) as? DateCell {
+                    previousCell.button.backgroundColor = .clear
+                    previousCell.button.setTitleColor(.black, for: .normal)
+                }
+            }
+
+            // Update the current button appearance
+            cell.button.backgroundColor = .blue
+            cell.button.setTitleColor(.white, for: .normal)
+
+            selectedIndexPath = indexPath
+
             let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy"
-                    if let selectedDate = selectedDate {
-                        let FormattedDate = dateFormatter.string(from: selectedDate)
-                        formattedDate = FormattedDate
-                        print(formattedDate)
-                    }
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            if let selectedDate = selectedDate {
+                let formattedDate = dateFormatter.string(from: selectedDate)
+                self.formattedDate = formattedDate
+                print(formattedDate)
+            }
         }
     }
+
 
     
     
