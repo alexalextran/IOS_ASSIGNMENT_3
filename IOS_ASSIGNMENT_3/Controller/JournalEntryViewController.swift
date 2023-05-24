@@ -11,8 +11,8 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var joyButton: UIButton!
     
     var selectedButton: UIButton?
-    
     var selectedMood: String?
+    var currentDate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,10 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
         let formattedDate = dateFormatter.string(from: today)
         
         currentDateLabel.text = "Today is \(formattedDate)"
+        
+        let dateShortFormatter = DateFormatter()
+        dateShortFormatter.dateFormat = "dd/MM/yyyy"
+        currentDate = dateShortFormatter.string(from: today)
         
         // Set default background color for buttons
         unhappyButton.backgroundColor = .lightGray
@@ -86,6 +90,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
             let VC = segue.destination as! DRecapViewController
             VC.textE = entryTextBox.text!
             VC.moodE = selectedMood ?? "no mood selected (TODO)"
+            VC.formmattedDate = currentDate;
         }
     }
 }

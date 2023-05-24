@@ -21,13 +21,13 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var moodE:String?
     var textE:String?
+    var formmattedDate:String?
     
     struct Entry: Codable{
         var mood:String
         var text:String
     }
-    
-    var entries:[Entry] = []
+    var entries = [String: [Entry]]()
     let KEY_DAILY_ENTRIES = "dailyEntries"
     
     let cellReuseIdentifier = "cell"
@@ -42,7 +42,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
        
         entries = readEntries()
         writeEntry();
-  
+        print(formmattedDate)
         print(entries)
             
      
@@ -58,28 +58,32 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    func writeEntry(){
+    func writeEntry() {
         let userDefaults = UserDefaults.standard
-        var valuesEmpty = false
         let newEntry = Entry(mood: moodE!, text: textE!)
-        
-            entries.append(newEntry)
-        userDefaults.set(try? PropertyListEncoder().encode(entries),
-                         forKey: KEY_DAILY_ENTRIES)
+
+        if entries[formmattedDate!] != nil {
+            entries[formmattedDate!]!.append(newEntry)
+        } else {
+            entries[formmattedDate!] = [newEntry]
+        }
+
+        userDefaults.set(try? PropertyListEncoder().encode(entries), forKey: KEY_DAILY_ENTRIES)
     }
+
     
 
     //retrieve highscores from the database
-    func readEntries()-> [Entry]{
+    func readEntries()-> [String: [Entry]]{
         let defaults = UserDefaults.standard
         
-        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data{ if let array = try? PropertyListDecoder().decode(Array<Entry>.self,from: savedArrayData) {
+        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data{ if let array = try? PropertyListDecoder().decode([String: [Entry]].self,from: savedArrayData) {
             return array
         } else {
-            return []
+            return [:]
         }
         } else{
-            return []
+            return [:]
         }
     }
 
@@ -88,7 +92,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
    
     
     func numberOfSections(in tableView: UITableView) -> Int {
-            return self.entries.count
+        return self.entries[formmattedDate!]!.count
         }
         
         // There is just one row in every section
@@ -109,7 +113,8 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let currentEntry = self.entries[indexPath.section]
+        let entryArrays = self.entries[formmattedDate!]
+        let currentEntry = entryArrays![indexPath.section]
         
         let text = currentEntry.text as NSString
            let labelWidth = tableView.frame.width - 32 // Adjust the width as per your layout
@@ -123,8 +128,8 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell
-        
-        let entry = self.entries[indexPath.section]
+        let entryArrays = self.entries[formmattedDate!]
+        let entry = entryArrays![indexPath.section]
         cell.titleLabel.text = entry.mood
         cell.entryLabel.text = entry.text
         
