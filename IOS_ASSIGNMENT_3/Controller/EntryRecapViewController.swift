@@ -32,7 +32,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     
-    //JOSH DO NOT TOUCH THIS FUNCTION
+    //JOSH DO NOT TOUCH THIS FUNCTION... ok
     @objc func dateButtonTapped(_ sender: UIButton) {
         if let cell = sender.superview?.superview as? DateCell {
             let indexPath = collectionView.indexPath(for: cell)!

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="laO-9C-gVr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="laO-9C-gVr">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,24 +19,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDl-AO-lqk">
-                                <rect key="frame" x="127" y="464" width="139" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="SIGN UP">
-                                    <backgroundConfiguration key="background">
-                                        <color key="strokeColor" systemColor="labelColor"/>
-                                    </backgroundConfiguration>
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcN-pz-RKH">
-                                <rect key="frame" x="127" y="541" width="139" height="36"/>
+                                <rect key="frame" x="126" y="446" width="139" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="LOG IN">
+                                <buttonConfiguration key="configuration" style="plain" title="Let's Go!">
                                     <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
@@ -54,11 +43,16 @@
                                     <segue destination="i5S-m8-m98" kind="show" id="c42-y7-Xd8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thoughts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfM-Io-HKI">
-                                <rect key="frame" x="136" y="124" width="120" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfM-Io-HKI">
+                                <rect key="frame" x="91" y="304" width="208" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <nil key="textColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Welcome Back!">
+                                        <attributes>
+                                            <font key="NSFont" size="30" name="Helvetica"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -70,6 +64,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4369" y="-1050"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sCy-Gi-idd">
+            <objects>
+                <viewController id="IpH-7I-G77" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="skY-YN-53J">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rrK-fL-391"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yD8-kc-nQd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5401" y="-1035"/>
         </scene>
         <!--Thoughts-->
         <scene sceneID="Ec4-rc-mog">
@@ -121,6 +130,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.333333333333329" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chart.bar.xaxis" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="2wT-UN-kwp" kind="show" id="8tr-eM-cMu"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BC4-hF-caX">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.333333333333329" height="20.333333333333329"/>
@@ -137,6 +149,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="cross.fill" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="1Cz-oY-olu" kind="show" id="i4q-VD-keo"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guidance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9N-Bk-7tW">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.666666666666671" height="20.333333333333329"/>
@@ -401,7 +416,7 @@
             <objects>
                 <viewController id="2wT-UN-kwp" customClass="StatisticsViewController" customModule="IOS_ASSIGNMENT_3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jEQ-kY-3AT">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sunlight exposure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Um3-H8-FE8">
@@ -520,7 +535,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zqv-35-MYc">
-                                <rect key="frame" x="0.0" y="754.33333333333337" width="390" height="54.666666666666629"/>
+                                <rect key="frame" x="0.0" y="731.33333333333337" width="390" height="54.666666666666629"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Pi6-If-R3X">
                                         <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="54.666666666666664"/>
@@ -561,6 +576,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="cross.fill" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="1Cz-oY-olu" kind="show" id="iOh-wA-SjW"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guidance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGf-zb-U9o">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.666666666666671" height="20.333333333333329"/>
@@ -597,6 +615,7 @@
                             <constraint firstItem="g1B-VZ-O1Z" firstAttribute="trailing" secondItem="zqv-35-MYc" secondAttribute="trailing" id="fra-OZ-G3B"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Jbm-FF-107"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kD-OO-r9O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -607,7 +626,7 @@
             <objects>
                 <viewController id="1Cz-oY-olu" customClass="GuidanceViewController" customModule="IOS_ASSIGNMENT_3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6ib-5L-7LH">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sunlight exposure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPB-kG-TkZ">
@@ -646,7 +665,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-cz-Ccw">
-                                <rect key="frame" x="0.0" y="754.33333333333337" width="390" height="54.666666666666629"/>
+                                <rect key="frame" x="0.0" y="731.33333333333337" width="390" height="54.666666666666629"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Pfe-Tr-pIN">
                                         <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="54.666666666666664"/>
@@ -671,6 +690,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.333333333333329" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chart.bar.xaxis" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="2wT-UN-kwp" kind="show" id="5uW-ix-vgw"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g03-48-Sqd">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.333333333333329" height="20.333333333333329"/>
@@ -723,6 +745,7 @@
                             <constraint firstItem="fXy-Xl-kfR" firstAttribute="trailing" secondItem="cBM-cz-Ccw" secondAttribute="trailing" id="Uba-i5-R2E"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bV1-um-axb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjm-vm-ecB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -767,6 +790,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.333333333333329" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chart.bar.xaxis" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="2wT-UN-kwp" kind="show" id="L3I-Qn-ybr"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-RZ-nuo">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.333333333333329" height="20.333333333333329"/>
@@ -783,6 +809,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="cross.fill" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="1Cz-oY-olu" kind="show" id="hdv-mi-OG8"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guidance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWz-26-cbJ">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.666666666666671" height="20.333333333333329"/>
@@ -921,6 +950,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.333333333333329" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chart.bar.xaxis" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="2wT-UN-kwp" kind="show" id="YfX-kw-yGu"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fY-IF-rbi">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.333333333333329" height="20.333333333333329"/>
@@ -937,6 +969,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="cross.fill" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="1Cz-oY-olu" kind="show" id="atA-VU-dDi"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guidance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eff-13-6Nu">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.666666666666671" height="20.333333333333329"/>
@@ -1106,6 +1141,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.333333333333329" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chart.bar.xaxis" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="2wT-UN-kwp" kind="show" id="D85-Ru-eWe"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4p-0i-pSj">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.333333333333329" height="20.333333333333329"/>
@@ -1122,6 +1160,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97.666666666666671" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="cross.fill" catalog="system"/>
+                                                <connections>
+                                                    <segue destination="1Cz-oY-olu" kind="show" id="AiV-Lk-EtG"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guidance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bza-Ra-ZfZ">
                                                 <rect key="frame" x="0.0" y="34.333333333333258" width="97.666666666666671" height="20.333333333333329"/>
@@ -1182,6 +1223,10 @@
             <point key="canvasLocation" x="3444" y="-1050"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="AiV-Lk-EtG"/>
+        <segue reference="D85-Ru-eWe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chart.bar.xaxis" catalog="system" width="128" height="99"/>
@@ -1195,6 +1240,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
