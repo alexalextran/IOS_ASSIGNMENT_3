@@ -28,9 +28,10 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var text:String
     }
     var entries = [String: [Entry]]()
-    var filteredEntries = [String: [Entry]]()
     let KEY_DAILY_ENTRIES = "dailyEntries"
     
+    
+    var filteredEntries = [String: [Entry]]()
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 5
  
@@ -85,7 +86,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
 
-    //retrieve highscores from the database
+    //retrieve entries from the database
     func readEntries()-> [String: [Entry]]{
         let defaults = UserDefaults.standard
         
