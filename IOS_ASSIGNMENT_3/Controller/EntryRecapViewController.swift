@@ -3,6 +3,7 @@ import UIKit
 class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var NextMonth: UIButton!
     @IBOutlet weak var PreviousMonth: UIButton!
+    @IBOutlet weak var GoButtonForRecap: UIButton!
     @IBOutlet weak var CurrentMonthandYear: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     let monthsDictionary =
@@ -52,6 +53,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         dateFormatter.dateFormat = "MMMM"
         
         CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"
+        GoButtonForRecap.isEnabled = false
     }
     
     
@@ -120,6 +122,14 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    func updateSaveButtonState() {
+            if selectedDate == nil {
+                GoButtonForRecap.isEnabled = false
+            } else {
+                GoButtonForRecap.isEnabled = true
+            }
+        }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as! DateCell
         let day = indexPath.item + 1
@@ -160,6 +170,8 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             // Update the current button appearance
             cell.button.backgroundColor = .blue
             cell.button.setTitleColor(.white, for: .normal)
+            
+            updateSaveButtonState()
 
             selectedIndexPath = indexPath
 
