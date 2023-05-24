@@ -35,15 +35,6 @@
                                     <segue destination="IpH-7I-G77" kind="show" id="7gs-iq-2OE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yru-3D-heJ">
-                                <rect key="frame" x="16" y="772" width="151" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="DO NOT TOUCH"/>
-                                <connections>
-                                    <segue destination="i5S-m8-m98" kind="show" id="c42-y7-Xd8"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfM-Io-HKI">
                                 <rect key="frame" x="91" y="304" width="208" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,7 +62,7 @@
             <objects>
                 <viewController id="IpH-7I-G77" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="skY-YN-53J">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lme-3u-AXk">
@@ -1561,7 +1552,7 @@
         <segue reference="e4g-LF-DxU"/>
         <segue reference="L3I-Qn-ybr"/>
         <segue reference="a6K-3C-lYs"/>
-        <segue reference="8yi-PN-boZ"/>
+        <segue reference="7gs-iq-2OE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bubble.right.fill" catalog="system" width="128" height="112"/>
