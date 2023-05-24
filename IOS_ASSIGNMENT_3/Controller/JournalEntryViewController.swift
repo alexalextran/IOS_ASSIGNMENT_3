@@ -3,7 +3,7 @@ import UIKit
 class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var entryTextBox: UITextField!
-    //lol
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var unhappyButton: UIButton!
     @IBOutlet weak var sadButton: UIButton!
     @IBOutlet weak var neutralButton: UIButton!
@@ -17,6 +17,7 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        saveButton.isEnabled = false
         entryTextBox.delegate = self
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMMM yyyy"
@@ -45,14 +46,23 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        entryTextBox.resignFirstResponder()
-        return true
-    }
+            entryTextBox.resignFirstResponder()
+            updateSaveButtonState() // Update save button state when the text field returns
+            return true
+        }
+    func updateSaveButtonState() {
+            if entryTextBox.text?.isEmpty == true || selectedMood == nil {
+                saveButton.isEnabled = false
+            } else {
+                saveButton.isEnabled = true
+            }
+        }
     
     @objc func buttonTapped(_ sender: UIButton) {
         if let selectedButton = selectedButton {
             // Deselect the previously selected button
             selectedButton.backgroundColor = .lightGray
+            updateSaveButtonState()
         }
         
         if selectedButton == sender {
