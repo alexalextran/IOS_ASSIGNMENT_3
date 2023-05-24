@@ -872,6 +872,7 @@
                     <navigationItem key="navigationItem" title="Daily Recap" id="5Hv-iS-wdN"/>
                     <connections>
                         <outlet property="entriesTable" destination="4pL-Ho-GmW" id="C4w-Wy-4Lm"/>
+                        <outlet property="filterTextField" destination="aCR-vW-G6i" id="cas-jE-MJY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBk-wC-TE1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1088,6 +1089,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="TeM-5F-x1I" id="fCd-GB-uFy"/>
                         <outlet property="entriesTable" destination="V5T-yd-ckk" id="Bg3-OC-AfQ"/>
+                        <outlet property="filterTextField" destination="8qr-0X-zMk" id="hSm-No-rI2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkw-hY-Sen" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
