@@ -66,15 +66,11 @@ class JournalEntryViewController: UIViewController, UITextFieldDelegate {
             selectedButton.backgroundColor = .lightGray
         }
         
-        if selectedButton == sender {
-            // Tapped the selected button again, deselect it
-            sender.backgroundColor = .lightGray
-            self.selectedButton = nil
-        } else {
+        
             // Tapped a different button, update the selected button and its background color
             sender.backgroundColor = .darkGray
             self.selectedButton = sender
-        }
+        
     
         switch sender.titleLabel!.text! {
         case "😡":
