@@ -24,6 +24,12 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     var selectedDate: Date?
     var formattedDate: String?
     var selectedIndexPath: IndexPath?
+    struct Entry: Codable{
+           var mood:String
+           var text:String
+       }
+       var entries = [String: [Entry]]()
+       let KEY_DAILY_ENTRIES = "dailyEntries"
 
     
     override func viewDidLoad() {
@@ -54,9 +60,46 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         
         CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"
         GoButtonForRecap.isEnabled = false
+        
+        entries = readEntries()
+        print(entries)
     }
     //alol
+    func readEntries() -> [String: [Entry]] {
+        let defaults = UserDefaults.standard
+
+        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data,
+           let array = try? PropertyListDecoder().decode([String: [Entry]].self, from: savedArrayData) {
+            return array
+        } else {
+            return [:]
+        }
+    }
     
+    /*func checkCalendarCompleteness() {
+        // Loop through the calendar dictionary
+        for (_, daysInMonth) in monthsDictionary {
+            for day in 1...daysInMonth {
+                let dateComponents = DateComponents(year: 2023, month: i, day: day)
+                if let date = Calendar.current.date(from: dateComponents) {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                    let formattedDate = dateFormatter.string(from: date)
+                    
+                    // Check if the date exists in the dictionary
+                    if entries[formattedDate] == nil {
+                        // Disable the "go" button
+                        goButton.isEnabled = false
+                        return
+                    }
+                }
+            }
+        }
+        
+        // Enable the "go" button if all dates exist in the dictionary
+        goButton.isEnabled = true
+    }*/
+
    
     
     func updateCurrentMonthAndYearLabel() {
@@ -137,13 +180,33 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         let day = indexPath.item + 1
         cell.setupCell(day: day)
         cell.button.addTarget(self, action: #selector(dateButtonTapped(_:)), for: .touchUpInside)
-
+        
         // Reset the button's appearance for each cell
         cell.button.backgroundColor = .clear
         cell.button.setTitleColor(.black, for: .normal)
         
+        let selectedMonth = i // Assuming May for this example
+        let selectedYear = 2023 // Assuming the current year for this example
+        let dateComponents = DateComponents(year: selectedYear, month: selectedMonth, day: day)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        if let date = Calendar.current.date(from: dateComponents) {
+            let formattedDate = dateFormatter.string(from: date)
+            if entries[formattedDate] == nil {
+                // Disable the button and gray it out
+                cell.button.isEnabled = false
+                cell.button.setTitleColor(.gray, for: .disabled)
+            } else {
+                // Enable the button
+                cell.button.isEnabled = true
+            }
+        } else {
+            // Handle invalid date or formatting error
+        }
+        
         return cell
     }
+
     
     
     @objc func dateButtonTapped(_ sender: UIButton) {
