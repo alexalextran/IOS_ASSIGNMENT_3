@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F65ECCA92A1F71220053A057 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65ECCA82A1F71220053A057 /* EntryManager.swift */; };
+		5E9FFF8B2A1F8A6C00EDE800 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF8A2A1F8A6C00EDE800 /* ChatViewModel.swift */; };
+		5E9FFF8D2A1F8AC000EDE800 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF8C2A1F8AC000EDE800 /* APIKey.swift */; };
+		5E9FFF8F2A1F8B1400EDE800 /* OpenAIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF8E2A1F8B1400EDE800 /* OpenAIManager.swift */; };
+		5E9FFF922A1F8B6400EDE800 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5E9FFF912A1F8B6400EDE800 /* Alamofire */; };
 		F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */; };
 		F6C537982A1898CF00DDD61C /* DateCellM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537972A1898CF00DDD61C /* DateCellM.swift */; };
 		F6C5379A2A1BA88100DDD61C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */; };
@@ -26,7 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F65ECCA82A1F71220053A057 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
+		5E9FFF8A2A1F8A6C00EDE800 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		5E9FFF8C2A1F8AC000EDE800 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		5E9FFF8E2A1F8B1400EDE800 /* OpenAIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIManager.swift; sourceTree = "<group>"; };
 		F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEntriesViewController.swift; sourceTree = "<group>"; };
 		F6C537972A1898CF00DDD61C /* DateCellM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCellM.swift; sourceTree = "<group>"; };
 		F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9FFF922A1F8B6400EDE800 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +97,9 @@
 			children = (
 				F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */,
 				F6C537972A1898CF00DDD61C /* DateCellM.swift */,
-				F65ECCA82A1F71220053A057 /* EntryManager.swift */,
+				5E9FFF8A2A1F8A6C00EDE800 /* ChatViewModel.swift */,
+				5E9FFF8C2A1F8AC000EDE800 /* APIKey.swift */,
+				5E9FFF8E2A1F8B1400EDE800 /* OpenAIManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -137,6 +145,9 @@
 			dependencies = (
 			);
 			name = IOS_ASSIGNMENT_3;
+			packageProductDependencies = (
+				5E9FFF912A1F8B6400EDE800 /* Alamofire */,
+			);
 			productName = IOS_ASSIGNMENT_3;
 			productReference = F6E83BF42A1659FB009E9886 /* IOS_ASSIGNMENT_3.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +176,9 @@
 				Base,
 			);
 			mainGroup = F6E83BEB2A1659FB009E9886;
+			packageReferences = (
+				5E9FFF902A1F8B6400EDE800 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = F6E83BF52A1659FB009E9886 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -192,6 +206,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9FFF8B2A1F8A6C00EDE800 /* ChatViewModel.swift in Sources */,
+				5E9FFF8F2A1F8B1400EDE800 /* OpenAIManager.swift in Sources */,
 				F6E83C132A17AD49009E9886 /* GuidanceViewController.swift in Sources */,
 				F6C537982A1898CF00DDD61C /* DateCellM.swift in Sources */,
 				F65ECCA92A1F71220053A057 /* EntryManager.swift in Sources */,
@@ -200,6 +216,7 @@
 				F6E83C112A17AD21009E9886 /* StatisticsViewController.swift in Sources */,
 				F6E83C152A17AD69009E9886 /* DRecapViewController.swift in Sources */,
 				F6E83BF82A1659FB009E9886 /* AppDelegate.swift in Sources */,
+				5E9FFF8D2A1F8AC000EDE800 /* APIKey.swift in Sources */,
 				F6E83C172A17AD99009E9886 /* EntryRecapViewController.swift in Sources */,
 				F6E83C0F2A17ACE6009E9886 /* JournalEntryViewController.swift in Sources */,
 				F6E83BFA2A1659FB009E9886 /* SceneDelegate.swift in Sources */,
@@ -424,6 +441,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5E9FFF902A1F8B6400EDE800 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5E9FFF912A1F8B6400EDE800 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E9FFF902A1F8B6400EDE800 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F6E83BEC2A1659FB009E9886 /* Project object */;
 }

@@ -13,11 +13,6 @@ class GuidanceViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    var nice:Int = 10;
- 
-    //hello this is a test
-    
-
 
 }
 
