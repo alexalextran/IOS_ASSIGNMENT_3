@@ -83,18 +83,22 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func deleteButtonTapped(_ sender: UIButton) {
         let section = sender.tag // Get the section index from the button's tag
         let entryArrays = self.entries[formmattedDate!]
-        
+
         if var sectionEntries = entryArrays, sectionEntries.indices.contains(section) {
             sectionEntries.remove(at: section) // Remove the entry from the array
+
             // Update the entries and filteredEntries dictionaries
             entries[formmattedDate!] = sectionEntries
+            filteredEntries[formmattedDate!] = sectionEntries
+
             // Save the updated entries to UserDefaults or any other storage mechanism
             entryManager.writeEntry(entries: entries)
+
             // Reload the table view
             entriesTable.reloadData()
         }
     }
-    
+
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell

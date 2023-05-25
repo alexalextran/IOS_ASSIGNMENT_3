@@ -124,18 +124,25 @@ class StatisticsViewController: UIViewController {
     
     func calculateMoodPercentage(emotion: String) -> String {
         let moodToCalculate = emotion
-        let totalCount = entriesThisMonth.count //get total entries this month
-        let emotionCount = entriesThisMonth.filter { $0.mood == moodToCalculate }.count //count all entries that 
+        let totalCount = entriesThisMonth.count // get total entries this month
+        let emotionCount = entriesThisMonth.filter { $0.mood == moodToCalculate }.count // count all entries that match the mood
+
+        // Handle the case where there are no entries of the specific mood
+        guard totalCount != 0 else {
+            return "0"
+        }
+
         let percentage = (Double(emotionCount) / Double(totalCount) * 100.0)
-        
+
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 1 //format to one deciaml
-        
+        numberFormatter.maximumFractionDigits = 1 // format to one decimal
+
         let roundedNumber = numberFormatter.string(from: NSNumber(value: percentage))
-        
-        return roundedNumber!
+
+        return roundedNumber ?? "0"
     }
+
     
     func getDaysInCurrentMonth() -> Int { //return the days within the selected month
         let calendar = Calendar.current
@@ -155,28 +162,54 @@ class StatisticsViewController: UIViewController {
     
     
     
-    func setUpUI(){
-        unhappyPercentage.text = String(calculateMoodPercentage(emotion: "Unhappy"))
-        unhappyPogressBar.progress = Float(unhappyPercentage.text!)! * 0.01
-        
-        sadPercentage.text = String(calculateMoodPercentage(emotion: "Sad"))
-        sadPogressBar.progress = Float(sadPercentage.text!)! * 0.01
-        
-        neutralPercentage.text = String(calculateMoodPercentage(emotion: "Neutral"))
-        neutralPogressBar.progress = Float(neutralPercentage.text!)! * 0.01
-        
-        goodPercentage.text = String(calculateMoodPercentage(emotion: "Good"))
-        goodPogressBar.progress = Float(goodPercentage.text!)! * 0.01
-        
-        joyPercentage.text = String(calculateMoodPercentage(emotion: "Joy"))
-        joyPogressBar.progress = Float(joyPercentage.text!)! * 0.01
-        
+    func setUpUI() {
+        let unhappyPercentageValue = calculateMoodPercentage(emotion: "Unhappy")
+        unhappyPercentage.text = unhappyPercentageValue
+        unhappyPogressBar.progress = Float(unhappyPercentageValue)! / 100.0
+
+        let sadPercentageValue = calculateMoodPercentage(emotion: "Sad")
+        sadPercentage.text = sadPercentageValue
+        sadPogressBar.progress = Float(sadPercentageValue)! / 100.0
+
+        let neutralPercentageValue = calculateMoodPercentage(emotion: "Neutral")
+        neutralPercentage.text = neutralPercentageValue
+        neutralPogressBar.progress = Float(neutralPercentageValue)! / 100.0
+
+        let goodPercentageValue = calculateMoodPercentage(emotion: "Good")
+        goodPercentage.text = goodPercentageValue
+        goodPogressBar.progress = Float(goodPercentageValue)! / 100.0
+
+        let joyPercentageValue = calculateMoodPercentage(emotion: "Joy")
+        joyPercentage.text = joyPercentageValue
+        joyPogressBar.progress = Float(joyPercentageValue)! / 100.0
+
         totalEntriesLabel.text = String(entriesThisMonth.count)
-        
+
         let daysInMonth = getDaysInCurrentMonth()
         let averageEntries = Double(entriesThisMonth.count) / Double(daysInMonth)
         averageEntriesLabel.text = String(format: "%.1f", averageEntries)
-        
-        
+
+        // Check if mood percentages are zero and update progress bars and labels accordingly
+        if unhappyPercentageValue == "0" {
+            unhappyPogressBar.progress = 0
+            unhappyPercentage.text = "0"
+        }
+        if sadPercentageValue == "0" {
+            sadPogressBar.progress = 0
+            sadPercentage.text = "0"
+        }
+        if neutralPercentageValue == "0" {
+            neutralPogressBar.progress = 0
+            neutralPercentage.text = "0"
+        }
+        if goodPercentageValue == "0" {
+            goodPogressBar.progress = 0
+            goodPercentage.text = "0"
+        }
+        if joyPercentageValue == "0" {
+            joyPogressBar.progress = 0
+            joyPercentage.text = "0"
+        }
     }
+
 }
