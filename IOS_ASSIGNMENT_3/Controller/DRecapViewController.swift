@@ -18,91 +18,52 @@ extension NSString {
 
 
 class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    @IBOutlet weak var entriesTable: UITableView!
     
     var moodE:String?
     var textE:String?
     var formmattedDate:String?
-    
-    struct Entry: Codable{
-        var mood:String
-        var text:String
-    }
-    var entries = [String: [Entry]]()
-    let KEY_DAILY_ENTRIES = "dailyEntries"
-    
+    var entries = [String: [EntryManager.Entry]]()
     let cellReuseIdentifier = "cell"
-    let cellSpacingHeight: CGFloat = 5
- 
+    var entryManager =  EntryManager()
     
-    @IBOutlet weak var entriesTable: UITableView!
-  
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-       
-        entries = readEntries()
-        writeEntry();
-
+        entries = entryManager.readEntries()
+        writeEntry()
         self.entriesTable.register(CustomTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        
-              entriesTable.delegate = self
-              entriesTable.dataSource = self
+        entriesTable.delegate = self
+        entriesTable.dataSource = self
     }
     
     
-   
-    
-    
     func writeEntry() {
-        let userDefaults = UserDefaults.standard
-        let newEntry = Entry(mood: moodE!, text: textE!)
-
-        if entries[formmattedDate!] != nil {
+        let newEntry = EntryManager.Entry(mood: moodE!, text: textE!) //create new entry object
+        if entries[formmattedDate!] != nil { //if the date does not already exist make a new entry within the dict
             entries[formmattedDate!]!.append(newEntry)
         } else {
             entries[formmattedDate!] = [newEntry]
         }
-
-        userDefaults.set(try? PropertyListEncoder().encode(entries), forKey: KEY_DAILY_ENTRIES)
+        entryManager.writeEntry(entries: entries) //write to database
     }
-
-    
-
-    //retrieve entries from the database
-    func readEntries()-> [String: [Entry]]{
-        let defaults = UserDefaults.standard
-        
-        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data{ if let array = try? PropertyListDecoder().decode([String: [Entry]].self,from: savedArrayData) {
-            return array
-        } else {
-            return [:]
-        }
-        } else{
-            return [:]
-        }
-    }
-
-    
-    // Set the spacing between sections
-   
 
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return entries[formmattedDate!]?.count ?? 0
+        return entries[formmattedDate!]?.count ?? 0 //return number entries if entires do not exist return 0
         }
         
-        // There is just one row in every section
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { // There is just one row in every section
             return 1
         }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { //header height
         return 40
-    }
+        }
     
-    // Make the background color show through
-      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  
+      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {   // Make the background color show through
           let headerView = UIView()
           headerView.backgroundColor = UIColor.clear
           return headerView
@@ -114,10 +75,10 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let currentEntry = entryArrays![indexPath.section]
         
         let text = currentEntry.text as NSString
-           let labelWidth = tableView.frame.width - 32 // Adjust the width as per your layout
-           let titleLabelHeight: CGFloat = 20 // Adjust the height of the title label as per your preference
-           let font = UIFont.systemFont(ofSize: 17) // Adjust the font size as per your preference
-        let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
+           let labelWidth = tableView.frame.width - 32 //label width
+           let titleLabelHeight: CGFloat = 20 //title height
+           let font = UIFont.systemFont(ofSize: 17) //font size
+            let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
            let cellHeight = titleLabelHeight + entryHeight + 44 // Add extra padding as per your preference
 
            return cellHeight
@@ -129,14 +90,10 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if var sectionEntries = entryArrays, sectionEntries.indices.contains(section) {
             sectionEntries.remove(at: section) // Remove the entry from the array
-            
             // Update the entries and filteredEntries dictionaries
             entries[formmattedDate!] = sectionEntries
-            
             // Save the updated entries to UserDefaults or any other storage mechanism
-            let userDefaults = UserDefaults.standard
-            userDefaults.set(try? PropertyListEncoder().encode(entries), forKey: KEY_DAILY_ENTRIES)
-            
+            entryManager.writeEntry(entries: entries)
             // Reload the table view
             entriesTable.reloadData()
         }
@@ -144,47 +101,49 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell
+        
         let entryArrays = self.entries[formmattedDate!]
         let entry = entryArrays![indexPath.section]
         cell.titleLabel.text = entry.mood
         cell.entryLabel.text = entry.text
         
-        switch entry.mood {
-        case "Unhappy":
-            cell.layer.borderColor = UIColor.systemOrange.cgColor
-        case "Sad":
-            cell.layer.borderColor = UIColor.systemTeal.cgColor
-        case "Neutral":
-            cell.layer.borderColor = UIColor.systemPurple.cgColor
-        case "Good":
-            cell.layer.borderColor = UIColor.systemGreen.cgColor
-        case "Joy":
-            cell.layer.borderColor = UIColor.systemYellow.cgColor
-        default:
-            cell.layer.borderColor = UIColor.black.cgColor
-        }
-        
-        let customColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-
+        cell.layer.borderColor = setBorderColor(entryMood: entry.mood)
+    
+        let customColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0) //set border
         cell.backgroundColor = customColor
-   
         cell.layer.borderWidth = 2.2
         cell.layer.cornerRadius = 14
-    
-           cell.contentView.clipsToBounds = true
+        cell.contentView.clipsToBounds = true
         
         // Add "X" button
         let button = UIButton(type: .system)
         let deleteImage = UIImage(systemName: "xmark") // Use the system icon "xmark"
         button.setImage(deleteImage, for: .normal)
-        button.tintColor = UIColor.black // Set the tint color to black
-        button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) // Adjust the button's frame as per your preference
-        button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside) // Add target action
-        button.tag = indexPath.section // Set the tag to identify the button
-
+        button.tintColor = UIColor.black //color
+        button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) //size and positioning
+        button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside)
+        button.tag = indexPath.section
         cell.addSubview(button)
         
         return cell
+    }
+    
+    func setBorderColor(entryMood:String) -> CGColor {
+        switch entryMood{
+        case "Unhappy":
+           return UIColor.systemOrange.cgColor
+        case "Sad":
+            return UIColor.systemTeal.cgColor
+        case "Neutral":
+            return UIColor.systemPurple.cgColor
+        case "Good":
+            return UIColor.systemGreen.cgColor
+        case "Joy":
+            return UIColor.systemYellow.cgColor
+        default:
+            return UIColor.black.cgColor
+        }
+        
     }
 
 

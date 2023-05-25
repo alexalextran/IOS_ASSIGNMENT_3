@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F65ECCA92A1F71220053A057 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65ECCA82A1F71220053A057 /* EntryManager.swift */; };
 		F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */; };
 		F6C537982A1898CF00DDD61C /* DateCellM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537972A1898CF00DDD61C /* DateCellM.swift */; };
 		F6C5379A2A1BA88100DDD61C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F65ECCA82A1F71220053A057 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEntriesViewController.swift; sourceTree = "<group>"; };
 		F6C537972A1898CF00DDD61C /* DateCellM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCellM.swift; sourceTree = "<group>"; };
 		F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */,
 				F6C537972A1898CF00DDD61C /* DateCellM.swift */,
+				F65ECCA82A1F71220053A057 /* EntryManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			files = (
 				F6E83C132A17AD49009E9886 /* GuidanceViewController.swift in Sources */,
 				F6C537982A1898CF00DDD61C /* DateCellM.swift in Sources */,
+				F65ECCA92A1F71220053A057 /* EntryManager.swift in Sources */,
 				F6C5379A2A1BA88100DDD61C /* CustomTableViewCell.swift in Sources */,
 				F6E83BFC2A1659FB009E9886 /* StartScreenViewController.swift in Sources */,
 				F6E83C112A17AD21009E9886 /* StatisticsViewController.swift in Sources */,

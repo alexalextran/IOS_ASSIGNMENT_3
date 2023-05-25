@@ -7,32 +7,24 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var entriesTable: UITableView!
     @IBOutlet weak var filterTextField: UITextField!
-
-    struct Entry: Codable {
-        var mood: String
-        var text: String
-    }
+    @IBOutlet weak var dateLabel: UILabel!
 
     let KEY_DAILY_ENTRIES = "dailyEntries"
-    var entries = [String: [Entry]]()
-    var filteredEntries = [String: [Entry]]()
+    var entries = [String: [EntryManager.Entry]]()
+    var filteredEntries = [String: [EntryManager.Entry]]()
+    var entryManager =  EntryManager()
 
-    @IBOutlet weak var dateLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
         dateLabel.text = formmattedDate
-
         self.entriesTable.register(CustomTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         entriesTable.delegate = self
         entriesTable.dataSource = self
-
-        entries = readEntries()
+        entries = entryManager.readEntries()
         filteredEntries = entries
-    
-
         filterTextField.delegate = self
         filterTextField.addTarget(self, action: #selector(filterTextFieldDidChange(_:)), for: .editingChanged)
     }
@@ -53,16 +45,6 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         entriesTable.reloadData()
     }
 
-    func readEntries() -> [String: [Entry]] {
-        let defaults = UserDefaults.standard
-
-        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data,
-           let array = try? PropertyListDecoder().decode([String: [Entry]].self, from: savedArrayData) {
-            return array
-        } else {
-            return [:]
-        }
-    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return filteredEntries[formmattedDate!]?.count ?? 0
@@ -89,11 +71,11 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         let currentEntry = entryArrays![indexPath.section]
 
         let text = currentEntry.text as NSString
-        let labelWidth = tableView.frame.width - 32 // Adjust the width as per your layout
-        let titleLabelHeight: CGFloat = 20 // Adjust the height of the title label as per your preference
-        let font = UIFont.systemFont(ofSize: 17) // Adjust the font size as per your preference
+        let labelWidth = tableView.frame.width - 32 //title width
+        let titleLabelHeight: CGFloat = 20 // title height
+        let font = UIFont.systemFont(ofSize: 17) //font size
         let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
-        let cellHeight = titleLabelHeight + entryHeight + 44 // Add extra padding as per your preference
+        let cellHeight = titleLabelHeight + entryHeight + 44 //padding
 
         return cellHeight
     }
@@ -118,6 +100,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
             entriesTable.reloadData()
         }
     }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell
@@ -142,15 +125,10 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         let customColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-
         cell.backgroundColor = customColor
-   
         cell.layer.borderWidth = 2.2
         cell.layer.cornerRadius = 14
-       
         cell.contentView.clipsToBounds = true
-        
-        
         
         
         let button = UIButton(type: .system)
@@ -160,7 +138,6 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) // Adjust the button's frame as per your preference
         button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside) // Add target action
         button.tag = indexPath.section // Set the tag to identify the button
-
         cell.addSubview(button)
 
         return cell
