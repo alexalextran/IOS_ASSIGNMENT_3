@@ -119,10 +119,27 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         let entry = entryArrays![indexPath.section]
         cell.titleLabel.text = entry.mood
         cell.entryLabel.text = entry.text
+        
+        switch entry.mood {
+        case "Unhappy":
+            cell.layer.borderColor = UIColor.systemOrange.cgColor
+        case "Sad":
+            cell.layer.borderColor = UIColor.systemTeal.cgColor
+        case "Neutral":
+            cell.layer.borderColor = UIColor.systemPurple.cgColor
+        case "Good":
+            cell.layer.borderColor = UIColor.systemGreen.cgColor
+        case "Joy":
+            cell.layer.borderColor = UIColor.systemYellow.cgColor
+        default:
+            cell.layer.borderColor = UIColor.black.cgColor
+        }
+        
+        let customColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
 
-        cell.backgroundColor = UIColor.white
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 1
+        cell.backgroundColor = customColor
+   
+        cell.layer.borderWidth = 2.2
         cell.layer.cornerRadius = 14
        
         cell.contentView.frame = cell.contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 100))

@@ -987,6 +987,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for keyword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aCR-vW-G6i">
                                 <rect key="frame" x="30" y="23" width="330" height="34"/>
+                                <color key="backgroundColor" red="0.97100012081185572" green="0.97100012081185572" blue="0.97100012081185572" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -1367,8 +1368,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8qr-0X-zMk">
-                                <rect key="frame" x="30" y="80.333333333333329" width="330" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8qr-0X-zMk">
+                                <rect key="frame" x="60" y="80.333333333333329" width="270" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -1378,10 +1379,10 @@
                         <constraints>
                             <constraint firstItem="V5T-yd-ckk" firstAttribute="top" secondItem="8qr-0X-zMk" secondAttribute="bottom" constant="40" id="24A-zf-sYI"/>
                             <constraint firstItem="TeM-5F-x1I" firstAttribute="leading" secondItem="Y3f-bk-SwX" secondAttribute="leading" id="2e8-qd-lHa"/>
-                            <constraint firstItem="Y3f-bk-SwX" firstAttribute="trailing" secondItem="8qr-0X-zMk" secondAttribute="trailing" constant="30" id="5Ny-yO-2KB"/>
+                            <constraint firstItem="Y3f-bk-SwX" firstAttribute="trailing" secondItem="8qr-0X-zMk" secondAttribute="trailing" constant="60" id="5Ny-yO-2KB"/>
                             <constraint firstItem="Y3f-bk-SwX" firstAttribute="trailing" secondItem="V5T-yd-ckk" secondAttribute="trailing" id="HxK-vE-hEf"/>
                             <constraint firstItem="Y3f-bk-SwX" firstAttribute="trailing" secondItem="TeM-5F-x1I" secondAttribute="trailing" id="Pm4-n2-LEk"/>
-                            <constraint firstItem="8qr-0X-zMk" firstAttribute="leading" secondItem="Y3f-bk-SwX" secondAttribute="leading" constant="30" id="Xx3-qM-ipj"/>
+                            <constraint firstItem="8qr-0X-zMk" firstAttribute="leading" secondItem="Y3f-bk-SwX" secondAttribute="leading" constant="60" id="Xx3-qM-ipj"/>
                             <constraint firstItem="8qr-0X-zMk" firstAttribute="top" secondItem="TeM-5F-x1I" secondAttribute="bottom" constant="25" id="mG7-yD-jBA"/>
                             <constraint firstItem="V5T-yd-ckk" firstAttribute="leading" secondItem="Y3f-bk-SwX" secondAttribute="leading" id="sLL-c3-YCe"/>
                             <constraint firstItem="Y3f-bk-SwX" firstAttribute="bottom" secondItem="V5T-yd-ckk" secondAttribute="bottom" constant="75" id="uSq-wr-NLa"/>
