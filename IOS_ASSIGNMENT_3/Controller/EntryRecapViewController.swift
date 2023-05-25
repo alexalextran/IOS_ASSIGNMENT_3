@@ -145,6 +145,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     @objc func dateButtonTapped(_ sender: UIButton) {
+        //bruh
         if let cell = sender.superview?.superview as? DateCell {
             let indexPath = collectionView.indexPath(for: cell)!
             let selectedDay = indexPath.item + 1
