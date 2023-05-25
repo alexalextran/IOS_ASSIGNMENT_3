@@ -55,7 +55,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"
         GoButtonForRecap.isEnabled = false
     }
-    
+    //alol
     
     func updateCurrentMonthAndYearLabel() {
         guard (1...12).contains(i) else {
