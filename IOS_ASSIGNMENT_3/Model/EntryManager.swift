@@ -1,10 +1,3 @@
-//
-//  Entry.swift
-//  IOS_ASSIGNMENT_3
-//
-//  Created by Alex Tran on 25/5/2023.
-//
-
 import Foundation
 
 class EntryManager{
@@ -37,4 +30,3 @@ class EntryManager{
     
     
 }
-
