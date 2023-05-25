@@ -72,9 +72,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let entryArrays = self.entries[formmattedDate!]
-           let reversedEntryArrays = Array(entryArrays?.reversed() ?? []) // Reverse the array and convert it back to an array
-           let currentEntry = reversedEntryArrays[indexPath.section]
-        
+        let currentEntry = entryArrays![indexPath.section]
         
         let text = currentEntry.text as NSString
            let labelWidth = tableView.frame.width - 32 //label width
