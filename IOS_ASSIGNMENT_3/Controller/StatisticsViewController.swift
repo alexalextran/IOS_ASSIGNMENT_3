@@ -11,6 +11,11 @@ class StatisticsViewController: UIViewController {
     var entries = [String: [Entry]]()
     var entriesThisMonth = [Entry]()
     
+    @IBOutlet weak var NextMonth: UIButton!
+    @IBOutlet weak var PreviousMonth: UIButton!
+    
+    @IBOutlet weak var monthLabel: UILabel!
+    
     @IBOutlet weak var totalEntriesLabel: UILabel!
     @IBOutlet weak var averageEntriesLabel: UILabel!
     
@@ -25,12 +30,16 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var neutralPercentage: UILabel!
     @IBOutlet weak var goodPercentage: UILabel!
     @IBOutlet weak var joyPercentage: UILabel!
+    var i:Int = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         entries = readEntries()
+        
+        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -65,6 +74,15 @@ class StatisticsViewController: UIViewController {
         let daysInMonth = getDaysInCurrentMonth()
         let averageEntries = Double(entriesThisMonth.count) / Double(daysInMonth)
         averageEntriesLabel.text = String(format: "%.1f", averageEntries)
+        
+        updateCurrentMonthAndYearLabel()
+        
+        PreviousMonth.addTarget(self, action: #selector(previousMonthButtonTapped(_:)), for: .touchUpInside)
+        
+        NextMonth.addTarget(self, action: #selector(nextMonthButtonTapped(_:)), for: .touchUpInside)
+        
+        updateStatistics()
+        
     }
     
     func readEntries() -> [String: [Entry]] {
@@ -77,6 +95,93 @@ class StatisticsViewController: UIViewController {
             return [:]
         }
     }
+    
+    
+    func updateCurrentMonthAndYearLabel() {
+        guard (1...12).contains(i) else {
+            print("Invalid month index: \(i)")
+            return
+        }
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy" // Set the date format to display the full month name and year
+
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: Date())
+        let currentMonthComponents = DateComponents(year: currentYear, month: i)
+        guard let currentMonthDate = calendar.date(from: currentMonthComponents) else {
+            print("Invalid current month date.")
+            return
+        }
+
+        monthLabel.text = dateFormatter.string(from: currentMonthDate)
+    }
+    
+    
+    
+    // Decreases the value of i by 1 and moves to the previous month
+    @objc func previousMonthButtonTapped(_ sender: UIButton) {
+        i -= 1
+
+        // Ensure i stays within the range of 1-12
+        if i < 1 {
+            i = 12
+        }
+
+        // Update the label to the current month and year
+        updateCurrentMonthAndYearLabel()
+        updateStatistics()
+    }
+
+    // Increases the value of i by 1 and moves to the next month
+    @objc func nextMonthButtonTapped(_ sender: UIButton) {
+        i += 1
+
+        // Ensure i stays within the range of 1-12
+        if i > 12 {
+            i = 1
+        }
+
+        // Update the label to the current month and year
+        updateCurrentMonthAndYearLabel()
+        updateStatistics()
+    }
+    
+    func updateStatistics() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let currentMonth = i
+
+        entriesThisMonth = entries.filter { (dateString, _) -> Bool in
+            guard let date = dateFormatter.date(from: dateString) else {
+                return false
+            }
+            let month = Calendar.current.component(.month, from: date)
+            return month == currentMonth
+        }.flatMap { $0.value }
+
+        unhappyPercentage.text = String(calculateMoodPercentage(emotion: "Unhappy"))
+        unhappyPogressBar.progress = Float(unhappyPercentage.text!)! * 0.01
+
+        sadPercentage.text = String(calculateMoodPercentage(emotion: "Sad"))
+        sadPogressBar.progress = Float(sadPercentage.text!)! * 0.01
+
+        neutralPercentage.text = String(calculateMoodPercentage(emotion: "Neutral"))
+        neutralPogressBar.progress = Float(neutralPercentage.text!)! * 0.01
+
+        goodPercentage.text = String(calculateMoodPercentage(emotion: "Good"))
+        goodPogressBar.progress = Float(goodPercentage.text!)! * 0.01
+
+        joyPercentage.text = String(calculateMoodPercentage(emotion: "Joy"))
+        joyPogressBar.progress = Float(joyPercentage.text!)! * 0.01
+
+        totalEntriesLabel.text = String(entriesThisMonth.count)
+
+        let daysInMonth = getDaysInCurrentMonth()
+        let averageEntries = Double(entriesThisMonth.count) / Double(daysInMonth)
+        averageEntriesLabel.text = String(format: "%.1f", averageEntries)
+    }
+
     
     func getCurrentMonth() -> Int {
         let dateFormatter = DateFormatter()
