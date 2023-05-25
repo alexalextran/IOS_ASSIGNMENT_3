@@ -41,10 +41,12 @@ class StatisticsViewController: UIViewController {
         
         
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let currentMonth = getCurrentMonth()
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM"
+        let currentMonth = getCurrentMonth()
+        i = currentMonth // Set the initial value of i to the current month index
+
         entriesThisMonth = entries.filter { (dateString, _) -> Bool in
             guard let date = dateFormatter.date(from: dateString) else {
                 return false
@@ -52,6 +54,7 @@ class StatisticsViewController: UIViewController {
             let month = Calendar.current.component(.month, from: date)
             return month == currentMonth
         }.flatMap { $0.value }
+
         
         
         unhappyPercentage.text = String(calculateMoodPercentage(emotion: "Unhappy"))
@@ -74,6 +77,10 @@ class StatisticsViewController: UIViewController {
         let daysInMonth = getDaysInCurrentMonth()
         let averageEntries = Double(entriesThisMonth.count) / Double(daysInMonth)
         averageEntriesLabel.text = String(format: "%.1f", averageEntries)
+        
+        entries = readEntries()
+
+      
         
         updateCurrentMonthAndYearLabel()
         
