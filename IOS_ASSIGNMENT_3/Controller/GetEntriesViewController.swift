@@ -9,7 +9,6 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var filterTextField: UITextField!
     @IBOutlet weak var dateLabel: UILabel!
 
-    let KEY_DAILY_ENTRIES = "dailyEntries"
     var entries = [String: [EntryManager.Entry]]()
     var filteredEntries = [String: [EntryManager.Entry]]()
     var entryManager =  EntryManager()
@@ -31,7 +30,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
+        return true //make sure keyboard disapears when return key pressed on mobile
     }
 
     // Filter entries when the filter text field value changes
@@ -47,38 +46,38 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
 
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return filteredEntries[formmattedDate!]?.count ?? 0
+        return filteredEntries[formmattedDate!]?.count ?? 0 //return number entries if entires do not exist return 0
     }
 
-    // There is just one row in every section
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { // There is just one row in every section
         return 1
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { //header height
+    return 40
     }
 
-    // Make the background color show through
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
-    }
+
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {   // Make the background color show through
+      let headerView = UIView()
+      headerView.backgroundColor = UIColor.clear
+      return headerView
+  }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let entryArrays = filteredEntries[formmattedDate!]
+        let entryArrays = self.entries[formmattedDate!]
         let currentEntry = entryArrays![indexPath.section]
-
+        
         let text = currentEntry.text as NSString
-        let labelWidth = tableView.frame.width - 32 //title width
-        let titleLabelHeight: CGFloat = 20 // title height
-        let font = UIFont.systemFont(ofSize: 17) //font size
-        let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
-        let cellHeight = titleLabelHeight + entryHeight + 44 //padding
+           let labelWidth = tableView.frame.width - 32 //label width
+           let titleLabelHeight: CGFloat = 20 //title height
+           let font = UIFont.systemFont(ofSize: 17) //font size
+            let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
+           let cellHeight = titleLabelHeight + entryHeight + 44 // Add extra padding as per your preference
 
-        return cellHeight
-    }
+           return cellHeight
+       }
     
     
     @objc func deleteButtonTapped(_ sender: UIButton) {
@@ -87,15 +86,10 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if var sectionEntries = entryArrays, sectionEntries.indices.contains(section) {
             sectionEntries.remove(at: section) // Remove the entry from the array
-            
             // Update the entries and filteredEntries dictionaries
             entries[formmattedDate!] = sectionEntries
-            filteredEntries[formmattedDate!] = sectionEntries
-            
             // Save the updated entries to UserDefaults or any other storage mechanism
-            let userDefaults = UserDefaults.standard
-            userDefaults.set(try? PropertyListEncoder().encode(entries), forKey: KEY_DAILY_ENTRIES)
-            
+            entryManager.writeEntry(entries: entries)
             // Reload the table view
             entriesTable.reloadData()
         }
@@ -109,20 +103,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.titleLabel.text = entry.mood
         cell.entryLabel.text = entry.text
         
-        switch entry.mood {
-        case "Unhappy":
-            cell.layer.borderColor = UIColor.systemOrange.cgColor
-        case "Sad":
-            cell.layer.borderColor = UIColor.systemTeal.cgColor
-        case "Neutral":
-            cell.layer.borderColor = UIColor.systemPurple.cgColor
-        case "Good":
-            cell.layer.borderColor = UIColor.systemGreen.cgColor
-        case "Joy":
-            cell.layer.borderColor = UIColor.systemYellow.cgColor
-        default:
-            cell.layer.borderColor = UIColor.black.cgColor
-        }
+        cell.layer.borderColor = setBorderColor(entryMood: entry.mood)
         
         let customColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         cell.backgroundColor = customColor
@@ -131,15 +112,34 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.contentView.clipsToBounds = true
         
         
+        // Add "X" button
         let button = UIButton(type: .system)
         let deleteImage = UIImage(systemName: "xmark") // Use the system icon "xmark"
         button.setImage(deleteImage, for: .normal)
-        button.tintColor = UIColor.black // Set the tint color to black
-        button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) // Adjust the button's frame as per your preference
-        button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside) // Add target action
-        button.tag = indexPath.section // Set the tag to identify the button
+        button.tintColor = UIColor.black //color
+        button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) //size and positioning
+        button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside)
+        button.tag = indexPath.section
         cell.addSubview(button)
-
+        
         return cell
+    }
+    
+    func setBorderColor(entryMood:String) -> CGColor {
+        switch entryMood{
+        case "Unhappy":
+           return UIColor.systemOrange.cgColor
+        case "Sad":
+            return UIColor.systemTeal.cgColor
+        case "Neutral":
+            return UIColor.systemPurple.cgColor
+        case "Good":
+            return UIColor.systemGreen.cgColor
+        case "Joy":
+            return UIColor.systemYellow.cgColor
+        default:
+            return UIColor.black.cgColor
+        }
+        
     }
 }

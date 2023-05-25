@@ -6,6 +6,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var GoButtonForRecap: UIButton!
     @IBOutlet weak var CurrentMonthandYear: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     let monthsDictionary =
     [1: 31,
      2: 28,
@@ -20,7 +21,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
      11: 30,
      12: 31]
     
-    var i:Int = 0
+    var i:Int = 1
     var selectedDate: Date?
     var formattedDate: String?
     var selectedIndexPath: IndexPath?
@@ -28,17 +29,14 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
            var mood:String
            var text:String
        }
-       var entries = [String: [Entry]]()
-       let KEY_DAILY_ENTRIES = "dailyEntries"
-
+    var entries = [String: [EntryManager.Entry]]()
+    var entryManager =  EntryManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateCurrentMonthAndYearLabel()
-        
         PreviousMonth.addTarget(self, action: #selector(previousMonthButtonTapped(_:)), for: .touchUpInside)
-        
         NextMonth.addTarget(self, action: #selector(nextMonthButtonTapped(_:)), for: .touchUpInside)
 
         // Set up the collection view
@@ -50,9 +48,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         
         let currentDate = Date()
         let calendar = Calendar.current
-
         let currentMonth = calendar.component(.month, from: currentDate)
-        print("Current month (digit): \(currentMonth)")
         
         i = currentMonth
         let dateFormatter = DateFormatter()
@@ -60,32 +56,17 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         
         CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"
         GoButtonForRecap.isEnabled = false
-        
-        entries = readEntries()
-        print(entries)
-    }
-    //alol
-    func readEntries() -> [String: [Entry]] {
-        let defaults = UserDefaults.standard
-
-        if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data,
-           let array = try? PropertyListDecoder().decode([String: [Entry]].self, from: savedArrayData) {
-            return array
-        } else {
-            return [:]
-        }
+        entries = entryManager.readEntries()
+    
     }
    
     
     func updateCurrentMonthAndYearLabel() {
         guard (1...12).contains(i) else {
-            print("Invalid month index: \(i)")
             return
         }
-        
         let monthSymbols = DateFormatter().monthSymbols
         let monthIndex = i - 1
-        
         if let monthName = monthSymbols?[monthIndex] {
             let currentYear = Calendar.current.component(.year, from: Date())
             CurrentMonthandYear.text = "\(monthName) \(currentYear)"
@@ -98,30 +79,24 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     @objc func previousMonthButtonTapped(_ sender: UIButton) {
             // Decrease the value of i by 1
             i -= 1
-            
             // Ensure i stays within the range of 1-12
             if i < 1 {
                 i = 12
             }
-            
             // Reload the collection view to reflect the updated month
             collectionView.reloadData()
-        
             //update the label to the current month and year
             updateCurrentMonthAndYearLabel()
-
         }
     
     //increases the value of i by 1 and therefore moving to the next month
     @objc func nextMonthButtonTapped(_ sender: UIButton) {
             // Increase the value of i by 1
             i += 1
-            
             // Ensure i stays within the range of 1-12
             if i > 12 {
                 i = 1
             }
-            
             // Reload the collection view to reflect the updated month
             collectionView.reloadData()
         
@@ -133,12 +108,10 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     // Implement UICollectionViewDataSource methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Return the number of days in the month
-        let month = (i - 1) % 12 + 1
-        if let daysInMonth = monthsDictionary[month] {
+        if let daysInMonth = monthsDictionary[i] {
             return daysInMonth
         } else {
-            // Provide a default value (e.g., 30) or handle the error case
-            return 30
+            return 0
         }
     }
     
@@ -160,11 +133,13 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.button.backgroundColor = .clear
         cell.button.setTitleColor(.black, for: .normal)
         
-        let selectedMonth = i // Assuming May for this example
-        let selectedYear = 2023 // Assuming the current year for this example
+        let selectedMonth = i
+        let selectedYear = 2023
         let dateComponents = DateComponents(year: selectedYear, month: selectedMonth, day: day)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
+        
+        
         if let date = Calendar.current.date(from: dateComponents) {
             let formattedDate = dateFormatter.string(from: date)
             if entries[formattedDate] == nil {
@@ -175,8 +150,6 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
                 // Enable the button
                 cell.button.isEnabled = true
             }
-        } else {
-            // Handle invalid date or formatting error
         }
         
         return cell
@@ -185,13 +158,13 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     @objc func dateButtonTapped(_ sender: UIButton) {
-        //bruh
         if let cell = sender.superview?.superview as? DateCell {
             let indexPath = collectionView.indexPath(for: cell)!
+            
             let selectedDay = indexPath.item + 1
-            let selectedMonth = i // Assuming May for this example
-            let selectedYear = 2023 // Assuming the current year for this example
-
+            let selectedMonth = i
+            let selectedYear = 2023
+            
             // Create a date using the selected day, month, and year
             let calendar = Calendar.current
             var dateComponents = DateComponents()
@@ -213,7 +186,6 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             cell.button.setTitleColor(.white, for: .normal)
             
             updateSaveButtonState()
-
             selectedIndexPath = indexPath
 
             let dateFormatter = DateFormatter()
@@ -221,44 +193,12 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             if let selectedDate = selectedDate {
                 let formattedDate = dateFormatter.string(from: selectedDate)
                 self.formattedDate = formattedDate
-                print(formattedDate)
             }
         }
     }
 
 
-    
-    
-    class DateCell: UICollectionViewCell {
-        let button = UIButton()
-        
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setupCell()
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-            setupCell()
-        }
-        
-        private func setupCell() {
-            contentView.addSubview(button)
-            button.frame = contentView.bounds
-            button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            // Customize the appearance of the button
-            button.setTitleColor(.black, for: .normal)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-            button.layer.borderWidth = 1.0
-            button.layer.borderColor = UIColor.lightGray.cgColor
-        }
-        
-        func setupCell(day: Int) {
-            button.setTitle("\(day)", for: .normal)
-        }
-    }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGetEntries" {
             let VC = segue.destination as! GetEntriesViewController

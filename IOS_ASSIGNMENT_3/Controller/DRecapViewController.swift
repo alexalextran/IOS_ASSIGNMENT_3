@@ -101,7 +101,6 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell
-        
         let entryArrays = self.entries[formmattedDate!]
         let entry = entryArrays![indexPath.section]
         cell.titleLabel.text = entry.mood
