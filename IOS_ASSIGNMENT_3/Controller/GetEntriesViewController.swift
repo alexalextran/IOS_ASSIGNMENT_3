@@ -91,6 +91,27 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
 
         return cellHeight
     }
+    
+    
+    @objc func deleteButtonTapped(_ sender: UIButton) {
+        let section = sender.tag // Get the section index from the button's tag
+        let entryArrays = self.entries[formmattedDate!]
+        
+        if var sectionEntries = entryArrays, sectionEntries.indices.contains(section) {
+            sectionEntries.remove(at: section) // Remove the entry from the array
+            
+            // Update the entries and filteredEntries dictionaries
+            entries[formmattedDate!] = sectionEntries
+            filteredEntries[formmattedDate!] = sectionEntries
+            
+            // Save the updated entries to UserDefaults or any other storage mechanism
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(try? PropertyListEncoder().encode(entries), forKey: KEY_DAILY_ENTRIES)
+            
+            // Reload the table view
+            entriesTable.reloadData()
+        }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell
@@ -104,6 +125,16 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
+        
+        let button = UIButton(type: .system)
+        let deleteImage = UIImage(systemName: "xmark") // Use the system icon "xmark"
+        button.setImage(deleteImage, for: .normal)
+        button.tintColor = UIColor.black // Set the tint color to black
+        button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) // Adjust the button's frame as per your preference
+        button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside) // Add target action
+        button.tag = indexPath.section // Set the tag to identify the button
+
+        cell.addSubview(button)
 
         return cell
     }
