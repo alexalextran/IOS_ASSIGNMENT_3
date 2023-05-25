@@ -30,14 +30,12 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var entries = [String: [Entry]]()
     let KEY_DAILY_ENTRIES = "dailyEntries"
     
-    
-    var filteredEntries = [String: [Entry]]()
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 5
  
     
     @IBOutlet weak var entriesTable: UITableView!
-    @IBOutlet weak var filterTextField: UITextField!
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +43,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
        
         entries = readEntries()
         writeEntry();
-        
-        filteredEntries = entries
 
-        filterTextField.delegate = self
-        filterTextField.addTarget(self, action: #selector(filterTextFieldDidChange(_:)), for: .editingChanged)
-            
-     
         self.entriesTable.register(CustomTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
               entriesTable.delegate = self
@@ -59,16 +51,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    // Filter entries when the filter text field value changes
-    @objc func filterTextFieldDidChange(_ textField: UITextField) {
-        let searchText = textField.text ?? ""
-        if searchText.isEmpty {
-            filteredEntries = entries
-        } else {
-            filteredEntries = entries.mapValues { $0.filter { $0.text.contains(searchText) } }
-        }
-        entriesTable.reloadData()
-    }
+   
     
     
     func writeEntry() {
@@ -103,14 +86,10 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Set the spacing between sections
    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        filterTextField.resignFirstResponder()
-        return true
-    }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return filteredEntries[formmattedDate!]?.count ?? 0
+        return entries[formmattedDate!]?.count ?? 0
         }
         
         // There is just one row in every section
@@ -153,7 +132,6 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // Update the entries and filteredEntries dictionaries
             entries[formmattedDate!] = sectionEntries
-            filteredEntries[formmattedDate!] = sectionEntries
             
             // Save the updated entries to UserDefaults or any other storage mechanism
             let userDefaults = UserDefaults.standard
@@ -192,8 +170,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
    
         cell.layer.borderWidth = 2.2
         cell.layer.cornerRadius = 14
-       
-        cell.contentView.frame = cell.contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 100))
+    
            cell.contentView.clipsToBounds = true
         
         // Add "X" button

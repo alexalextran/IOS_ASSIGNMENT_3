@@ -31,9 +31,15 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
 
         entries = readEntries()
         filteredEntries = entries
+    
 
         filterTextField.delegate = self
         filterTextField.addTarget(self, action: #selector(filterTextFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     // Filter entries when the filter text field value changes
@@ -142,8 +148,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.layer.borderWidth = 2.2
         cell.layer.cornerRadius = 14
        
-        cell.contentView.frame = cell.contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 100))
-           cell.contentView.clipsToBounds = true
+        cell.contentView.clipsToBounds = true
         
         
         
