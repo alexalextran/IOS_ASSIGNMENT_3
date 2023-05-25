@@ -75,31 +75,6 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             return [:]
         }
     }
-    
-    /*func checkCalendarCompleteness() {
-        // Loop through the calendar dictionary
-        for (_, daysInMonth) in monthsDictionary {
-            for day in 1...daysInMonth {
-                let dateComponents = DateComponents(year: 2023, month: i, day: day)
-                if let date = Calendar.current.date(from: dateComponents) {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy"
-                    let formattedDate = dateFormatter.string(from: date)
-                    
-                    // Check if the date exists in the dictionary
-                    if entries[formattedDate] == nil {
-                        // Disable the "go" button
-                        goButton.isEnabled = false
-                        return
-                    }
-                }
-            }
-        }
-        
-        // Enable the "go" button if all dates exist in the dictionary
-        goButton.isEnabled = true
-    }*/
-
    
     
     func updateCurrentMonthAndYearLabel() {
