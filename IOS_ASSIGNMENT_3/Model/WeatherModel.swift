@@ -12,8 +12,30 @@ struct WeatherModel{
     let cityName: String
     let temperature: Double
     
+    
+    func getCurrentTime() -> String {
+            let currentTime = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .short
+            return dateFormatter.string(from: currentTime)
+        }
+    
     var temperatureString: String{
         return String(format: "%.1f", temperature)
+    }
+    
+    var isNight: Bool {
+        let currentTime = getCurrentTime()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+
+        let currentDateTime = dateFormatter.date(from: currentTime)!
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour], from: currentDateTime)
+
+        let hour = components.hour!
+        return (hour >= 18 || hour <= 6)
     }
     
     var conditionName: String {
@@ -29,14 +51,18 @@ struct WeatherModel{
         case 701...781:
             return "cloud.fog"
         case 800:
-            return "sun.max"
+            if isNight {
+                return "moon.fill"
+            } else {
+                return "sun.max"
+            }
         case 801...804:
             return "cloud.bolt"
         default:
             return "cloud"
         }
     }
-    
+
     var conditionAdvice: String {
         switch conditionId {
         case 200...232:
@@ -50,12 +76,16 @@ struct WeatherModel{
         case 701...781:
             return "Sometimes we need the fog to remind ourselves that all of life is not black and white"
         case 800:
-            return "Today is a good day to get your Vitamin D!"
+            if isNight {
+                return "The best bridge between despair and hope is a good night's sleep"
+            } else {
+                return "Today is a good day to get your Vitamin D!"
+            }
         case 801...804:
             return "Affections are like lightning. You can't tell where they will strike until they have fallen"
         default:
-            return "Even on a cloudy day, the blue sky is stil there"
+            return "Even on a cloudy day, the blue sky is still there"
         }
     }
-    
 }
+

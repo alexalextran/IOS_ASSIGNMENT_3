@@ -27,10 +27,6 @@ class GuidanceViewController: UIViewController {
         
         weatherManager.delegate = self
     }
-    
-    @IBAction func locationPressed(_ sender: UIButton) {
-        locationManager.requestLocation()
-    }
 }
 
 extension GuidanceViewController: WeatherManagerDelegate{
