@@ -9,5 +9,5 @@ import Foundation
 
 enum APIKey {
     static let openAIAPIKey = ""
-
+    static let openWeatherAPIKey = "a1b773c1afe6bd5321f4256ca8f8a282"
 }

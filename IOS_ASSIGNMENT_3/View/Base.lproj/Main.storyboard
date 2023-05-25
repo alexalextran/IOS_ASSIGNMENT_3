@@ -947,6 +947,60 @@
                                     <segue destination="rug-1f-6tn" kind="show" id="HFx-Ti-An9"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Dbk-pA-zGk">
+                                <rect key="frame" x="210" y="161" width="150" height="107.66666666666667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ela-qW-rUF" userLabel="Temp">
+                                        <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="107.66666666666667"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99B-oy-56n" userLabel="Temp">
+                                        <rect key="frame" x="53.666666666666657" y="0.0" width="36.333333333333343" height="107.66666666666667"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRc-zX-79D" userLabel="Temp">
+                                        <rect key="frame" x="95" y="0.0" width="55" height="107.66666666666667"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="og5-hf-xyx" userLabel="CityName">
+                                <rect key="frame" x="123" y="315" width="145" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Advice Text Block" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWU-s8-mqS" userLabel="Advice">
+                                <rect key="frame" x="117" y="443" width="157" height="117"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ne-bD-noU">
+                                <rect key="frame" x="48" y="150" width="126" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOB-xe-EEQ" userLabel="UpdateWeather">
+                                <rect key="frame" x="48" y="312" width="85" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.1184879467" green="0.10777764770000001" blue="0.1403068304" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="location.circle.fill" catalog="system"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="locationPressed:" destination="1Cz-oY-olu" eventType="touchUpInside" id="HnO-M1-MJ9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fXy-Xl-kfR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -960,6 +1014,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bV1-um-axb"/>
+                    <connections>
+                        <outlet property="adviceLabel" destination="dWU-s8-mqS" id="aWv-fB-yBG"/>
+                        <outlet property="cityLabel" destination="og5-hf-xyx" id="8rL-bq-YSm"/>
+                        <outlet property="conditionImageView" destination="9ne-bD-noU" id="lvw-li-6f0"/>
+                        <outlet property="temperatureLabel" destination="Ela-qW-rUF" id="7XR-Zc-uXg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjm-vm-ecB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1519,11 +1579,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MtL-eM-sAn"/>
-        <segue reference="zd6-Jq-fHI"/>
+        <segue reference="JbE-Df-QbM"/>
+        <segue reference="e4g-LF-DxU"/>
         <segue reference="YcQ-KQ-0n3"/>
-        <segue reference="F1H-vl-gak"/>
-        <segue reference="lq4-tq-JsD"/>
+        <segue reference="fKT-uL-qVd"/>
+        <segue reference="Mh1-oz-HKu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bubble.right.circle.fill" catalog="system" width="128" height="123"/>
@@ -1532,6 +1592,7 @@
         <image name="chart.bar.xaxis" catalog="system" width="128" height="99"/>
         <image name="cross.fill" catalog="system" width="128" height="116"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
