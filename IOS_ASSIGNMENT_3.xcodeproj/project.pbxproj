@@ -11,6 +11,8 @@
 		5E9FFF8D2A1F8AC000EDE800 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF8C2A1F8AC000EDE800 /* APIKey.swift */; };
 		5E9FFF8F2A1F8B1400EDE800 /* OpenAIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF8E2A1F8B1400EDE800 /* OpenAIManager.swift */; };
 		5E9FFF922A1F8B6400EDE800 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5E9FFF912A1F8B6400EDE800 /* Alamofire */; };
+		5E9FFF942A1FAB2000EDE800 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF932A1FAB2000EDE800 /* ChatView.swift */; };
+		5E9FFF962A1FAC6500EDE800 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF952A1FAC6500EDE800 /* ChatViewController.swift */; };
 		F65ECCAB2A1F931C0053A057 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65ECCAA2A1F931C0053A057 /* EntryManager.swift */; };
 		F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */; };
 		F6C537982A1898CF00DDD61C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537972A1898CF00DDD61C /* DateCell.swift */; };
@@ -33,6 +35,8 @@
 		5E9FFF8A2A1F8A6C00EDE800 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		5E9FFF8C2A1F8AC000EDE800 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		5E9FFF8E2A1F8B1400EDE800 /* OpenAIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIManager.swift; sourceTree = "<group>"; };
+		5E9FFF932A1FAB2000EDE800 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		5E9FFF952A1FAC6500EDE800 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		F65ECCAA2A1F931C0053A057 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEntriesViewController.swift; sourceTree = "<group>"; };
 		F6C537972A1898CF00DDD61C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
@@ -97,10 +101,10 @@
 		F6E83C0B2A17AC4D009E9886 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */,
-				F6C537972A1898CF00DDD61C /* DateCell.swift */,
 				5E9FFF8A2A1F8A6C00EDE800 /* ChatViewModel.swift */,
+				F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */,
 				5E9FFF8C2A1F8AC000EDE800 /* APIKey.swift */,
+				F6C537972A1898CF00DDD61C /* DateCell.swift */,
 				5E9FFF8E2A1F8B1400EDE800 /* OpenAIManager.swift */,
 				F65ECCAA2A1F931C0053A057 /* EntryManager.swift */,
 			);
@@ -120,6 +124,7 @@
 				F6E83C162A17AD99009E9886 /* EntryRecapViewController.swift */,
 				F6E83C182A17AE67009E9886 /* OpenAIViewController.swift */,
 				F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */,
+				5E9FFF952A1FAC6500EDE800 /* ChatViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				F6E83BFD2A1659FB009E9886 /* Main.storyboard */,
+				5E9FFF932A1FAB2000EDE800 /* ChatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,9 +227,11 @@
 				5E9FFF8D2A1F8AC000EDE800 /* APIKey.swift in Sources */,
 				F65ECCAB2A1F931C0053A057 /* EntryManager.swift in Sources */,
 				F6E83C172A17AD99009E9886 /* EntryRecapViewController.swift in Sources */,
+				5E9FFF942A1FAB2000EDE800 /* ChatView.swift in Sources */,
 				F6E83C0F2A17ACE6009E9886 /* JournalEntryViewController.swift in Sources */,
 				F6E83BFA2A1659FB009E9886 /* SceneDelegate.swift in Sources */,
 				F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */,
+				5E9FFF962A1FAC6500EDE800 /* ChatViewController.swift in Sources */,
 				F6E83C192A17AE67009E9886 /* OpenAIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
