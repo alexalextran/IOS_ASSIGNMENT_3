@@ -57,6 +57,8 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     //alol
     
+   
+    
     func updateCurrentMonthAndYearLabel() {
         guard (1...12).contains(i) else {
             print("Invalid month index: \(i)")
@@ -149,7 +151,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         if let cell = sender.superview?.superview as? DateCell {
             let indexPath = collectionView.indexPath(for: cell)!
             let selectedDay = indexPath.item + 1
-            let selectedMonth = 5 // Assuming May for this example
+            let selectedMonth = i // Assuming May for this example
             let selectedYear = 2023 // Assuming the current year for this example
 
             // Create a date using the selected day, month, and year
