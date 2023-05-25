@@ -16,6 +16,7 @@
 		5E9FFF9A2A1FCFD700EDE800 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF992A1FCFD700EDE800 /* WeatherData.swift */; };
 		5E9FFF9C2A1FD01900EDE800 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF9B2A1FD01900EDE800 /* WeatherModel.swift */; };
 		5E9FFF9E2A1FD05800EDE800 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FFF9D2A1FD05800EDE800 /* WeatherManager.swift */; };
+		5E9FFFA12A200E9C00EDE800 /* ThoughtsAILogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9FFFA02A200E9C00EDE800 /* ThoughtsAILogo.png */; };
 		F65ECCAB2A1F931C0053A057 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65ECCAA2A1F931C0053A057 /* EntryManager.swift */; };
 		F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */; };
 		F6C537982A1898CF00DDD61C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537972A1898CF00DDD61C /* DateCell.swift */; };
@@ -43,6 +44,7 @@
 		5E9FFF992A1FCFD700EDE800 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		5E9FFF9B2A1FD01900EDE800 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		5E9FFF9D2A1FD05800EDE800 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		5E9FFFA02A200E9C00EDE800 /* ThoughtsAILogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThoughtsAILogo.png; sourceTree = "<group>"; };
 		F65ECCAA2A1F931C0053A057 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEntriesViewController.swift; sourceTree = "<group>"; };
 		F6C537972A1898CF00DDD61C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E9FFFA22A200EB200EDE800 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5E9FFFA02A200E9C00EDE800 /* ThoughtsAILogo.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		F6E83BEB2A1659FB009E9886 = {
 			isa = PBXGroup;
 			children = (
@@ -97,9 +107,9 @@
 				F6E83C0D2A17AC60009E9886 /* View */,
 				F6E83C0C2A17AC56009E9886 /* Controller */,
 				F6E83C0B2A17AC4D009E9886 /* Model */,
-				F6E83C022A1659FF009E9886 /* LaunchScreen.storyboard */,
-				F6E83C052A1659FF009E9886 /* Info.plist */,
 				F6E83C002A1659FE009E9886 /* Assets.xcassets */,
+				5E9FFFA22A200EB200EDE800 /* Images */,
+				F6E83C052A1659FF009E9886 /* Info.plist */,
 			);
 			path = IOS_ASSIGNMENT_3;
 			sourceTree = "<group>";
@@ -142,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				F6E83BFD2A1659FB009E9886 /* Main.storyboard */,
+				F6E83C022A1659FF009E9886 /* LaunchScreen.storyboard */,
 				5E9FFF932A1FAB2000EDE800 /* ChatView.swift */,
 			);
 			path = View;
@@ -213,6 +224,7 @@
 			files = (
 				F6E83C042A1659FF009E9886 /* LaunchScreen.storyboard in Resources */,
 				F6E83C012A1659FE009E9886 /* Assets.xcassets in Resources */,
+				5E9FFFA12A200E9C00EDE800 /* ThoughtsAILogo.png in Resources */,
 				F6E83BFF2A1659FB009E9886 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
