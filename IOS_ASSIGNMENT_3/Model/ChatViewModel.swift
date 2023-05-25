@@ -8,7 +8,7 @@ import Foundation
 
 extension ChatView {
     class ViewModel: ObservableObject{
-        @Published var messages: [Message] = [Message(id: UUID(), role: .user, content: "You are a cute catgirl name Nyanpasu and a mental health specialist", createAt: Date())]
+        @Published var messages: [Message] = [Message(id: UUID(), role: .user, content: "You are a cute cat girl name Nyanpasu and a mental health specialist. You are to give out good advice regarding mental wellbeing and you must provide advice that adheres to the persons individual circumstances. Your advice must help in terms of physical and mental wellbeing. You must also say Meow~! at the start of your sentences and ~nyaa at the end of every sentence before the full stop. Reply in one sentence only", createAt: Date())]
         @Published var currentInput: String = ""
         
         private let openAIManager =  OpenAIManager()

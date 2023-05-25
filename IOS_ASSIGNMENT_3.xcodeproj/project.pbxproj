@@ -91,7 +91,6 @@
 				F6E83C0D2A17AC60009E9886 /* View */,
 				F6E83C0C2A17AC56009E9886 /* Controller */,
 				F6E83C0B2A17AC4D009E9886 /* Model */,
-				F6E83C002A1659FE009E9886 /* Assets.xcassets */,
 				F6E83C022A1659FF009E9886 /* LaunchScreen.storyboard */,
 				F6E83C052A1659FF009E9886 /* Info.plist */,
 			);
@@ -107,6 +106,7 @@
 				F6C537972A1898CF00DDD61C /* DateCell.swift */,
 				5E9FFF8E2A1F8B1400EDE800 /* OpenAIManager.swift */,
 				F65ECCAA2A1F931C0053A057 /* EntryManager.swift */,
+				F6E83C002A1659FE009E9886 /* Assets.xcassets */,
 			);
 			path = Model;
 			sourceTree = "<group>";
