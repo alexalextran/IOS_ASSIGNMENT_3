@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ChatView: View { //Controller
+struct ChatView: View {
     @ObservedObject var viewModel = ViewModel()
     
     let openAIManager = OpenAIManager()
@@ -8,7 +8,7 @@ struct ChatView: View { //Controller
     var body: some View {
         VStack{
             ScrollView{
-                LazyVStack { //list can be dynamically
+                LazyVStack { //message list are dynamic
                     ForEach(viewModel.messages.dropFirst().filter({$0.role != .system}), id: \.id) { message in messageView(message: message)
                     }
                 }
@@ -20,6 +20,7 @@ struct ChatView: View { //Controller
                     .cornerRadius(12)
                 Button{
                     viewModel.sendMessage()
+                    hideKeyboard()
                 }
                 label: { Text("Send").foregroundColor(.white)
                         .padding()
@@ -41,6 +42,10 @@ struct ChatView: View { //Controller
                 .cornerRadius(16)
             if message.role == .assistant{ Spacer() }
         }
+    }
+    
+    func hideKeyboard() {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
