@@ -954,6 +954,15 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taf-PM-g4u">
+                                <rect key="frame" x="102" y="664" width="186" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Personal Guidance"/>
+                                <connections>
+                                    <segue destination="rug-1f-6tn" kind="show" id="HFx-Ti-An9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fXy-Xl-kfR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -967,7 +976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjm-vm-ecB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3798" y="-4"/>
+            <point key="canvasLocation" x="3796.9230769230767" y="-4.2654028436018958"/>
         </scene>
         <!--Daily Recap-->
         <scene sceneID="ALk-xZ-i1V">
@@ -1395,7 +1404,7 @@
             <objects>
                 <viewController id="rug-1f-6tn" customClass="OpenAIViewController" customModule="IOS_ASSIGNMENT_3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y8R-GO-2SI">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Personal Guidance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16C-DP-zwH">
@@ -1412,7 +1421,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KHi-MB-mP8">
-                                <rect key="frame" x="0.0" y="754.33333333333337" width="390" height="54.666666666666629"/>
+                                <rect key="frame" x="0.0" y="731.33333333333337" width="390" height="54.666666666666629"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2Kt-0X-aqU">
                                         <rect key="frame" x="0.0" y="0.0" width="78" height="54.666666666666664"/>
@@ -1523,6 +1532,7 @@
                             <constraint firstItem="DgG-rl-vM9" firstAttribute="trailing" secondItem="KHi-MB-mP8" secondAttribute="trailing" id="uJO-wY-Ij2"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Ho8-k0-dZw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQ8-Mw-kjO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
