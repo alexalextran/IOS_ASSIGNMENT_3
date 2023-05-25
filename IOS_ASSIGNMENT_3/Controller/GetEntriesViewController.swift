@@ -87,7 +87,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         let titleLabelHeight: CGFloat = 20 // Adjust the height of the title label as per your preference
         let font = UIFont.systemFont(ofSize: 17) // Adjust the font size as per your preference
         let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
-        let cellHeight = titleLabelHeight + entryHeight + 24 // Add extra padding as per your preference
+        let cellHeight = titleLabelHeight + entryHeight + 44 // Add extra padding as per your preference
 
         return cellHeight
     }
@@ -123,8 +123,13 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.backgroundColor = UIColor.white
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 8
-        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 14
+       
+        cell.contentView.frame = cell.contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 100))
+           cell.contentView.clipsToBounds = true
+        
+        
+        
         
         let button = UIButton(type: .system)
         let deleteImage = UIImage(systemName: "xmark") // Use the system icon "xmark"
