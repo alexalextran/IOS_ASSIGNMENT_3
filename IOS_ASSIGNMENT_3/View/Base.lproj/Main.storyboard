@@ -19,8 +19,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcN-pz-RKH">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcN-pz-RKH">
                                 <rect key="frame" x="126" y="550" width="139" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Let's Go!">
                                     <backgroundConfiguration key="background">
@@ -33,25 +34,20 @@
                                     <segue destination="IpH-7I-G77" kind="show" id="7gs-iq-2OE"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="bubble.right.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5TE-eR-RmV">
-                                <rect key="frame" x="0.0" y="359" width="390" height="128"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Welcome to Thoughts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfM-Io-HKI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Thoughts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfM-Io-HKI">
                                 <rect key="frame" x="44" y="250" width="303" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bubble.right.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5TE-eR-RmV">
+                                <rect key="frame" x="98" y="348" width="195" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5TE-eR-RmV" secondAttribute="trailing" id="H1K-ce-RsV"/>
-                            <constraint firstItem="5TE-eR-RmV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Tqk-cI-0X1"/>
-                            <constraint firstItem="5TE-eR-RmV" firstAttribute="top" secondItem="EfM-Io-HKI" secondAttribute="bottom" constant="50" id="aIj-1W-UvV"/>
-                            <constraint firstItem="5TE-eR-RmV" firstAttribute="top" secondItem="EfM-Io-HKI" secondAttribute="bottom" constant="50" id="e3u-Ob-vx5"/>
-                            <constraint firstItem="QcN-pz-RKH" firstAttribute="top" secondItem="5TE-eR-RmV" secondAttribute="bottom" constant="50" id="szk-EE-OEt"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Main Menu" id="cgg-w0-lJ1"/>
                 </viewController>
@@ -64,7 +60,7 @@
             <objects>
                 <viewController id="IpH-7I-G77" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="skY-YN-53J">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lme-3u-AXk">
@@ -1558,7 +1554,7 @@
         <segue reference="i4q-VD-keo"/>
         <segue reference="8tr-eM-cMu"/>
         <segue reference="S0e-Gb-nzR"/>
-        <segue reference="xTw-n1-oZ9"/>
+        <segue reference="7gs-iq-2OE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bubble.right.circle.fill" catalog="system" width="128" height="123"/>
