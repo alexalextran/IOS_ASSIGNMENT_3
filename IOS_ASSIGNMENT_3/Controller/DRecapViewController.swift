@@ -72,7 +72,9 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let entryArrays = self.entries[formmattedDate!]
-        let currentEntry = entryArrays![indexPath.section]
+           let reversedEntryArrays = Array(entryArrays?.reversed() ?? []) // Reverse the array and convert it back to an array
+           let currentEntry = reversedEntryArrays[indexPath.section]
+        
         
         let text = currentEntry.text as NSString
            let labelWidth = tableView.frame.width - 32 //label width
@@ -127,7 +129,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    func setBorderColor(entryMood:String) -> CGColor {
+    func setBorderColor(entryMood:String) -> CGColor { //change color based on mood
         switch entryMood{
         case "Unhappy":
            return UIColor.systemOrange.cgColor

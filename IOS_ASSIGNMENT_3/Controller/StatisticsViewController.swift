@@ -28,7 +28,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var joyPercentage: UILabel!
     var entryManager =  EntryManager()
     
-    var i:Int = 0
+    var i:Int = 0 //use i as a way to keep track of the current month
     
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class StatisticsViewController: UIViewController {
         
         entries = entryManager.readEntries()
         
-        i = getCurrentMonth()
+        i = getCurrentMonth() //set i to the current month e.g if it was may i = 5
         updateCurrentMonthAndYearLabel()
         updateStatistics()
         setUpUI()
@@ -112,8 +112,7 @@ class StatisticsViewController: UIViewController {
             // Check if the extracted month matches the current month
             return month == currentMonth
         }.flatMap { $0.value }
-
-        setUpUI()
+        setUpUI() //update UI
     }
     
     func getCurrentMonth() -> Int {
@@ -138,7 +137,7 @@ class StatisticsViewController: UIViewController {
         return roundedNumber!
     }
     
-    func getDaysInCurrentMonth() -> Int {
+    func getDaysInCurrentMonth() -> Int { //return the days within the selected month
         let calendar = Calendar.current
         let currentDate = Date()
         let currentMonth = calendar.component(.month, from: currentDate)

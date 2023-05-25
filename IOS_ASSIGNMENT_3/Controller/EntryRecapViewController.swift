@@ -52,6 +52,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         let currentMonth = calendar.component(.month, from: currentDate)
         i = currentMonth
         
+        //format label to month as in May
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"

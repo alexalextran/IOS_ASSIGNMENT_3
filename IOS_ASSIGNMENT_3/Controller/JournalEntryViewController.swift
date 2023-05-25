@@ -23,13 +23,13 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         saveButton.isEnabled = false
         entryTextBox.delegate = self
         
-        let dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter() //set current date label to current month as in May
         dateFormatter.dateFormat = "d MMMM yyyy"
         let today = Date()
         let formattedDate = dateFormatter.string(from: today)
         currentDateLabel.text = "Today is \(formattedDate)"
         
-        let dateShortFormatter = DateFormatter()
+        let dateShortFormatter = DateFormatter()  //set current date e.g 04/03/2023
         dateShortFormatter.dateFormat = "dd/MM/yyyy"
         currentDate = dateShortFormatter.string(from: today)
        
@@ -40,6 +40,7 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
        addActionButtons()
     }
     
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
            if text == "\n" {
                textView.resignFirstResponder() // Close the keyboard when Return is pressed
@@ -49,6 +50,7 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         updateSaveButtonState()
            return true
        }
+    
     
     func updateSaveButtonState() {
             if entryTextBox.text?.isEmpty == true || selectedMood == nil {
@@ -64,7 +66,6 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
             // Deselect the previously selected button
             selectedButton.backgroundColor = UIColor.systemBackground
         }
-        
         self.selectedButton = sender
         handleMoods(button: sender)
         updateSaveButtonState()
