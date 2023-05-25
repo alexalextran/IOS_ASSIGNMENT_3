@@ -35,7 +35,7 @@ struct WeatherModel{
         let components = calendar.dateComponents([.hour], from: currentDateTime)
 
         let hour = components.hour!
-        return (hour >= 18 || hour <= 6)
+        return (hour >= 18 || hour <= 6) // night is considered 6pm-6am
     }
     
     var conditionName: String {

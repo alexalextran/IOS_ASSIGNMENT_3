@@ -394,6 +394,8 @@
 				DEVELOPMENT_TEAM = MHTP7X5922;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IOS_ASSIGNMENT_3/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Thoughts;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -423,6 +425,8 @@
 				DEVELOPMENT_TEAM = MHTP7X5922;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IOS_ASSIGNMENT_3/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Thoughts;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
