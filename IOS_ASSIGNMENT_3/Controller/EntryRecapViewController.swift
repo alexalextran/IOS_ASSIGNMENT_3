@@ -132,7 +132,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         
         // Reset the button's appearance for each cell
         cell.button.backgroundColor = .clear
-        cell.button.setTitleColor(.black, for: .normal)
+        cell.button.setTitleColor(.red, for: .normal)
         
         let selectedMonth = i
         let selectedYear = 2023
@@ -178,13 +178,17 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             if let previousIndexPath = selectedIndexPath {
                 if let previousCell = collectionView.cellForItem(at: previousIndexPath) as? DateCell {
                     previousCell.button.backgroundColor = .clear
-                    previousCell.button.setTitleColor(.black, for: .normal)
+                    previousCell.button.setTitleColor(.red, for: .normal)
                 }
             }
 
             // Update the current button appearance
-            cell.button.backgroundColor = .blue
-            cell.button.setTitleColor(.white, for: .normal)
+            if self.traitCollection.userInterfaceStyle == .dark {
+                cell.button.backgroundColor = .white
+              } else {
+                  cell.button.backgroundColor = .black
+              }
+            cell.button.setTitleColor(.red, for: .normal)
             
     
             updateSaveButtonState()
