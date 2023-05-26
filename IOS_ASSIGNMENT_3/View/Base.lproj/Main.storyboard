@@ -904,7 +904,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="laO-9C-gVr" kind="relationship" relationship="viewControllers" id="bEf-Vn-RPU"/>
                         <segue destination="2aP-ox-5ZC" kind="relationship" relationship="viewControllers" id="voK-Ar-LqF"/>
                         <segue destination="Nhz-bh-TVW" kind="relationship" relationship="viewControllers" id="XBm-MQ-Nnp"/>
                         <segue destination="qSE-v4-vbX" kind="relationship" relationship="viewControllers" id="lBe-nh-AxW"/>
@@ -998,6 +997,7 @@
         <!--Recap-->
         <scene sceneID="y5e-GC-Vg3">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HEM-Xc-hdE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aoc-rW-LLL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recap" image="calendar" catalog="system" id="RBJ-Ig-8v6"/>
                     <toolbarItems/>
@@ -1011,7 +1011,6 @@
                         <segue destination="veb-8l-Tho" kind="relationship" relationship="rootViewController" id="Vic-p1-wAD"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HEM-Xc-hdE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4818" y="-1308"/>
         </scene>

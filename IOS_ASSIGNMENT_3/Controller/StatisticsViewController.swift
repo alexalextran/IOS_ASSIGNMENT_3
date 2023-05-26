@@ -31,8 +31,8 @@ class StatisticsViewController: UIViewController {
     var i:Int = 0 //use i as a way to keep track of the current month
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         // Do any additional setup after loading the view.
         
         entries = entryManager.readEntries()

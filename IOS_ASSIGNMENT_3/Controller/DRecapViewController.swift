@@ -27,6 +27,11 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let cellReuseIdentifier = "cell"
     var entryManager =  EntryManager()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        entries = entryManager.readEntries()
+        entriesTable.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +43,10 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    
+    
     func writeEntry() {
+        
         let newEntry = EntryManager.Entry(mood: moodE!, text: textE!) //create new entry object
         if entries[formmattedDate!] != nil { //if the date does not already exist make a new entry within the dict
             entries[formmattedDate!]!.append(newEntry)
@@ -84,16 +92,27 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
            return cellHeight
        }
     
+    
     @objc func deleteButtonTapped(_ sender: UIButton) {
         let section = sender.tag // Get the section index from the button's tag
         let entryArrays = self.entries[formmattedDate!]
-        
+
         if var sectionEntries = entryArrays, sectionEntries.indices.contains(section) {
             sectionEntries.remove(at: section) // Remove the entry from the array
+
             // Update the entries and filteredEntries dictionaries
             entries[formmattedDate!] = sectionEntries
+           
+
+            // Check if there are any remaining entries for that date
+            if sectionEntries.isEmpty {
+                entries.removeValue(forKey: formmattedDate!)
+
+            }
+
             // Save the updated entries to UserDefaults or any other storage mechanism
             entryManager.writeEntry(entries: entries)
+
             // Reload the table view
             entriesTable.reloadData()
         }

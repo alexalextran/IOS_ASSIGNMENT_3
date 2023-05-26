@@ -1,6 +1,6 @@
 import UIKit
 
-class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UINavigationControllerDelegate {
     @IBOutlet weak var NextMonth: UIButton!
     @IBOutlet weak var PreviousMonth: UIButton!
     @IBOutlet weak var GoButtonForRecap: UIButton!
@@ -32,9 +32,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     var entries = [String: [EntryManager.Entry]]()
     var entryManager =  EntryManager()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+        navigationItem.hidesBackButton = true
         updateCurrentMonthAndYearLabel()
         PreviousMonth.addTarget(self, action: #selector(previousMonthButtonTapped(_:)), for: .touchUpInside)
         NextMonth.addTarget(self, action: #selector(nextMonthButtonTapped(_:)), for: .touchUpInside)
@@ -58,9 +58,25 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"
         GoButtonForRecap.isEnabled = false
         entries = entryManager.readEntries()
-    
+        refreshPage()
     }
-   
+    
+    
+    func refreshPage() {
+        // Reset properties to their initial values
+        selectedDate = nil
+        formattedDate = nil
+        selectedIndexPath = nil
+
+        // Reload the collection view
+        collectionView.reloadData()
+
+        // Update other UI elements or perform any additional tasks if needed
+        updateSaveButtonState()
+        updateCurrentMonthAndYearLabel()
+    }
+    
+    
     //set current month and year labels
     func updateCurrentMonthAndYearLabel() {
         guard (1...12).contains(i) else {
@@ -129,18 +145,17 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         let day = indexPath.item + 1
         cell.setupCell(day: day)
         cell.button.addTarget(self, action: #selector(dateButtonTapped(_:)), for: .touchUpInside)
-        
+
         // Reset the button's appearance for each cell
         cell.button.backgroundColor = .clear
         cell.button.setTitleColor(.red, for: .normal)
-        
+
         let selectedMonth = i
         let selectedYear = 2023
         let dateComponents = DateComponents(year: selectedYear, month: selectedMonth, day: day)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        
-        //for each cell check if date exists within the dictionary as an entry
+
         if let date = Calendar.current.date(from: dateComponents) {
             let formattedDate = dateFormatter.string(from: date)
             if entries[formattedDate] == nil {
@@ -148,13 +163,24 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
                 cell.button.isEnabled = false
                 cell.button.setTitleColor(.gray, for: .disabled)
             } else {
-                // Enable the button
+                // Enable the button and set its appearance
                 cell.button.isEnabled = true
+
+                if formattedDate == self.formattedDate {
+                    // Highlight the button for the currently selected date
+                    if self.traitCollection.userInterfaceStyle == .dark {
+                        cell.button.backgroundColor = .white
+                    } else {
+                        cell.button.backgroundColor = .black
+                    }
+                    cell.button.setTitleColor(.red, for: .normal)
+                }
             }
         }
-        
+
         return cell
     }
+
 
     
     

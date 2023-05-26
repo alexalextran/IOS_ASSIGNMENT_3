@@ -14,8 +14,8 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
     var entryManager =  EntryManager()
 
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
         // Do any additional setup after loading the view.
 
         dateLabel.text = formmattedDate
@@ -26,6 +26,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         filteredEntries = entries
         filterTextField.delegate = self
         filterTextField.addTarget(self, action: #selector(filterTextFieldDidChange(_:)), for: .editingChanged)
+        entriesTable.reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -91,6 +92,12 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
             entries[formmattedDate!] = sectionEntries
             filteredEntries[formmattedDate!] = sectionEntries
 
+            // Check if there are any remaining entries for that date
+            if sectionEntries.isEmpty {
+                entries.removeValue(forKey: formmattedDate!)
+                filteredEntries.removeValue(forKey: formmattedDate!)
+            }
+
             // Save the updated entries to UserDefaults or any other storage mechanism
             entryManager.writeEntry(entries: entries)
 
@@ -98,6 +105,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
             entriesTable.reloadData()
         }
     }
+
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
