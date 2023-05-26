@@ -68,7 +68,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         let monthSymbols = DateFormatter().monthSymbols
         let monthIndex = i
-        if let monthName = monthSymbols?[monthIndex] {
+        if let monthName = monthSymbols?[monthIndex - 1] {
             let currentYear = Calendar.current.component(.year, from: Date())
             CurrentMonthandYear.text = "\(monthName) \(currentYear)"
         } else {
