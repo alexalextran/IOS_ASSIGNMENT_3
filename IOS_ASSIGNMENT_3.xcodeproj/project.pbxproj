@@ -19,6 +19,7 @@
 		5EF6CA6D2A21C2D0001947B4 /* darkLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF6CA6B2A21C2CF001947B4 /* darkLogo.png */; };
 		5EF6CA6E2A21C2D0001947B4 /* lightLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF6CA6C2A21C2D0001947B4 /* lightLogo.png */; };
 		F65ECCAB2A1F931C0053A057 /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65ECCAA2A1F931C0053A057 /* EntryManager.swift */; };
+		F65ECCAD2A2199AB0053A057 /* NavbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65ECCAC2A2199AB0053A057 /* NavbarController.swift */; };
 		F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */; };
 		F6C537982A1898CF00DDD61C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537972A1898CF00DDD61C /* DateCell.swift */; };
 		F6C5379A2A1BA88100DDD61C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */; };
@@ -48,6 +49,7 @@
 		5EF6CA6B2A21C2CF001947B4 /* darkLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkLogo.png; sourceTree = "<group>"; };
 		5EF6CA6C2A21C2D0001947B4 /* lightLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightLogo.png; sourceTree = "<group>"; };
 		F65ECCAA2A1F931C0053A057 /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
+		F65ECCAC2A2199AB0053A057 /* NavbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavbarController.swift; sourceTree = "<group>"; };
 		F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEntriesViewController.swift; sourceTree = "<group>"; };
 		F6C537972A1898CF00DDD61C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		F6C537992A1BA88100DDD61C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				F6E83C182A17AE67009E9886 /* OpenAIViewController.swift */,
 				F6BCEA632A1DB0A6002782EA /* GetEntriesViewController.swift */,
 				5E9FFF952A1FAC6500EDE800 /* ChatViewController.swift */,
+				F65ECCAC2A2199AB0053A057 /* NavbarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				F6E83C0F2A17ACE6009E9886 /* JournalEntryViewController.swift in Sources */,
 				F6E83BFA2A1659FB009E9886 /* SceneDelegate.swift in Sources */,
 				F6BCEA642A1DB0A6002782EA /* GetEntriesViewController.swift in Sources */,
+				F65ECCAD2A2199AB0053A057 /* NavbarController.swift in Sources */,
 				5E9FFF962A1FAC6500EDE800 /* ChatViewController.swift in Sources */,
 				F6E83C192A17AE67009E9886 /* OpenAIViewController.swift in Sources */,
 			);
