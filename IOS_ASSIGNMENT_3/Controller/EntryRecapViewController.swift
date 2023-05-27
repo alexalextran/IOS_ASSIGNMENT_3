@@ -172,7 +172,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
 
                 if formattedDate == self.formattedDate {
                     // Highlight the button for the currently selected date
-                    cell.button.backgroundColor = .label
+                    cell.button.backgroundColor = UIColor(named: "darkLight")
 
                     cell.button.setTitleColor(pink, for: .normal)
                 }
@@ -211,7 +211,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
 
             // Update the current button appearance
           
-            cell.button.backgroundColor = .label
+            cell.button.backgroundColor = UIColor(named: "darkLight")
               
             cell.button.setTitleColor(pink, for: .normal)
             

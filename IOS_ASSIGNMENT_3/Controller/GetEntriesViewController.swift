@@ -143,7 +143,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func setBorderColor(entryMood:String) -> CGColor {
         switch entryMood{
         case "Unhappy":
-           return UIColor.systemOrange.cgColor
+           return UIColor.systemRed.cgColor
         case "Sad":
             return UIColor.systemTeal.cgColor
         case "Neutral":

@@ -21,7 +21,7 @@ class EntryManager {
                 Entry(mood: "Neutral", text: "I'm feeling a bit better. I ate some food and watched some TV.")
             ],
             "25/03/2023": [
-                Entry(mood: "Happy", text: "I just received my marks for my assignment, and it showed I got 98%. I'm so happy right now!"),
+                Entry(mood: "Joy", text: "I just received my marks for my assignment, and it showed I got 98%. I'm so happy right now!"),
                 Entry(mood: "Neutral", text: "My euphoria kind of ended a few minutes ago, but I'm feeling kind of neutral.")
             ],
             "03/04/2023": [
@@ -41,7 +41,7 @@ class EntryManager {
             ],
             "22/05/2023": [
                 Entry(mood: "Joy", text: "Celebrating a milestone achievement today. Feeling on top of the world!"),
-                Entry(mood: "Happy", text: "Had a fun outing with friends. Lots of laughter and good times."),
+                Entry(mood: "Joy", text: "Had a fun outing with friends. Lots of laughter and good times."),
                 Entry(mood: "Sad", text: "Feeling a bit emotional. Reflecting on some past memories.")
             ],
             "07/06/2023": [
@@ -57,7 +57,7 @@ class EntryManager {
             "01/07/2023": [
                 Entry(mood: "Good", text: "Spent quality time with family. Feeling loved and grateful."),
                 Entry(mood: "Neutral", text: "Just a regular day. Nothing extraordinary."),
-                Entry(mood: "Happy", text: "Received a surprise gift from a dear friend. Feeling joyful!")
+                Entry(mood: "Joy", text: "Received a surprise gift from a dear friend. Feeling joyful!")
             ],
             "11/07/2023": [
                 Entry(mood: "Neutral", text: "Feeling balanced and calm today. Finding peace in the little things."),

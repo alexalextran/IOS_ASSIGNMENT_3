@@ -3,6 +3,10 @@ import SwiftUI
 struct ChatView: View {
     @ObservedObject var viewModel = ViewModel()
     
+    let pink = Color(red: 254/255, green: 58/255, blue: 92/255)
+    let blue = Color(red: 70/255, green: 159/255, blue: 196/255)
+    let grey = Color(red: 70/255, green: 159/255, blue: 196/255)
+
     let openAIManager = OpenAIManager()
     
     var body: some View {
@@ -36,7 +40,7 @@ struct ChatView: View {
         HStack{
             if message.role == .user { Spacer() }
             Text(message.content)
-                .foregroundColor(message.role == .user ? .white : .black)
+                .foregroundColor(message.role == .user ? .white : blue)
                 .padding()
                 .background(message.role == .user ? .black : .gray.opacity(0.1))
                 .cornerRadius(16)

@@ -101,7 +101,7 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         switch button.titleLabel!.text! { //update SelectedMood and background color for mood buttons
         case "😡":
          selectedMood = "Unhappy"
-            button.backgroundColor = UIColor.systemOrange
+            button.backgroundColor = UIColor.systemRed
         case "☹️":
          selectedMood = "Sad"
             button.backgroundColor = UIColor.systemTeal

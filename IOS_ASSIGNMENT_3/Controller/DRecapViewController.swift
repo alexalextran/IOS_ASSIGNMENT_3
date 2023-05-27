@@ -151,7 +151,7 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setBorderColor(entryMood:String) -> CGColor { //change color based on mood
         switch entryMood{
         case "Unhappy":
-           return UIColor.systemOrange.cgColor
+           return UIColor.systemRed.cgColor
         case "Sad":
             return UIColor.systemTeal.cgColor
         case "Neutral":
