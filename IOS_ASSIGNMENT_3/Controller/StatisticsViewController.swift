@@ -160,7 +160,7 @@ class StatisticsViewController: UIViewController {
         return daysInMonth
     }
     
-    
+    //test
     
     func setUpUI() {
         let unhappyPercentageValue = calculateMoodPercentage(emotion: "Unhappy")
