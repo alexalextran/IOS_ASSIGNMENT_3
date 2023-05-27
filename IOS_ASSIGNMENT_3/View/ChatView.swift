@@ -42,7 +42,7 @@ struct ChatView: View {
                         hideKeyboard()
                     }) {
                         Text("Send")
-                            .foregroundColor(.white)
+                            .foregroundColor(viewModel.currentInput.isEmpty ? .gray : .white)
                             .padding()
                             .background(viewModel.currentInput.isEmpty ? Color.gray.opacity(0.3) : .pink)
                             .cornerRadius(12)
@@ -60,16 +60,16 @@ struct ChatView: View {
             HStack {
                 if message.role == .user { Spacer() }
                 Text(message.content)
-                    .foregroundColor(.white)
+                    .foregroundColor(message.role == .assistant ? Color(UIColor.label) : .white)
                     .padding()
-                    .background(message.role == .user ? lightBlue : .gray.opacity(0.1))
+                    .background(message.role == .user ? lightBlue : .gray.opacity(0.2))
                     .cornerRadius(16)
                 if message.role == .assistant { Spacer() }
             }
             if viewModel.isTyping && message.id == viewModel.typingMessageId {
                 HStack {
                     Text("Typing...")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(UIColor.label))
                         .padding(.top, 4)
                     Spacer()
                 }
