@@ -40,6 +40,8 @@ class DRecapViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.entriesTable.register(CustomTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         entriesTable.delegate = self
         entriesTable.dataSource = self
+        entriesTable.layer.cornerRadius = 14
+        entriesTable.layer.masksToBounds = true
     }
     
     

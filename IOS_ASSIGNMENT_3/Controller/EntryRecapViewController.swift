@@ -8,7 +8,6 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var collectionView: UICollectionView!
     
     let pink = UIColor(red: 254/255, green: 58/255, blue: 92/255, alpha: 1.0)
-
     
     let monthsDictionary =
     [1: 31,
@@ -173,11 +172,8 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
 
                 if formattedDate == self.formattedDate {
                     // Highlight the button for the currently selected date
-                    if self.traitCollection.userInterfaceStyle == .dark {
-                        cell.button.backgroundColor = .white
-                    } else {
-                        cell.button.backgroundColor = .black
-                    }
+                    cell.button.backgroundColor = .label
+
                     cell.button.setTitleColor(pink, for: .normal)
                 }
             }
@@ -214,11 +210,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             }
 
             // Update the current button appearance
-            if self.traitCollection.userInterfaceStyle == .dark {
-                cell.button.backgroundColor = .white
-              } else {
-                  cell.button.backgroundColor = .black
-              }
+          
+            cell.button.backgroundColor = .label
+              
             cell.button.setTitleColor(pink, for: .normal)
             
     

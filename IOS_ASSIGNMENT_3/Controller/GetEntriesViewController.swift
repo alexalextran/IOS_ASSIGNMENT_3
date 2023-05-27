@@ -26,7 +26,10 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         filteredEntries = entries
         filterTextField.delegate = self
         filterTextField.addTarget(self, action: #selector(filterTextFieldDidChange(_:)), for: .editingChanged)
+        entriesTable.layer.cornerRadius = 14.0
+        entriesTable.layer.masksToBounds = true
         entriesTable.reloadData()
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

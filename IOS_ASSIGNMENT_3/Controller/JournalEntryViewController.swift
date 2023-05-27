@@ -33,7 +33,7 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         dateShortFormatter.dateFormat = "dd/MM/yyyy"
         currentDate = dateShortFormatter.string(from: today)
         
-        entryTextBox.layer.cornerRadius = 15
+        entryTextBox.layer.cornerRadius = 14
         entryTextBox.layer.masksToBounds = true
        
         entryTextBox.layer.borderWidth = 0
