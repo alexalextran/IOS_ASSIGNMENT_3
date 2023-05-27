@@ -7,34 +7,50 @@
 import Foundation
 
 extension ChatView {
-    class ViewModel: ObservableObject{
-        @Published var messages: [Message] = [Message(id: UUID(), role: .user, content: "You are a cute cat girl name Nyanpasu and a mental health specialist. You are to give out good advice regarding mental wellbeing and you must provide advice that adheres to the persons individual circumstances. Your advice must help in terms of physical and mental wellbeing. You must also say Meow~! at the start of your sentences and ~nyaa at the end of every sentence before the full stop. Reply in one sentence only", createAt: Date())]
+    class ViewModel: ObservableObject {
+        @Published var messages: [Message] = [Message(id: UUID(), role: .user, content: "Hello", createAt: Date())]
         @Published var currentInput: String = ""
+        @Published var isTyping: Bool = false
+        @Published var typingMessageId: UUID?
         
-        private let openAIManager =  OpenAIManager()
+        private let openAIManager = OpenAIManager()
         
-        
-        func sendMessage(){
+        func sendMessage() {
             let newMessage = Message(id: UUID(), role: .user, content: currentInput, createAt: Date())
             messages.append(newMessage)
             currentInput = ""
             
+            typingMessageId = newMessage.id
+            isTyping = true
+            
             Task {
                 let response = await openAIManager.sendMessage(messages: messages)
-                guard let receivedOpenAIMessage = response?.choices.first?.message else{
+                guard let receivedOpenAIMessage = response?.choices.first?.message else {
                     print("Had no received message")
+                    let errorMessage = Message(id: UUID(), role: .system, content: "Connection error. Please try again later.", createAt: Date())
+                    
+                    DispatchQueue.main.async {
+                        self.messages.append(errorMessage)
+                        self.isTyping = false
+                        self.typingMessageId = nil
+                    }
+                    
                     return
                 }
+                
                 let receivedMessage = Message(id: UUID(), role: receivedOpenAIMessage.role, content: receivedOpenAIMessage.content, createAt: Date())
-                await MainActor.run{
-                    messages.append(receivedMessage)
+                
+                DispatchQueue.main.async {
+                    self.messages.append(receivedMessage)
+                    self.isTyping = false
+                    self.typingMessageId = nil
                 }
             }
         }
     }
 }
 
-struct Message: Decodable{
+struct Message: Decodable, Identifiable, Equatable{
     let id: UUID
     let role: SenderRole
     let content: String

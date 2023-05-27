@@ -40,6 +40,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         updateCurrentMonthAndYearLabel()
         PreviousMonth.addTarget(self, action: #selector(previousMonthButtonTapped(_:)), for: .touchUpInside)
         NextMonth.addTarget(self, action: #selector(nextMonthButtonTapped(_:)), for: .touchUpInside)
+        
+        PreviousMonth.layer.cornerRadius = 8
+        NextMonth.layer.cornerRadius = 8
 
         // Set up the collection view
         collectionView.delegate = self
@@ -172,9 +175,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
 
                 if formattedDate == self.formattedDate {
                     // Highlight the button for the currently selected date
-                    cell.button.backgroundColor = UIColor(named: "darkLight")
+                    cell.button.backgroundColor = pink
 
-                    cell.button.setTitleColor(pink, for: .normal)
+                    cell.button.setTitleColor(.white, for: .normal)
                 }
             }
         }
@@ -211,9 +214,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
 
             // Update the current button appearance
           
-            cell.button.backgroundColor = UIColor(named: "darkLight")
+            cell.button.backgroundColor = pink
               
-            cell.button.setTitleColor(pink, for: .normal)
+            cell.button.setTitleColor(.white, for: .normal)
             
     
             updateSaveButtonState()

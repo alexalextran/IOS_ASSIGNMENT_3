@@ -14,6 +14,7 @@ class GuidanceViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
+    @IBOutlet weak var topStackView: UIStackView!
     
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
@@ -26,6 +27,9 @@ class GuidanceViewController: UIViewController {
         locationManager.requestLocation()
         
         weatherManager.delegate = self
+        
+        topStackView.layer.cornerRadius = 8
+        topStackView.clipsToBounds = true
     }
 }
 

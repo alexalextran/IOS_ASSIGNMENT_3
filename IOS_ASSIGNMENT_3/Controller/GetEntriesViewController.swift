@@ -76,7 +76,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         let text = currentEntry.text as NSString
            let labelWidth = tableView.frame.width - 32 //label width
            let titleLabelHeight: CGFloat = 20 //title height
-           let font = UIFont.systemFont(ofSize: 17) //font size
+           let font = UIFont.systemFont(ofSize: 18) //font size
             let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
            let cellHeight = titleLabelHeight + entryHeight + 44 // Add extra padding as per your preference
 
@@ -117,12 +117,12 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         let entry = entryArrays![indexPath.section]
         cell.titleLabel.text = entry.mood
         cell.entryLabel.text = entry.text
+        cell.titleLabel.textColor = UIColor.label
+        cell.entryLabel.textColor = UIColor.label
         
         cell.layer.borderColor = setBorderColor(entryMood: entry.mood)
-        
-        let customColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-        cell.backgroundColor = customColor
-        cell.layer.borderWidth = 2.2
+        cell.backgroundColor = UIColor(named: "lightDarkColor")
+        cell.layer.borderWidth = 4
         cell.layer.cornerRadius = 14
         cell.contentView.clipsToBounds = true
         
@@ -131,7 +131,7 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         let button = UIButton(type: .system)
         let deleteImage = UIImage(systemName: "xmark") // Use the system icon "xmark"
         button.setImage(deleteImage, for: .normal)
-        button.tintColor = UIColor.black //color
+        button.tintColor = UIColor.label //color
         button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) //size and positioning
         button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside)
         button.tag = indexPath.section

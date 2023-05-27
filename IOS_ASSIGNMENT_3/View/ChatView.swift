@@ -3,53 +3,81 @@ import SwiftUI
 struct ChatView: View {
     @ObservedObject var viewModel = ViewModel()
     
-    let pink = Color(red: 254/255, green: 58/255, blue: 92/255)
-    let blue = Color(red: 70/255, green: 159/255, blue: 196/255)
-    let grey = Color(red: 70/255, green: 159/255, blue: 196/255)
-
     let openAIManager = OpenAIManager()
     
+    let lightBlue = Color(red: 70/255, green: 159/255, blue: 196/255)
+    
     var body: some View {
-        VStack{
-            ScrollView{
-                LazyVStack { //message list are dynamic
-                    ForEach(viewModel.messages.dropFirst().filter({$0.role != .system}), id: \.id) { message in messageView(message: message)
+        ZStack {
+            Color("lightDarkColor").ignoresSafeArea()
+            VStack {
+                ScrollView(.vertical) {
+                    ScrollViewReader { scrollView in
+                        LazyVStack {
+                            ForEach(viewModel.messages.dropFirst().filter({ $0.role != .system }), id: \.id) { message in
+                                messageView(message: message)
+                                    .id(message.id)
+                            }
+                        }
+                        .padding()
+                        .background(Color("navColor").cornerRadius(8))
+                        .onChange(of: viewModel.messages) { messages in
+                            scrollView.scrollTo(messages.last?.id)
+                        }
                     }
                 }
-            }
-            HStack{
-                TextField("Enter a message", text: $viewModel.currentInput)
-                    .padding()
-                    .background(.gray.opacity(0.1))
-                    .cornerRadius(12)
-                Button{
-                    viewModel.sendMessage()
-                    hideKeyboard()
-                }
-                label: { Text("Send").foregroundColor(.white)
+                .padding()
+                .background(Color("navColor").cornerRadius(8))
+                
+                HStack {
+                    TextField("Enter a message", text: $viewModel.currentInput)
                         .padding()
-                    .background(.black)
-                    .cornerRadius(12)
+                        .background(.gray.opacity(0.1))
+                        .cornerRadius(12)
+                    
+                    Button(action: {
+                        viewModel.sendMessage()
+                        hideKeyboard()
+                    }) {
+                        Text("Send")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(viewModel.currentInput.isEmpty ? Color.gray.opacity(0.3) : .pink)
+                            .cornerRadius(12)
+                            .opacity(viewModel.currentInput.isEmpty ? 0.3 : 1.0)
+                    }
+                    .disabled(viewModel.currentInput.isEmpty)
                 }
             }
+            .padding()
         }
-        .padding()
     }
     
     func messageView(message: Message) -> some View {
-        HStack{
-            if message.role == .user { Spacer() }
-            Text(message.content)
-                .foregroundColor(message.role == .user ? .white : blue)
-                .padding()
-                .background(message.role == .user ? .black : .gray.opacity(0.1))
-                .cornerRadius(16)
-            if message.role == .assistant{ Spacer() }
+        VStack {
+            HStack {
+                if message.role == .user { Spacer() }
+                Text(message.content)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(message.role == .user ? lightBlue : .gray.opacity(0.1))
+                    .cornerRadius(16)
+                if message.role == .assistant { Spacer() }
+            }
+            if viewModel.isTyping && message.id == viewModel.typingMessageId {
+                HStack {
+                    Text("Typing...")
+                        .foregroundColor(.white)
+                        .padding(.top, 4)
+                    Spacer()
+                }
+                .padding(.leading)
+            }
         }
     }
     
     func hideKeyboard() {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
@@ -58,3 +86,4 @@ struct ChatView_Previews: PreviewProvider {
         ChatView()
     }
 }
+

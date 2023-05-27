@@ -26,6 +26,10 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var neutralPercentage: UILabel!
     @IBOutlet weak var goodPercentage: UILabel!
     @IBOutlet weak var joyPercentage: UILabel!
+    @IBOutlet weak var topStackView: UIStackView!
+    @IBOutlet weak var middleStackView: UIStackView!
+    @IBOutlet weak var bottomStackView: UIStackView!
+    
     var entryManager =  EntryManager()
     
     var i:Int = 0 //use i as a way to keep track of the current month
@@ -44,6 +48,19 @@ class StatisticsViewController: UIViewController {
         
         PreviousMonth.addTarget(self, action: #selector(previousMonthButtonTapped(_:)), for: .touchUpInside)
         NextMonth.addTarget(self, action: #selector(nextMonthButtonTapped(_:)), for: .touchUpInside)
+        
+        PreviousMonth.layer.cornerRadius = 8
+        NextMonth.layer.cornerRadius = 8
+        
+        topStackView.layer.cornerRadius = 8
+        topStackView.clipsToBounds = true
+        
+        middleStackView.layer.cornerRadius = 8
+        middleStackView.clipsToBounds = true
+        
+        bottomStackView.layer.cornerRadius = 8
+        bottomStackView.clipsToBounds = true
+
         
     }
     

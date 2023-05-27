@@ -25,16 +25,10 @@ class DateCell: UICollectionViewCell {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.clear.cgColor
-        
       
     }
 
     func setupCell(day: Int) {
         button.setTitle("\(day)", for: .normal)
     }
-    
-    
-    
-      
-    
 }
