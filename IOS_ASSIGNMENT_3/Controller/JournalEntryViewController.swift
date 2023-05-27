@@ -74,6 +74,19 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         updateSaveButtonState()
         
     }
+    
+    
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        // Clear the text and reset the selected mood
+        entryTextBox.text = ""
+        selectedMood = nil
+        unhappyButton.backgroundColor = UIColor.clear
+        sadButton.backgroundColor = UIColor.clear
+        neutralButton.backgroundColor = UIColor.clear
+        goodButton.backgroundColor = UIColor.clear
+        joyButton.backgroundColor = UIColor.clear
+        updateSaveButtonState()
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToDRecap" { //send over text, mood and date data to Drecap controller
@@ -102,7 +115,8 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         selectedMood = "Joy"
             button.backgroundColor = UIColor.systemYellow
         default:
-        selectedMood = "Error"
+        selectedMood = nil
+            button.backgroundColor = UIColor.clear
         }
     }
     
