@@ -25,25 +25,24 @@ extension ChatView {
             
             Task {
                 let response = await openAIManager.sendMessage(messages: messages)
-                guard let receivedOpenAIMessage = response?.choices.first?.message else {
-                    print("Had no received message")
-                    let errorMessage = Message(id: UUID(), role: .system, content: "Connection error. Please try again later.", createAt: Date())
+                
+                if let receivedOpenAIMessage = response?.choices.first?.message {
+                    let receivedMessage = Message(id: UUID(), role: receivedOpenAIMessage.role, content: receivedOpenAIMessage.content, createAt: Date())
+                    
+                    DispatchQueue.main.async {
+                        self.messages.append(receivedMessage)
+                        self.isTyping = false
+                        self.typingMessageId = nil
+                    }
+                } else {
+                    print("No response received from OpenAI API")
+                    let errorMessage = Message(id: UUID(), role: .assistant, content: "No response received. Please try again later.", createAt: Date())
                     
                     DispatchQueue.main.async {
                         self.messages.append(errorMessage)
                         self.isTyping = false
                         self.typingMessageId = nil
                     }
-                    
-                    return
-                }
-                
-                let receivedMessage = Message(id: UUID(), role: receivedOpenAIMessage.role, content: receivedOpenAIMessage.content, createAt: Date())
-                
-                DispatchQueue.main.async {
-                    self.messages.append(receivedMessage)
-                    self.isTyping = false
-                    self.typingMessageId = nil
                 }
             }
         }

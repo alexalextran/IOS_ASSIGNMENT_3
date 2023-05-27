@@ -14,9 +14,11 @@ struct ChatView: View {
                 ScrollView(.vertical) {
                     ScrollViewReader { scrollView in
                         LazyVStack {
-                            ForEach(viewModel.messages.dropFirst().filter({ $0.role != .system }), id: \.id) { message in
-                                messageView(message: message)
-                                    .id(message.id)
+                            ForEach(viewModel.messages.dropFirst(), id: \.id) { message in
+                                if message.role != .system || message.id == viewModel.typingMessageId {
+                                    messageView(message: message)
+                                        .id(message.id)
+                                }
                             }
                         }
                         .padding()
