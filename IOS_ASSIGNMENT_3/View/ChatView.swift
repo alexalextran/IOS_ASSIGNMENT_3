@@ -67,19 +67,35 @@ struct ChatView: View {
                 if message.role == .assistant { Spacer() }
             }
             if viewModel.isTyping && message.id == viewModel.typingMessageId {
-                HStack {
-                    Text("Typing...")
-                        .foregroundColor(Color(UIColor.label))
-                        .padding(.top, 4)
-                    Spacer()
-                }
-                .padding(.leading)
+                TypingIndicatorView()
             }
         }
     }
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+struct TypingIndicatorView: View {
+    @State var dotsCount = 0
+    
+    let animation = Animation.easeInOut(duration: 1.2).repeatForever(autoreverses: false)
+    
+    var body: some View {
+        HStack {
+            Text("Typing" + String(repeating: ".", count: dotsCount))
+                .foregroundColor(Color(UIColor.label))
+                .padding(.top, 4)
+            
+            Spacer()
+        }
+        .padding(.leading)
+        .onAppear {
+            withAnimation(animation) {
+                dotsCount = 3
+            }
+        }
     }
 }
 
