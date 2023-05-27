@@ -7,6 +7,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var CurrentMonthandYear: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let pink = UIColor(red: 254/255, green: 58/255, blue: 92/255, alpha: 1.0)
+
+    
     let monthsDictionary =
     [1: 31,
      2: 28,
@@ -59,6 +62,8 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         GoButtonForRecap.isEnabled = false
         entries = entryManager.readEntries()
         refreshPage()
+        collectionView.layer.cornerRadius = 8.0
+        collectionView.layer.masksToBounds = true
     }
     
     
@@ -148,7 +153,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
 
         // Reset the button's appearance for each cell
         cell.button.backgroundColor = .clear
-        cell.button.setTitleColor(.red, for: .normal)
+        cell.button.setTitleColor(pink, for: .normal)
 
         let selectedMonth = i
         let selectedYear = 2023
@@ -173,7 +178,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
                     } else {
                         cell.button.backgroundColor = .black
                     }
-                    cell.button.setTitleColor(.red, for: .normal)
+                    cell.button.setTitleColor(pink, for: .normal)
                 }
             }
         }
@@ -204,7 +209,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             if let previousIndexPath = selectedIndexPath {
                 if let previousCell = collectionView.cellForItem(at: previousIndexPath) as? DateCell {
                     previousCell.button.backgroundColor = .clear
-                    previousCell.button.setTitleColor(.red, for: .normal)
+                    previousCell.button.setTitleColor(pink, for: .normal)
                 }
             }
 
@@ -214,7 +219,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
               } else {
                   cell.button.backgroundColor = .black
               }
-            cell.button.setTitleColor(.red, for: .normal)
+            cell.button.setTitleColor(pink, for: .normal)
             
     
             updateSaveButtonState()

@@ -32,9 +32,12 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         let dateShortFormatter = DateFormatter()  //set current date e.g 04/03/2023
         dateShortFormatter.dateFormat = "dd/MM/yyyy"
         currentDate = dateShortFormatter.string(from: today)
+        
+        entryTextBox.layer.cornerRadius = 15
+        entryTextBox.layer.masksToBounds = true
        
-        entryTextBox.layer.borderWidth = 1.5
-        entryTextBox.layer.borderColor = UIColor.black.cgColor
+        entryTextBox.layer.borderWidth = 0
+        entryTextBox.layer.borderColor = UIColor.gray.cgColor
         
         // Add button actions
        addActionButtons()
@@ -64,7 +67,7 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         
         if let selectedButton = selectedButton {
             // Deselect the previously selected button
-            selectedButton.backgroundColor = UIColor.systemBackground
+            selectedButton.backgroundColor = UIColor.clear
         }
         self.selectedButton = sender
         handleMoods(button: sender)
