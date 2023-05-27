@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2j7-oS-7PP">
-    <device id="retina6_0" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2j7-oS-7PP">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -164,17 +164,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLz-sd-c0D">
-                                <rect key="frame" x="100" y="672.66666666666663" width="190" height="34.333333333333371"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Save">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="3yq-08-hBR" kind="show" identifier="goToDRecap" id="ep8-7Z-vTQ"/>
-                                </connections>
-                            </button>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OUb-2v-0YB">
                                 <rect key="frame" x="0.0" y="552" width="390" height="90.666666666666629"/>
                                 <subviews>
@@ -294,11 +283,11 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rca-DZ-l7d">
                                 <rect key="frame" x="30" y="235.66666666666663" width="330" height="220"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="navColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="Z2U-yE-CHK"/>
                                 </constraints>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -308,6 +297,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLz-sd-c0D">
+                                <rect key="frame" x="100" y="672.66666666666663" width="190" height="34.333333333333371"/>
+                                <color key="tintColor" red="0.99607843137254903" green="0.22745098039215686" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="3yq-08-hBR" kind="show" identifier="goToDRecap" id="ep8-7Z-vTQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Yy-3L-6Gl"/>
                         <color key="backgroundColor" name="lightDarkColor"/>
@@ -580,7 +580,7 @@
             </objects>
             <point key="canvasLocation" x="3007.6923076923076" y="-4.2654028436018958"/>
         </scene>
-        <!--Guidance View Controller-->
+        <!--Guidance-->
         <scene sceneID="JBI-oS-MJG">
             <objects>
                 <viewController id="1Cz-oY-olu" customClass="GuidanceViewController" customModule="IOS_ASSIGNMENT_3" customModuleProvider="target" sceneMemberID="viewController">
@@ -588,17 +588,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taf-PM-g4u">
-                                <rect key="frame" x="100" y="541" width="190" height="34.333333333333371"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Personal Guidance">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="rug-1f-6tn" kind="show" id="HFx-Ti-An9"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="85" translatesAutoresizingMaskIntoConstraints="NO" id="R9L-cR-Oha">
                                 <rect key="frame" x="25" y="111" width="340" height="350"/>
                                 <subviews>
@@ -648,6 +637,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taf-PM-g4u">
+                                <rect key="frame" x="100" y="541" width="190" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Personal Guidance">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.99607843139999996" green="0.2274509804" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="rug-1f-6tn" kind="show" id="HFx-Ti-An9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fXy-Xl-kfR"/>
                         <color key="backgroundColor" name="lightDarkColor"/>
@@ -660,7 +660,7 @@
                             <constraint firstItem="R9L-cR-Oha" firstAttribute="leading" secondItem="fXy-Xl-kfR" secondAttribute="leading" constant="25" id="pSB-q6-FZe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bV1-um-axb"/>
+                    <navigationItem key="navigationItem" title="Guidance" id="bV1-um-axb"/>
                     <connections>
                         <outlet property="adviceLabel" destination="dWU-s8-mqS" id="aWv-fB-yBG"/>
                         <outlet property="cityLabel" destination="og5-hf-xyx" id="8rL-bq-YSm"/>
@@ -730,7 +730,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P2M-TV-72u">
                                 <rect key="frame" x="20" y="235.33333333333334" width="350" height="469.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="navColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mh2-Qa-k9F">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -750,7 +750,7 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybh-nu-2NR">
                                 <rect key="frame" x="160" y="706.66666666666663" width="70" height="34.333333333333371"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.99607843139999996" green="0.2274509804" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Go">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -835,6 +835,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V5T-yd-ckk">
                                 <rect key="frame" x="20" y="225.33333333333331" width="350" height="515.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="tintColor" name="navColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="0Wd-Ck-TOY">
                                         <rect key="frame" x="0.0" y="50" width="350" height="43.666667938232422"/>
@@ -901,7 +902,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pdV-t8-Nmd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="navColor"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="2aP-ox-5ZC" kind="relationship" relationship="viewControllers" id="voK-Ar-LqF"/>
@@ -997,7 +1000,6 @@
         <!--Recap-->
         <scene sceneID="y5e-GC-Vg3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HEM-Xc-hdE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aoc-rW-LLL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recap" image="calendar" catalog="system" id="RBJ-Ig-8v6"/>
                     <toolbarItems/>
@@ -1011,6 +1013,7 @@
                         <segue destination="veb-8l-Tho" kind="relationship" relationship="rootViewController" id="Vic-p1-wAD"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HEM-Xc-hdE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4818" y="-1308"/>
         </scene>
@@ -1021,6 +1024,7 @@
         <segue reference="vyM-O3-0QX"/>
         <segue reference="JXd-s3-9TF"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="bubble.right.fill" catalog="system" width="128" height="112"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
@@ -1030,6 +1034,9 @@
         <image name="sun.max" catalog="system" width="128" height="125"/>
         <namedColor name="lightDarkColor">
             <color red="0.95300000905990601" green="0.95300000905990601" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

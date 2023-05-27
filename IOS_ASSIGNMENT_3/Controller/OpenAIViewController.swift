@@ -21,5 +21,8 @@ class OpenAIViewController: UIViewController {
         chatViewController.view.frame = view.bounds
         chatViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         chatViewController.didMove(toParent: self)
+        
+        let backButton = UIBarButtonItem(title: "Guidance", style: .plain, target: nil, action: nil)
+                navigationItem.backBarButtonItem = backButton
     }
 }

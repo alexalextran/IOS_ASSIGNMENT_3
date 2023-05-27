@@ -19,11 +19,12 @@ class DateCell: UICollectionViewCell {
 
         // Customize the appearance of the button
 
-        button.setTitleColor(.red, for: .normal)
+        let pink = UIColor(red: 254/255, green: 58/255, blue: 92/255, alpha: 1.0)
+        button.setTitleColor(pink, for: .normal)
         button.backgroundColor = .clear
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        button.layer.borderWidth = 1.0
-        button.layer.borderColor = UIColor.systemRed.cgColor
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.clear.cgColor
         
       
     }
