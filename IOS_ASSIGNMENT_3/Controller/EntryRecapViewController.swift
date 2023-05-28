@@ -31,8 +31,9 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
            var mood:String
            var text:String
        }
+    let dateFunctions = DateFunctions()
     var entries = [String: [EntryManager.Entry]]()
-    var entryManager =  EntryManager()
+    let entryManager =  EntryManager()
     
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
@@ -84,20 +85,11 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     
-    //set current month and year labels
     func updateCurrentMonthAndYearLabel() {
-        guard (1...12).contains(i) else {
-            return
-        }
-        let monthSymbols = DateFormatter().monthSymbols
-        let monthIndex = i
-        if let monthName = monthSymbols?[monthIndex - 1] {
-            let currentYear = Calendar.current.component(.year, from: Date())
-            CurrentMonthandYear.text = "\(monthName) \(currentYear)"
-        } else {
-            print("Month name not found for index: \(monthIndex)")
-        }
+        CurrentMonthandYear.text = dateFunctions.updateCurrentMonthAndYearLabel(i: i)
     }
+    
+ 
     
     //decreases the value of i by 1 and therefore moving to the previous month
     @objc func previousMonthButtonTapped(_ sender: UIButton) {

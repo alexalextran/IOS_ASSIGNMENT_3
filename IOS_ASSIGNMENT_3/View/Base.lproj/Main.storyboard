@@ -570,6 +570,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Statistics" id="Jbm-FF-107"/>
                     <connections>
+                        <outlet property="CurrentMonthandYear" destination="lWi-fH-UU8" id="TVf-pa-LDt"/>
                         <outlet property="NextMonth" destination="XmC-Zr-bnb" id="ndE-lZ-VvG"/>
                         <outlet property="PreviousMonth" destination="o2T-Jl-Xnc" id="gDD-8K-xzn"/>
                         <outlet property="averageEntriesLabel" destination="mhP-jl-e5A" id="hZl-SZ-G26"/>
@@ -579,7 +580,6 @@
                         <outlet property="joyPercentage" destination="VNT-1B-CMB" id="xDo-e1-fdj"/>
                         <outlet property="joyPogressBar" destination="edl-Te-RoQ" id="5Bq-7C-ZDf"/>
                         <outlet property="middleStackView" destination="kVL-QQ-FTk" id="7YN-Wt-rqh"/>
-                        <outlet property="monthLabel" destination="lWi-fH-UU8" id="jhP-EP-qGC"/>
                         <outlet property="neutralPercentage" destination="boT-gQ-S4K" id="LGq-TP-LCO"/>
                         <outlet property="neutralPogressBar" destination="lre-VC-Fh8" id="k4e-Dq-Q8b"/>
                         <outlet property="sadPercentage" destination="AnQ-az-xk3" id="uHm-Da-ZAd"/>

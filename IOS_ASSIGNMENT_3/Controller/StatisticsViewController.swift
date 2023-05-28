@@ -2,18 +2,12 @@ import UIKit
 
 class StatisticsViewController: UIViewController {
     
-    struct Entry: Codable {
-        var mood: String
-        var text: String
-    }
-    
-    let KEY_DAILY_ENTRIES = "dailyEntries"
     var entries = [String: [EntryManager.Entry]]()
     var entriesThisMonth = [EntryManager.Entry]()
     
     @IBOutlet weak var NextMonth: UIButton!
     @IBOutlet weak var PreviousMonth: UIButton!
-    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var CurrentMonthandYear: UILabel!
     @IBOutlet weak var totalEntriesLabel: UILabel!
     @IBOutlet weak var averageEntriesLabel: UILabel!
     @IBOutlet weak var unhappyPogressBar: UIProgressView!
@@ -30,9 +24,24 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var middleStackView: UIStackView!
     @IBOutlet weak var bottomStackView: UIStackView!
     
-    var entryManager =  EntryManager()
+    let dateFunctions = DateFunctions()
+    let entryManager =  EntryManager()
     
     var i:Int = 0 //use i as a way to keep track of the current month
+    
+    let monthsDictionary = //store how many daays are in each month
+    [1: 31,
+     2: 28,
+     3: 31,
+     4: 30,
+     5: 31,
+     6: 30,
+     7: 31,
+     8: 31,
+     9: 30,
+     10: 31,
+     11: 30,
+     12: 31]
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,14 +49,85 @@ class StatisticsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         entries = entryManager.readEntries()
-        
-        i = getCurrentMonth() //set i to the current month e.g if it was may i = 5
-        updateCurrentMonthAndYearLabel()
+        i = dateFunctions.getCurrentMonth()
+        CurrentMonthandYear.text = dateFunctions.updateCurrentMonthAndYearLabel(i: i)
         updateStatistics()
         setUpUI()
         
         PreviousMonth.addTarget(self, action: #selector(previousMonthButtonTapped(_:)), for: .touchUpInside)
         NextMonth.addTarget(self, action: #selector(nextMonthButtonTapped(_:)), for: .touchUpInside)
+    }
+    
+    //decreases i by 1 to represent previous month
+    @objc func previousMonthButtonTapped(_ sender: UIButton) {
+        i -= 1
+            //ensure i stays in the range of the months
+        if i < 1 {
+            i = 12
+        }
+        // Update the label to the current month and year annd all the statistic labels
+        CurrentMonthandYear.text = dateFunctions.updateCurrentMonthAndYearLabel(i: i)
+        updateStatistics()
+    }
+
+    //decreases i by 1 to represent previous month
+    @objc func nextMonthButtonTapped(_ sender: UIButton) {
+        i += 1
+        //ensure i stays in the range of the months
+        if i > 12 {
+            i = 1
+        }
+        // Update the label to the current month and year annd all the statistic labels
+        CurrentMonthandYear.text = dateFunctions.updateCurrentMonthAndYearLabel(i: i)
+        updateStatistics()
+    }
+    
+    
+    func updateStatistics() { //updates statisitcs based on the current month
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let currentMonth = i
+
+        // Filter entries based on current month
+        entriesThisMonth = entries.filter { (dateString, _) -> Bool in
+            
+            // convert date string to date object
+            guard let date = dateFormatter.date(from: dateString) else {
+                return false
+            }
+            // extract month
+            let month = Calendar.current.component(.month, from: date)
+
+            // check if entry month is equal to current month
+            return month == currentMonth
+        }.flatMap { $0.value }
+        setUpUI() //update UI
+    }
+    
+    
+    
+    //formula for mood percentage
+    func calculateMoodPercentage(emotion: String) -> String {
+        let moodToCalculate = emotion
+        let totalCount = entriesThisMonth.count
+        let emotionCount = entriesThisMonth.filter { $0.mood == moodToCalculate }.count //filter by Entry.mood
+
+        guard totalCount != 0 else {
+            return "0"
+        }
+
+        let percentage = (Double(emotionCount) / Double(totalCount) * 100.0)
+
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 1 //limit percentge to 1 decimal place
+
+        let roundedNumber = numberFormatter.string(from: NSNumber(value: percentage))
+        return roundedNumber ?? "0"
+    }
+
+    
+    func setUpUI() { // sets percentage text and pogress bars to the value of mood percentage
         
         PreviousMonth.layer.cornerRadius = 8
         NextMonth.layer.cornerRadius = 8
@@ -62,150 +142,30 @@ class StatisticsViewController: UIViewController {
         bottomStackView.clipsToBounds = true
         
         
-
-        
-    }
-    
-  
-    
-    func updateCurrentMonthAndYearLabel() {
-        guard (1...12).contains(i) else {
-            return
-        }
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM yyyy" // Set the date format to display the full month name and year
-
-        let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: Date())
-        let currentMonthComponents = DateComponents(year: currentYear, month: i)
-        guard let currentMonthDate = calendar.date(from: currentMonthComponents) else {
-            print("Invalid current month date.")
-            return
-        }
-
-        monthLabel.text = dateFormatter.string(from: currentMonthDate)
-    }
-    
-    
-    
-    // Decreases the value of i by 1 and moves to the previous month
-    @objc func previousMonthButtonTapped(_ sender: UIButton) {
-        i -= 1
-        // Ensure i stays within the range of 1-12
-        if i < 1 {
-            i = 12
-        }
-        // Update the label to the current month and year
-        updateCurrentMonthAndYearLabel()
-        updateStatistics()
-    }
-
-    // Increases the value of i by 1 and moves to the next month
-    @objc func nextMonthButtonTapped(_ sender: UIButton) {
-        i += 1
-        // Ensure i stays within the range of 1-12
-        if i > 12 {
-            i = 1
-        }
-        // Update the label to the current month and year
-        updateCurrentMonthAndYearLabel()
-        updateStatistics()
-    }
-    
-    func updateStatistics() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let currentMonth = i
-
-        // Filter entries for the current month
-        entriesThisMonth = entries.filter { (dateString, _) -> Bool in
-            
-            // Convert the date string to a Date object
-            guard let date = dateFormatter.date(from: dateString) else {
-                return false
-            }
-            // Extract the month component from the date
-            let month = Calendar.current.component(.month, from: date)
-
-            // Check if the extracted month matches the current month
-            return month == currentMonth
-        }.flatMap { $0.value }
-        setUpUI() //update UI
-    }
-    
-    func getCurrentMonth() -> Int {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM" //get current month
-        let currentMonth = dateFormatter.string(from: Date())
-        return Int(currentMonth) ?? 0 //return current month as a number
-    }
-    
-    func calculateMoodPercentage(emotion: String) -> String {
-        let moodToCalculate = emotion
-        let totalCount = entriesThisMonth.count // get total entries this month
-        let emotionCount = entriesThisMonth.filter { $0.mood == moodToCalculate }.count // count all entries that match the mood
-
-        // Handle the case where there are no entries of the specific mood
-        guard totalCount != 0 else {
-            return "0"
-        }
-
-        let percentage = (Double(emotionCount) / Double(totalCount) * 100.0)
-
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 1 // format to one decimal
-
-        let roundedNumber = numberFormatter.string(from: NSNumber(value: percentage))
-
-        return roundedNumber ?? "0"
-    }
-
-    
-    func getDaysInCurrentMonth() -> Int { //return the days within the selected month
-        let calendar = Calendar.current
-        let currentDate = Date()
-        let currentMonth = calendar.component(.month, from: currentDate)
-        let currentYear = calendar.component(.year, from: currentDate)
-        let dateComponents = DateComponents(year: currentYear, month: currentMonth)
-        
-        guard let firstDayOfMonth = calendar.date(from: dateComponents),
-              let nextMonth = calendar.date(byAdding: .month, value: 1, to: firstDayOfMonth),
-              let daysInMonth = calendar.dateComponents([.day], from: firstDayOfMonth, to: nextMonth).day else {
-            return 0
-        }
-        
-        return daysInMonth
-    }
-    
-    
-    
-    func setUpUI() {
         let unhappyPercentageValue = calculateMoodPercentage(emotion: "Unhappy")
-        unhappyPercentage.text = unhappyPercentageValue
+        unhappyPercentage.text = unhappyPercentageValue + "%"
         unhappyPogressBar.progress = Float(unhappyPercentageValue)! / 100.0
 
         let sadPercentageValue = calculateMoodPercentage(emotion: "Sad")
-        sadPercentage.text = sadPercentageValue
+        sadPercentage.text = sadPercentageValue + "%"
         sadPogressBar.progress = Float(sadPercentageValue)! / 100.0
 
         let neutralPercentageValue = calculateMoodPercentage(emotion: "Neutral")
-        neutralPercentage.text = neutralPercentageValue
+        neutralPercentage.text = neutralPercentageValue + "%"
         neutralPogressBar.progress = Float(neutralPercentageValue)! / 100.0
 
         let goodPercentageValue = calculateMoodPercentage(emotion: "Good")
-        goodPercentage.text = goodPercentageValue
+        goodPercentage.text = goodPercentageValue + "%"
         goodPogressBar.progress = Float(goodPercentageValue)! / 100.0
 
         let joyPercentageValue = calculateMoodPercentage(emotion: "Joy")
-        joyPercentage.text = joyPercentageValue
+        joyPercentage.text = joyPercentageValue + "%"
         joyPogressBar.progress = Float(joyPercentageValue)! / 100.0
 
         totalEntriesLabel.text = String(entriesThisMonth.count)
 
-        let daysInMonth = getDaysInCurrentMonth()
-        let averageEntries = Double(entriesThisMonth.count) / Double(daysInMonth)
+        let daysInMonth = monthsDictionary[i]
+        let averageEntries = Double(entriesThisMonth.count) / Double(daysInMonth!)
         averageEntriesLabel.text = String(format: "%.1f", averageEntries)
         
     }
