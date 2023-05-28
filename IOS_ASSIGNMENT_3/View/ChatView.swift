@@ -29,6 +29,9 @@ struct ChatView: View {
                         }
                     }
                 }
+                .onTapGesture {
+                    hideKeyboard() // Dismiss keyboard when tapped anywhere on the screen
+                }
                 .padding(.horizontal, 8)
                 .padding(.vertical, 8)
                 .background(Color("navColor").cornerRadius(8))
@@ -50,13 +53,10 @@ struct ChatView: View {
                             .cornerRadius(12)
                             .opacity(viewModel.isSendButtonDisabled ? 0.3 : 1.0)
                     }
-                    .disabled(viewModel.currentInput.isEmpty)
+                    .disabled(viewModel.isSendButtonDisabled)
                 }
             }
             .padding()
-        }
-        .onTapGesture {
-            hideKeyboard() // Dismiss keyboard when tapped anywhere on the screen
         }
     }
     
