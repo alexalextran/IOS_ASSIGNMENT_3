@@ -10,10 +10,10 @@ Joshua Nguyen 14282507
 https://github.com/alexalextran/IOS_ASSIGNMENT_3
 
 ## IMPORTANT NOTE WHEN RUNNING THE APPLICATION:
-  **1. Ensure that locaiton of Xcode is on through simulator, via Features > Location so that the API's are working as intended**
-  **2. Due to the security reasons of OpenAI API keys, we are not allowed to commit any API key to Github. For this reason, we purposely removed the API key from the APIKEY.swift file**
-  **3. TO USE THE OPENAI API FEATURE, PLEASE SEE THE SUBMISSION COMMENT. THE API KEY WILL BE PROVIDED THERE**
-  **4. Please paste the key inside the APIKey.swift file located in the APIKey folder.**
+  **1. Ensure that locaiton of Xcode is on through simulator, via Features > Location so that the API's are working as intended** <br>
+  **2. Due to the security reasons of OpenAI API keys, we are not allowed to commit any API key to Github. For this reason, we purposely removed the API key from the APIKEY.swift file** <br>
+  **3. TO USE THE OPENAI API FEATURE, PLEASE SEE THE SUBMISSION COMMENT. THE API KEY WILL BE PROVIDED THERE** <br>
+  **4. Please paste the key inside the APIKey.swift file located in the APIKey folder.** <br>
 
 Our application is a thoughts/jounral wellbeing manager, that organises a users thoughts and user that information to, personally help the user
 
