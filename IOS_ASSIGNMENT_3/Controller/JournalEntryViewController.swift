@@ -16,26 +16,18 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
     var selectedButton: UIButton?
     var selectedMood: String?
     var currentDate: String?
-    
+    let dateFunctions = DateFunctions()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         saveButton.isEnabled = false
         entryTextBox.delegate = self
         
-        let dateFormatter = DateFormatter() //set current date label to current month as in May
-        dateFormatter.dateFormat = "d MMMM yyyy"
-        let today = Date()
-        let formattedDate = dateFormatter.string(from: today)
-        currentDateLabel.text = "Today is \(formattedDate)"
-        
-        let dateShortFormatter = DateFormatter()  //set current date e.g 04/03/2023
-        dateShortFormatter.dateFormat = "dd/MM/yyyy"
-        currentDate = dateShortFormatter.string(from: today)
+        currentDateLabel.text = "Today is \(dateFunctions.getCurrentDate())"
+        currentDate = dateFunctions.getCurrentDate()
         
         entryTextBox.layer.cornerRadius = 14
         entryTextBox.layer.masksToBounds = true
-       
         entryTextBox.layer.borderWidth = 0
         entryTextBox.layer.borderColor = UIColor.gray.cgColor
         
@@ -55,7 +47,7 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
        }
     
     
-    func updateSaveButtonState() {
+    func updateSaveButtonState() { //ensures users cannot submit empty entries
             if entryTextBox.text?.isEmpty == true || selectedMood == nil {
                 saveButton.isEnabled = false // if either selectedMood is empty or the text is empty disable button
             } else if entryTextBox.text?.isEmpty == false && selectedMood != nil {
@@ -63,21 +55,23 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
             }
         }
     
-    @objc func buttonTapped(_ sender: UIButton) {
+    
+    
+    @objc func buttonTapped(_ sender: UIButton) { //handles mood buttons
         
         if let selectedButton = selectedButton {
-            // Deselect the previously selected button
+            // deselect previous button
             selectedButton.backgroundColor = UIColor.clear
         }
         self.selectedButton = sender
-        handleMoods(button: sender)
+        handleMoods(button: sender) //change selected mood depending on the button title
         updateSaveButtonState()
         
     }
     
     
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
-        // Clear the text and reset the selected mood
+    @IBAction func saveButtonTapped(_ sender: UIButton) { //resets everything, once submitted
+        //clear all selected moods, textbox and selected buttons
         entryTextBox.text = ""
         selectedMood = nil
         unhappyButton.backgroundColor = UIColor.clear
@@ -97,8 +91,8 @@ class JournalEntryViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func handleMoods(button: UIButton){
-        switch button.titleLabel!.text! { //update SelectedMood and background color for mood buttons
+    func handleMoods(button: UIButton){ //update SelectedMood and background color for mood buttons
+        switch button.titleLabel!.text! {
         case "😡":
          selectedMood = "Unhappy"
             button.backgroundColor = UIColor.systemRed

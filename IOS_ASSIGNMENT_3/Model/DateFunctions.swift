@@ -38,5 +38,12 @@ class DateFunctions
         return Int(currentMonth) ?? 0
     }
     
+    func getCurrentDate() -> String{
+        let dateShortFormatter = DateFormatter()  //set current date e.g 04/03/2023
+        let today = Date()
+        dateShortFormatter.dateFormat = "dd/MM/yyyy"
+        return dateShortFormatter.string(from: today)
+    }
+    
     
 }
