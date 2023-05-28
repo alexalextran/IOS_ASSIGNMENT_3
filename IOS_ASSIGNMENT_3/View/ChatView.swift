@@ -13,7 +13,7 @@ struct ChatView: View {
             VStack {
                 ScrollView(.vertical) {
                     ScrollViewReader { scrollView in
-                        LazyVStack {
+                        LazyVStack (spacing: 8) {
                             ForEach(viewModel.messages.dropFirst(), id: \.id) { message in
                                 if message.role != .system || message.id == viewModel.typingMessageId {
                                     messageView(message: message)
@@ -21,14 +21,16 @@ struct ChatView: View {
                                 }
                             }
                         }
-                        .padding()
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 8)
                         .background(Color("navColor").cornerRadius(8))
                         .onChange(of: viewModel.messages) { messages in
                             scrollView.scrollTo(messages.last?.id)
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal, 8)
+                .padding(.vertical, 8)
                 .background(Color("navColor").cornerRadius(8))
                 
                 HStack {
