@@ -12,6 +12,8 @@ class OpenAIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Personal Guidance"
+        
         // Create an instance of ChatViewController
         let chatViewController = ChatViewController()
         

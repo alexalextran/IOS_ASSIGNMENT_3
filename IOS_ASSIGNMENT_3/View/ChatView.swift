@@ -42,16 +42,19 @@ struct ChatView: View {
                         hideKeyboard()
                     }) {
                         Text("Send")
-                            .foregroundColor(viewModel.currentInput.isEmpty ? .gray : .white)
+                            .foregroundColor(.white)
                             .padding()
-                            .background(viewModel.currentInput.isEmpty ? Color.gray.opacity(0.3) : .pink)
+                            .background(viewModel.isSendButtonDisabled ? Color.gray.opacity(0.3) : .pink)
                             .cornerRadius(12)
-                            .opacity(viewModel.currentInput.isEmpty ? 0.3 : 1.0)
+                            .opacity(viewModel.isSendButtonDisabled ? 0.3 : 1.0)
                     }
                     .disabled(viewModel.currentInput.isEmpty)
                 }
             }
             .padding()
+        }
+        .onTapGesture {
+            hideKeyboard() // Dismiss keyboard when tapped anywhere on the screen
         }
     }
     

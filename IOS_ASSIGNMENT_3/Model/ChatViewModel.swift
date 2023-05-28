@@ -15,6 +15,10 @@ extension ChatView {
         
         private let openAIManager = OpenAIManager()
         
+        var isSendButtonDisabled: Bool {
+            currentInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
+        
         func sendMessage() {
             let newMessage = Message(id: UUID(), role: .user, content: currentInput, createAt: Date())
             messages.append(newMessage)
