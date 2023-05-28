@@ -60,6 +60,8 @@ class StatisticsViewController: UIViewController {
         
         bottomStackView.layer.cornerRadius = 8
         bottomStackView.clipsToBounds = true
+        
+        
 
         
     }
@@ -177,7 +179,7 @@ class StatisticsViewController: UIViewController {
         return daysInMonth
     }
     
-    //test
+    
     
     func setUpUI() {
         let unhappyPercentageValue = calculateMoodPercentage(emotion: "Unhappy")
@@ -205,28 +207,7 @@ class StatisticsViewController: UIViewController {
         let daysInMonth = getDaysInCurrentMonth()
         let averageEntries = Double(entriesThisMonth.count) / Double(daysInMonth)
         averageEntriesLabel.text = String(format: "%.1f", averageEntries)
-
-        // Check if mood percentages are zero and update progress bars and labels accordingly
-        if unhappyPercentageValue == "0" {
-            unhappyPogressBar.progress = 0
-            unhappyPercentage.text = "0"
-        }
-        if sadPercentageValue == "0" {
-            sadPogressBar.progress = 0
-            sadPercentage.text = "0"
-        }
-        if neutralPercentageValue == "0" {
-            neutralPogressBar.progress = 0
-            neutralPercentage.text = "0"
-        }
-        if goodPercentageValue == "0" {
-            goodPogressBar.progress = 0
-            goodPercentage.text = "0"
-        }
-        if joyPercentageValue == "0" {
-            joyPogressBar.progress = 0
-            joyPercentage.text = "0"
-        }
+        
     }
 
 }
