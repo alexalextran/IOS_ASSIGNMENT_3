@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  IOS_ASSIGNMENT_3
 //
-//  Created by Alex Tran on 18/5/2023.
+//  Created by Jason Vu on 18/5/2023.
 //
 
 import UIKit

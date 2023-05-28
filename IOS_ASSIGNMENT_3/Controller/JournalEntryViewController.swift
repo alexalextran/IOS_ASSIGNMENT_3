@@ -1,3 +1,8 @@
+//  IOS_ASSIGNMENT_3
+//
+//  Created by Alex Tran on 12/5/2023.
+//
+
 import UIKit
 
 class JournalEntryViewController: UIViewController, UITextViewDelegate {

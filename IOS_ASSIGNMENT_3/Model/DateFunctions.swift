@@ -11,7 +11,7 @@ class DateFunctions
 {
     
     
-    func updateCurrentMonthAndYearLabel(i:Int) -> String{
+    func updateCurrentMonthAndYearLabel(i:Int) -> String{ //return date using i as the month
         guard (1...12).contains(i) else {
             return ""
         }

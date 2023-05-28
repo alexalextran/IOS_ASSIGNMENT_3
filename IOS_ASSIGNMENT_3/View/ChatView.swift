@@ -1,3 +1,9 @@
+
+//  IOS_ASSIGNMENT_3
+//
+//  Created by Jason Vu on 25/5/2023.
+//
+
 import SwiftUI
 
 struct ChatView: View {

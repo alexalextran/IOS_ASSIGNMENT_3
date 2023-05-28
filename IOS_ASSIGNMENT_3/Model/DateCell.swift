@@ -1,3 +1,10 @@
+//
+//  ChatViewController.swift
+//  IOS_ASSIGNMENT_3
+//
+//  Created by Alex Tran on 12/5/2023.
+//
+
 import UIKit
 class DateCell: UICollectionViewCell {
     let button = UIButton()
@@ -16,8 +23,6 @@ class DateCell: UICollectionViewCell {
         contentView.addSubview(button)
         button.frame = contentView.bounds
         button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-        // Customize the appearance of the button
 
         let pink = UIColor(red: 254/255, green: 58/255, blue: 92/255, alpha: 1.0)
         button.setTitleColor(pink, for: .normal)

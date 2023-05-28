@@ -1,3 +1,11 @@
+//
+//  ChatViewController.swift
+//  IOS_ASSIGNMENT_3
+//
+//  Created by Alex Tran on 12/5/2023.
+//
+
+
 import Foundation
 
 class EntryManager {
@@ -8,13 +16,12 @@ class EntryManager {
         var text: String
     }
     
-    func writeEntry(entries: [String: [Entry]]) {
+    func writeEntry(entries: [String: [Entry]]) { //writes to internal database
         let userDefaults = UserDefaults.standard
-        
         userDefaults.set(try? PropertyListEncoder().encode(entries), forKey: KEY_DAILY_ENTRIES)
     }
     
-    func injectFakeData() -> [String: [Entry]] {
+    func injectFakeData() -> [String: [Entry]] { //fake data
         let fakeData: [String: [Entry]] = [
             "14/03/2023": [
                 Entry(mood: "Sad", text: "I'm very sad today. I lost my 100-metre sprint during my athletics carnival."),
@@ -70,7 +77,7 @@ class EntryManager {
         return fakeData
     }
     
-    func readEntries() -> [String: [Entry]] {
+    func readEntries() -> [String: [Entry]] { //return entries
         let defaults = UserDefaults.standard
         
         if let savedArrayData = defaults.value(forKey: KEY_DAILY_ENTRIES) as? Data {
