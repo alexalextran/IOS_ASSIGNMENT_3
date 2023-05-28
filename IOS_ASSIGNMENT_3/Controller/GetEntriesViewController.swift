@@ -20,8 +20,10 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
 
         dateLabel.text = formmattedDate
         self.entriesTable.register(CustomTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        
         entriesTable.delegate = self
         entriesTable.dataSource = self
+        
         entries = entryManager.readEntries()
         filteredEntries = entries
         filterTextField.delegate = self
@@ -45,31 +47,31 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             filteredEntries = entries.mapValues { $0.filter { $0.text.contains(searchText) } }
         }
-        entriesTable.reloadData()
+        entriesTable.reloadData() //refresh entries table
     }
 
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return filteredEntries[formmattedDate!]?.count ?? 0 //return number entries if entires do not exist return 0
+    func numberOfSections(in tableView: UITableView) -> Int { //populate entry tableiew
+        return filteredEntries[formmattedDate!]?.count ?? 0
     }
 
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { // There is just one row in every section
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {//make each entry as a section for spacing
         return 1
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { //header height
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { //heading height (spacing between each entry
     return 40
     }
 
 
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {   // Make the background color show through
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {  //use heading as spacing by making them cleaar
       let headerView = UIView()
       headerView.backgroundColor = UIColor.clear
       return headerView
   }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { //set up entry height
         let entryArrays = self.entries[formmattedDate!]
         let currentEntry = entryArrays![indexPath.section]
         
@@ -78,44 +80,45 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
            let titleLabelHeight: CGFloat = 20 //title height
            let font = UIFont.systemFont(ofSize: 18) //font size
             let entryHeight = text.height(withConstrainedWidth: labelWidth, font: font)
-           let cellHeight = titleLabelHeight + entryHeight + 44 // Add extra padding as per your preference
+           let cellHeight = titleLabelHeight + entryHeight + 44 //padding
 
-           return cellHeight
+           return cellHeight //dynamic height based on text
        }
     
     
-    @objc func deleteButtonTapped(_ sender: UIButton) {
-        let section = sender.tag // Get the section index from the button's tag
+    @objc func deleteButtonTapped(_ sender: UIButton) { //handle delete button
+        let section = sender.tag // get corresponding entry index from button
         let entryArrays = self.entries[formmattedDate!]
 
         if var sectionEntries = entryArrays, sectionEntries.indices.contains(section) {
-            sectionEntries.remove(at: section) // Remove the entry from the array
+            sectionEntries.remove(at: section) //remove entry from array
 
-            // Update the entries and filteredEntries dictionaries
+            // update entries dict
             entries[formmattedDate!] = sectionEntries
             filteredEntries[formmattedDate!] = sectionEntries
 
-            // Check if there are any remaining entries for that date
+            // if there are no remaining entries for a date, remove the date itself from the dict
             if sectionEntries.isEmpty {
                 entries.removeValue(forKey: formmattedDate!)
                 filteredEntries.removeValue(forKey: formmattedDate!)
             }
 
-            // Save the updated entries to UserDefaults or any other storage mechanism
+            // update to database
             entryManager.writeEntry(entries: entries)
 
-            // Reload the table view
+            // refresh tableview
             entriesTable.reloadData()
         }
     }
 
 
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { //set up cells
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CustomTableViewCell
         let entryArrays = filteredEntries[formmattedDate!]
         let entry = entryArrays![indexPath.section]
-        cell.titleLabel.text = entry.mood
+        
+        cell.titleLabel.text = entry.mood //set up entry labels
         cell.entryLabel.text = entry.text
         cell.titleLabel.textColor = UIColor.label
         cell.entryLabel.textColor = UIColor.label
@@ -127,20 +130,20 @@ class GetEntriesViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.contentView.clipsToBounds = true
         
         
-        // Add "X" button
+        // add "x" button (delete button)
         let button = UIButton(type: .system)
-        let deleteImage = UIImage(systemName: "xmark") // Use the system icon "xmark"
+        let deleteImage = UIImage(systemName: "xmark") // use system icon
         button.setImage(deleteImage, for: .normal)
         button.tintColor = UIColor.label //color
         button.frame = CGRect(x: cell.bounds.width - 30, y: 10, width: 20, height: 20) //size and positioning
         button.addTarget(self, action: #selector(deleteButtonTapped(_:)), for: .touchUpInside)
-        button.tag = indexPath.section
+        button.tag = indexPath.section //add entry tag so we can use for later
         cell.addSubview(button)
         
         return cell
     }
     
-    func setBorderColor(entryMood:String) -> CGColor {
+    func setBorderColor(entryMood:String) -> CGColor { //set border color 
         switch entryMood{
         case "Unhappy":
            return UIColor.systemRed.cgColor
