@@ -27,10 +27,6 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     var selectedDate: Date?
     var formattedDate: String?
     var selectedIndexPath: IndexPath?
-    struct Entry: Codable{
-           var mood:String
-           var text:String
-       }
     let dateFunctions = DateFunctions()
     var entries = [String: [EntryManager.Entry]]()
     let entryManager =  EntryManager()
@@ -41,45 +37,36 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         updateCurrentMonthAndYearLabel()
         PreviousMonth.addTarget(self, action: #selector(previousMonthButtonTapped(_:)), for: .touchUpInside)
         NextMonth.addTarget(self, action: #selector(nextMonthButtonTapped(_:)), for: .touchUpInside)
-        
         PreviousMonth.layer.cornerRadius = 8
         NextMonth.layer.cornerRadius = 8
 
-        // Set up the collection view
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        // Register the cell class for the collection view
         collectionView.register(DateCell.self, forCellWithReuseIdentifier: "DateCell")
         
         //set i to current month but as an integer
-        let currentDate = Date()
-        let calendar = Calendar.current
-        let currentMonth = calendar.component(.month, from: currentDate)
-        i = currentMonth
-        
-        //format label to month as in May
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM"
-        CurrentMonthandYear.text =  dateFormatter.string(from: Date()) + " 2023"
+        i = dateFunctions.getCurrentMonth()
+        //set title label to month depending on i
+        CurrentMonthandYear.text = dateFunctions.updateCurrentMonthAndYearLabel(i:i)
         GoButtonForRecap.isEnabled = false
         entries = entryManager.readEntries()
         refreshPage()
+        
         collectionView.layer.cornerRadius = 8.0
         collectionView.layer.masksToBounds = true
     }
     
     
     func refreshPage() {
-        // Reset properties to their initial values
+        // reset properties
         selectedDate = nil
         formattedDate = nil
         selectedIndexPath = nil
 
-        // Reload the collection view
+        //refresh collectionview
         collectionView.reloadData()
 
-        // Update other UI elements or perform any additional tasks if needed
+        // updateUI
         updateSaveButtonState()
         updateCurrentMonthAndYearLabel()
     }
@@ -91,31 +78,28 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
     
  
     
-    //decreases the value of i by 1 and therefore moving to the previous month
+    //decreases i by 1 to represent previous month
     @objc func previousMonthButtonTapped(_ sender: UIButton) {
             // Decrease the value of i by 1
             i -= 1
-            // Ensure i stays within the range of 1-12
+        //ensure i stays in the range of the months
             if i < 1 {
                 i = 12
             }
-            // Reload the collection view to reflect the updated month
+        // Update the label to the current month and year annd all the statistic labels
             collectionView.reloadData()
-            //update the label to the current month and year
             updateCurrentMonthAndYearLabel()
         }
     
-    //increases the value of i by 1 and therefore moving to the next month
+    //decreases i by 1 to represent previous month
     @objc func nextMonthButtonTapped(_ sender: UIButton) {
-            // Increase the value of i by 1
             i += 1
-            // Ensure i stays within the range of 1-12
+        //ensure i stays in the range of the months
             if i > 12 {
                 i = 1
             }
-            // Reload the collection view to reflect the updated month
+        // Update the label to the current month and year annd all the statistic labels
             collectionView.reloadData()
-            //update the label to the current month and year
             updateCurrentMonthAndYearLabel()
 
         }
@@ -151,6 +135,7 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
 
         let selectedMonth = i
         let selectedYear = 2023
+        
         let dateComponents = DateComponents(year: selectedYear, month: selectedMonth, day: day)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -158,15 +143,15 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
         if let date = Calendar.current.date(from: dateComponents) {
             let formattedDate = dateFormatter.string(from: date)
             if entries[formattedDate] == nil {
-                // Disable the button and gray it out
+                //disable button if date does not exist in dict
                 cell.button.isEnabled = false
                 cell.button.setTitleColor(.gray, for: .disabled)
             } else {
-                // Enable the button and set its appearance
+                // enable button if it does exist
                 cell.button.isEnabled = true
 
                 if formattedDate == self.formattedDate {
-                    // Highlight the button for the currently selected date
+                    // highlight selected date
                     cell.button.backgroundColor = pink
 
                     cell.button.setTitleColor(.white, for: .normal)
@@ -205,11 +190,8 @@ class EntryRecapViewController: UIViewController, UICollectionViewDelegate, UICo
             }
 
             // Update the current button appearance
-          
             cell.button.backgroundColor = pink
-              
             cell.button.setTitleColor(.white, for: .normal)
-            
     
             updateSaveButtonState()
             selectedIndexPath = indexPath
